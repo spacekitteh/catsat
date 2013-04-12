@@ -1,0 +1,3 @@
+[submodule "external/libcsp"]
+	path = external/libcsp
+	url = git://github.com/GomSpace/libcsp

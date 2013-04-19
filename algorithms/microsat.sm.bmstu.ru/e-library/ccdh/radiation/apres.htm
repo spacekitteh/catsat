@@ -1,0 +1,695 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0080)http://www.ee.surrey.ac.uk/CSER/UOSAT/papers/VA/Spacecraft_Reliability_Utah.html -->
+<HTML><HEAD><TITLE>Accurately predicting the reliability of electronic systems have been a fundamental issue in the industry since the early 1950s</TITLE>
+<!-- Meta http equivalent was here                                   -->
+<META content="MSHTML 5.50.4134.600" name=GENERATOR></HEAD>
+<BODY><B><FONT size=4>
+<P align=center>RELIABILITY PREDICTION AND IMPROVEMENT OF ELECTRONIC SYSTEMS 
+ON-BOARD MODERN COST-EFFECTIVE MICROSATELLITES</FONT>.</P></B>
+<P align=center></P><B>
+<P align=center>Veronica Asenek, Prof. Martin Sweeting, Dr. Jeff 
+Ward<I>.</P></B></I>
+<P align=center>Centre for Satellite Engineering Research, </P>
+<P align=center>University of Surrey, Guildford, GU2 5XH, UK</P><FONT size=3>
+<P align=center>Tel: +44 1483 259278 Fax: +44 1483 259503 Email: 
+v.asenek@ee.surrey.ac.uk</P>
+<P align=center></P><B><U>
+<P align=justify>Abstract</U>:</B><I> </I>The Centre for Satellite Engineering 
+Research (CSER) and Surrey Satellite Technology Limited (SSTL) working together 
+have established themselves as pioneers in low cost small satellite technology. 
+One of the biggest challenges of reducing the high cost of space missions is 
+maintaining high reliability. Research undertaken at CSER has shown that there 
+is currently no suitable method for predicting the reliability of electronic 
+systems on-board modern cost-effective small satellites. This research also 
+revealed that it can be very difficult to improve existing methods or develop a 
+new methodology which could be used practically for this purpose. However, it 
+was found that the quality and consequently reliability of modern electronic 
+components is currently very high. Furthermore, if the "top-down" approach to 
+design, as well as current reliability improvement techniques and tools, are 
+used appropriately in the design an electronic system, then it is very unlikely 
+that such a system will fail. </P>
+<P align=justify>&nbsp;</P>
+<OL></FONT><B><U><FONT face=Arial size=4>
+  <P align=center>
+  <LI>Introduction
+  <P></P></LI></OL></B></U></FONT><FONT size=3>
+<P align=justify></P>
+<P align=justify>Because of the high cost involved in space missions, all 
+customers in the space industry want to know how much risk is involved with a 
+new product before purchasing it. For this reason, there is great need for a 
+methodical way to accurately predict the reliability of spacecraft. This problem 
+has been a fundamental issue in the space industry since the early 1950s. 
+Dealing exclusively with electronic hardware reliability, research was 
+undertaken at CSER to establish a methodology for: </P>
+<P align=justify>&nbsp;</P>
+<UL>
+  <P align=justify>
+  <LI>accurately predicting the reliability of electronic systems on small 
+  modern low cost spacecraft, such that alternative designs could be compared,
+  <P></P>
+  <P align=justify></P>
+  <LI>identifying potential weaknesses in a design,
+  <P></P></LI></UL>
+<P align=justify>taking into consideration the unique properties of these 
+spacecraft.</P>
+<P align=justify></P>
+<P align=justify>System reliability prediction begins by developing a 
+reliability block diagram (model) of the system. The reliability model takes 
+into consideration the amount of redundancy built into the system. The basic 
+input into this model is the reliability value of the system’s components. Two 
+approaches for predicting the reliability of electronic components were 
+identified: an empirical based prediction methodology (e.g. MIL-HDBK-217) and a 
+science based (theoretical) approach known as the Physics-of-Failure (PoF) 
+approach. </P></FONT><FONT size=5>
+<P align=justify></P></FONT><FONT size=3>
+<P align=justify>Section 3 of this paper presents the characteristics of a 
+typical UoSAT (University of Surrey Satellite) spacecraft. Sections 4 and 5 
+describe MIL-HDBK-217 method and the physics-of-failure approach respectively. 
+Section 6 discusses the application of MIL-HDBK-217 and PoF approach to small 
+modern low cost spacecraft. It also outlines recommendations of how more 
+reliable systems could be realised. Section 7 present tools and techniques that 
+can be used to implement these recommendations followed by a conclusion in 
+section 8.</P>
+<P align=justify>&nbsp;</P>
+<OL></FONT><B><U><FONT face=Arial size=4>
+  <P align=center>
+  <LI>Characteristics of a Typical UoSAT Spacecraft
+  <P></P></LI></OL></B></U></FONT><FONT size=3>
+<P align=justify></P>
+<P align=justify>Figure-1 shows an exploded view of a typical UoSAT 
+microsatellite. The internal part of the spacecraft consists of a number of 
+stacked aluminium trays<SUP>1,2</SUP>. Each tray supports an electronic system 
+whose reliability may be essential to the success of the whole mission.</P>
+<P align=center><IMG height=365 
+src="apres_files/Image22.gif" 
+width=400></P>
+<P align=center>Figure-1: An exploded view of a UoSAT microsatellite</P>
+<P align=justify></P>
+<P align=justify>Typical satellite characteristics include:</P>
+<OL>
+  <P align=justify>
+  <LI>They are manufactured from low-cost modern components from rapidly 
+  emerging technologies for which failure rate data currently does not exist.
+  <P></P>
+  <P align=justify></P>
+  <LI value=1>Each satellite typically consists of about thirty thousand 
+  components. 
+  <P></P>
+  <P align=justify></P>
+  <LI value=1>Typical flight mass is around 50kg.
+  <P></P>
+  <P align=justify></P>
+  <LI value=1>An average mission costs ~£2.0 million.
+  <P></P>
+  <P align=justify></P>
+  <LI value=1>Average manufacture and development time from proposal to launch 
+  is 12 months.
+  <P></P>
+  <P align=justify></P>
+  <LI value=1>They are flown in Low Earth Orbit (LEO) and are not in continuous 
+  contact with every point on earth, consequently, they employ a 
+  store-and-forward transponder for communication<SUP>2</SUP>. The transponder 
+  stores received signals on-board the satellites and then transmits them when 
+  it comes in contact with a ground station. As a result, these satellites have 
+  on-board solid state high capacity memory devices for data storage. Most of 
+  the devices have no flight heritage and are quite complex with high capability 
+  and speed.
+  <P></P>
+  <P align=justify></P>
+  <LI value=1>These spacecraft also use complex and flexible on-board computing 
+  systems based on microprocessors, again often without flight heritage.
+  <P></P></LI></OL>
+<P align=justify>&nbsp;</P>
+<P align=justify>&nbsp;</P>
+<P align=justify>&nbsp;</P>
+<OL>
+  <P align=center>
+  <LI><A name=_Toc357511505><A name=_Toc358962936><A 
+  name=_Toc362157437></FONT><B><U><FONT face=Arial 
+  size=4>MIL-HDBK-217</A></A></A> 
+  <P></P></LI></OL></B></U></FONT><FONT size=3>
+<P align=justify></P>
+<P align=justify>MIL-HDBK-217 (Military Handbook, Reliability Prediction of 
+Electronic Equipment)<SUP>3</SUP>, is the most widely used tool for predicting 
+component reliability. The first version of the handbook (MIL-HDBK-217A) was 
+published in 1965, followed by updated versions in subsequent years to reflect 
+the change in technology. MIL-HDBK-217F is the latest version. The content of 
+MIL-217F includes failure rate models for nineteen major electronic component 
+categories used in modern systems, ranging from microcircuits and discrete 
+semiconductors to passive components such as resistors and capacitors. Models 
+are developed by fitting curves to historical failure data from field operation 
+or from laboratory tests. The handbook contains two methods for performing 
+component reliability prediction, the<B> <I>parts count</B></I> and<B> <I>parts 
+stress</I> </B>methods<SUP>4</SUP>. </P>
+<P align=justify></P>
+<P align=justify>An example of a parts stress model, for a microcircuits is 
+given as follows:</P>
+<P align=justify></P><B><I>
+<P align=center><FONT face=Symbol>l</FONT> </FONT><SUB><FONT 
+size=1>p</SUB></FONT><FONT size=3>=(C</FONT><SUB><FONT size=1>1<FONT 
+face=Symbol>p</FONT> T<FONT face=Symbol>+</FONT> </SUB></FONT><FONT 
+size=3>C</FONT><SUB><FONT size=1>2<FONT face=Symbol>p</FONT> E</SUB></FONT><FONT 
+size=3>)<FONT face=Symbol>p</FONT> </FONT><SUB><FONT size=1>Q<FONT 
+face=Symbol>p</FONT> L</FONT><FONT size=3> </P></B></I></SUB>
+<P align=justify>where</P></FONT><I>
+<P align=justify><FONT face=Symbol>l</FONT> <SUB>p</I></SUB> = Part failure 
+rate;</P><I>
+<P align=justify>C<SUB>1</I></SUB> = Die base failure rate, based on the circuit 
+complexity (e.g. number of gates);</P><I>
+<P align=justify>C<SUB>2</I></SUB> = Package base failure rate, based on package 
+type and complexity (e.g. pin count);</P><I>
+<P align=justify><FONT face=Symbol>p</FONT> <SUB>T</I></SUB> = Temperature 
+acceleration factor for die related mechanisms (e.g. electromigration, time 
+dependent dielectric breakdown);</P><I>
+<P align=justify><FONT face=Symbol>p</FONT> <SUB>E</I></SUB> = Environmental 
+factor which accounts for all environmental effects except steady state 
+operating temperature (e.g. thermal cycling, vibration, humidity);</P><I>
+<P align=justify><FONT face=Symbol>p</FONT> <SUB>Q</I></SUB> = Quality factor 
+which accounts for the level of screening and processing of the device;</P><I>
+<P align=justify><FONT face=Symbol>p</FONT> <SUB>L</I></SUB> = Learning factor 
+which accounts for the maturity of the device manufacturing line.</P><B><FONT 
+size=4>
+<P align=justify></P></B></FONT><FONT size=3>
+<P align=justify>Using <FONT face=Symbol>l</FONT> </FONT><B><I><SUB><FONT 
+size=1>p</I></SUB></FONT><FONT size=3>,</B> the reliability <B><I>(R )</B></I> 
+of the part at time<B> <I>t</B></I> can be calculated using the equation</P>
+<P align=justify></P>
+<P align=center><IMG height=57 
+src="apres_files/Image23.gif" 
+width=193> .</P>
+<P align=justify>Models for other parts differ slightly in both the form and 
+input parameters of the above example. </P>
+<P align=justify></P>
+<P align=justify>The parts count method is meant to be applied early in the 
+design process. Models for this method are obtained from Parts Stress models by 
+assigning default values to some of the parameters which cannot be determined in 
+the early design stages. For example, this implies assigning values for <FONT 
+face=Symbol>p</FONT> </FONT><B><I><SUB><FONT size=1>T</SUB></FONT><FONT 
+size=3>,</I> <I>C</FONT><SUB><FONT size=1>2</I></SUB></FONT><FONT size=3>, 
+</B>and <FONT face=Symbol>p</FONT> </FONT><B><I><SUB><FONT 
+size=1>L</B></I></SUB></FONT><FONT size=3> in the example given 
+above<SUP>4</SUP>.</P>
+<P align=justify></P>
+<P align=justify>Unfortunately, MIL-HDBK-217 models have been highly criticised, 
+and some critics have even called for its elimination. Examples of issues that 
+have been raised against the handbook models include:</P>
+<UL>
+  <P align=justify>
+  <LI>The models do not address all the possible causes of 
+  failure<SUP>5,6</SUP>. They assume that fundamental part design is perfect and 
+  that failures are caused only by manufacturing defects which are accelerated 
+  by operational stresses.
+  <P></P>
+  <P align=justify></P>
+  <LI>The reliability of any electronic equipment depends on how it is designed, 
+  manufactured, stored, transported and used. All these processes vary from 
+  company to company and as such introduce large variability in the data 
+  collected from different companies. This variability is not accounted for in 
+  MIL-HDBK-217 models<SUP>7</SUP>. 
+  <P></P>
+  <P align=justify></P>
+  <LI>It is possible that the failure data is affected by external failure 
+  mechanisms and flawed reporting techniques. Consequently, there is no 
+  statistical confidence associated with results obtained using the 
+  models<SUP>8</SUP>. 
+  <P></P>
+  <P align=justify></P>
+  <LI>Since MIL-HDBK-217 models are empirically derived, they do not identify 
+  the actual origin of failures and therefore cannot be used for identifying 
+  potential reliability problems. 
+  <P></P>
+  <P align=justify></P>
+  <LI>The models are developed by assuming that the failure rate of components 
+  is constant<SUP>9</SUP>. This implies that the reliability of a component is 
+  independent of its age. Although this assumption is made on the basis that 
+  equipment will start its mission after the early failures have been eliminated 
+  and completes the mission before wear-out sets in (as described by the 
+  bath-tube curve), experience has proved otherwise.
+  <P></P>
+  <P align=justify></P>
+  <LI>The handbook also assumes that failure rate and reliability are related by 
+  the Arrhenius relationship. That is, the tendency for the component to fail 
+  increases with temperature. Evidence has also suggested 
+  otherwise<SUP>7,10</SUP>. 
+  <P></P>
+  <P align=justify></P>
+  <LI>Most of the models are reported to be out of date and are therefore not 
+  applicable for state-of-the-art components<SUP>11</SUP>.
+  <P></P>
+  <P align=justify></P>
+  <LI>Finally, where enough data is not available, models are obtained by 
+  extrapolating from available data. The results obtained in such situations 
+  have been described by some authors as educated guesses<SUP>12</SUP>. 
+  <P></P></LI></UL>
+<P align=justify></P>
+<DIR>
+<P align=justify>The lack of data is a growing problem as the reliability of 
+components continue to increase (Figure-2). With the modern production 
+techniques available today, the mean time between failure (MTBF) for components 
+is currently very high<SUP>13</SUP>. It is necessary to test thousand of 
+components for months and possibly years to obtain sufficient data to develop 
+accurate empirical models. It is forecast that, at the turn of the century, tens 
+of thousands of components will be tested at accelerated conditions for many 
+weeks with no failures occurring<SUP>14</SUP>. Lack of data is in fact an 
+"acute" problem as far as empirical models are concerned.</P>
+<P align=justify>&nbsp;</P>
+<DIR>
+<P align=center><IMG height=181 
+src="apres_files/Image24.gif" 
+width=293></P></FONT><FONT size=2>
+<P align=center>Figure-2: Quality/Reliability Evolution in Government and 
+Industrial Parts<SUP>15</SUP>.</P>
+<P align=justify></P></DIR></DIR></FONT><FONT size=3>
+<P align=justify>Despite these weaknesses, MIL-HDBK-217 is still the most widely 
+used tool for making reliability predictions for complex electronic systems and 
+for comparing design options. This is mainly because the handbook models are the 
+only models that are available, and are well documented and easy to use for 
+making reliability predictions. Software packages facilitating their application 
+to complex systems are even available. Manufacturers of spacecraft and other 
+complex electronic systems therefore have no choice but to use MIL-HDBK-217 when 
+reliability analysis is requested by the customer. Other empirical reliability 
+prediction handbooks exist but similar controversies surrounds them<SUP>15, 
+16,17</SUP>. </P>
+<P align=justify></P>
+<P align=justify>According to Jensen<SUP>14</SUP>, "Achieving high reliability 
+is a process of sound design and manufacturing practices. Using handbook 
+predictions for design comparisons is rarely a good idea". It can mislead the 
+designer to select a less reliable component over a more reliable one due to the 
+lack of coherence between predicted values. Table-1 illustrates this point with 
+predictions for a commercial-grade, plastic, 64K DRAM under the same 
+environmental conditions, using empirical based models from different handbooks. 
+</P>
+<P align=justify></P>
+<P align=justify>In general, empirical models have become inaccurate due to 
+insufficient statistics on the failure of components. Critics of empirical 
+models prefer the science based method known as the physics-of-failure (PoF) 
+approach<SUP>20</SUP>.</P>
+<P align=justify></P>
+<P align=justify>Table 1: Predicted values of 64K DRAM hazard rate in FITs 
+(1994)<SUP>14</SUP>.</P></FONT>
+<TABLE borderColor=#808080 cellSpacing=2 cellPadding=9 width=330 border=1>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width="54%"><FONT size=3>
+      <P>MIL-HDBK-217F</FONT></P></TD>
+    <TD vAlign=top width="46%"><FONT size=3>
+      <P>49</FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="54%"><FONT size=3>
+      <P>HRD 4</FONT></P></TD>
+    <TD vAlign=top width="46%"><FONT size=3>
+      <P>8</FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="54%"><FONT size=3>
+      <P>CNET</FONT></P></TD>
+    <TD vAlign=top width="46%"><FONT size=3>
+      <P>22</FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="54%"><FONT size=3>
+      <P>Italtel IRPH93</FONT></P></TD>
+    <TD vAlign=top width="46%"><FONT size=3>
+      <P>14</FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="54%"><FONT size=3>
+      <P>AT&amp;T</FONT></P></TD>
+    <TD vAlign=top width="46%"><FONT size=3>
+      <P>45</FONT></P></TD></TR></TBODY></TABLE><FONT size=3>
+<P align=justify></P>
+<P align=justify>&nbsp;</P>
+<OL>
+  <P align=center>
+  <LI><A name=_Toc357511506><A name=_Toc358962937><A 
+  name=_Toc362157438></FONT><B><U><FONT face=Arial size=4>Physics of Failure 
+  (PoF) approach</A></A></A>
+  <P></P></LI></OL></B></U></FONT><FONT size=3>
+<P align=justify></P>
+<P align=justify>Cushing et al<SUP>19</SUP>, defined this as an approach to 
+design, reliability assessment, testing, screening and stress margins that uses 
+knowledge of root-cause failure processes to prevent product failures through 
+rigorous design and manufacturing practices. To apply it, the following steps 
+are taken:</P>
+<UL>
+  <P align=justify>
+  <LI>Identify potential failure mechanisms (e.g. chemical, electrical, 
+  physical, mechanical, structural, or thermal processes leading to failure) and 
+  the failure sites on each device.
+  <P></P>
+  <P align=justify></P>
+  <LI>Develop a model for each failure mechanism through established principles 
+  of physics, chemistry, mechanics and materials. Input parameters to these 
+  models include characteristics of the materials of the device, geometry at the 
+  failure site, manufacturing flaws, defects and environmental and operating 
+  loads.
+  <P></P>
+  <P align=justify></P>
+  <LI>Analyse all potential failure mechanisms at each failure site and 
+  determine its mean time to failure (MTTF). The mechanism with the shortest 
+  calculated life is taken as the MTTF of the components and consequently of the 
+  system.
+  <P></P></LI></UL>
+<P align=justify></P>
+<P align=justify>An example of a physics-of-failure model developed by Pecht 
+&amp; others<SUP>20</SUP> of the University of Maryland for the fifty percent 
+life of a Brittle Die Fracture is given as follows</P>
+<P align=justify></P>
+<P align=justify>&nbsp;</P>
+<P align=justify>&nbsp;</P>
+<P align=justify>&nbsp;</P>
+<P align=justify><IMG height=100 
+src="apres_files/Image25.gif" 
+width=733></P></FONT><B>
+<P align=justify>where</P></B><I>
+<P align=justify>A</I> = material dependent coefficient</P><I>
+<P align=justify>n </I>= material dependent exponent for die</P><I>
+<P align=justify>m<SUB>i</I></SUB> = Die crack tip geometry factor</P><I>
+<P align=justify>M<SUB>k</I></SUB> = Free surface correction factor</P><I>
+<P align=justify>a<SUB>0</I></SUB> = Initial die crack length (m)</P><I>
+<P align=justify>a<SUB>f</SUB> </I>= final die crack length</P><I>
+<P align=justify>k</I> = die geometry dependent coefficient</P><I>
+<P align=justify><FONT face=Symbol>m</FONT> <SUB>s</I></SUB> = Substrate thermal 
+coefficient of expansion (m/m/<SUP>0</SUP>C)</P><I>
+<P align=justify><FONT face=Symbol>m</FONT> <SUB>d</I></SUB> = die thermal 
+coefficient of expansion (m/m/<SUP>0</SUP>C)</P><I>
+<P align=justify>E<SUB>s</I></SUB> = substrate tensile modulus (Pa)</P><I>
+<P align=justify>E<SUB>a</I></SUB> = die attach tensile modulus (Pa)</P><I>
+<P align=justify>L</I> = diagonal length of die (m)</P><I>
+<P align=justify>x</I> = die attach thickness</P><I>
+<P align=justify><FONT face=Symbol>D</FONT> T</I> = temperature change in die 
+(<SUP>0</SUP>C)</P><I>
+<P align=justify>a<SUB>i</I></SUB> = instantaneous crack length during crack 
+growth (m)</P><FONT size=2>
+<P align=justify></P></FONT><FONT size=3>
+<P align=justify>&nbsp;</P>
+<P align=justify>&nbsp;</P>
+<P align=justify>The main disadvantages of this approach include:</P>
+<UL>
+  <P align=justify>
+  <LI>The POF approach is focus on basic component design reliability and does 
+  not address external causes of failure possible causes of 
+  failure<SUP>20</SUP>. 
+  <P></P>
+  <P align=justify></P>
+  <LI>The validation of each failure mechanism can only be done through 
+  experimentation by multiple researchers, since it is a very specific and 
+  complex approach. This approach is therefore very expensive<SUP>20</SUP>. 
+  <P></P>
+  <P align=justify></P>
+  <LI>It requires a lot of expertise and machinery to conduct the necessary 
+  tests required to determine the parameters in the models. 
+  <P></P>
+  <P align=justify></P>
+  <LI>Models are currently not available for all categories of electronic 
+  components.
+  <P></P></LI></UL>
+<P align=justify>However, there are many advantages to this approach, although 
+most of them are of benefit to manufacturers of particular 
+devices<SUP>4,18,20</SUP>. Some of these include:</P>
+<UL>
+  <P align=justify>
+  <LI>Since PoF approach explicitly address the parameters which are found to 
+  strongly influence component reliability (material properties, electrical, 
+  thermal, mechanical and chemical stresses), it is a useful tool for designing 
+  components.
+  <P></P>
+  <P align=justify></P>
+  <LI>It establishes a scientific basis for evaluating new materials, 
+  structures, and electronic technologies. This approach can therefore be used 
+  for predicting the reliability of components developed from new technology.
+  <P></P>
+  <P align=justify></P>
+  <LI>By identifying and modelling potential failure mechanisms, it provides 
+  information that enables the manufacturer to plan tests and screen parts more 
+  effectively, as well as allowing them to determine electrical and 
+  thermal-mechanical stress margins. 
+  <P></P></LI></UL>
+<P align=justify>Despite these advantages, it is still reasonable to conclude 
+that this approach is unsuitable for low cost applications because of its 
+complexity and consequently the cost involved.</P>
+<P align=justify>&nbsp;</P>
+<OL></FONT><B><U><FONT face=Arial size=4>
+  <P align=center>
+  <LI>Conclusions on Component Reliability Prediction Methods
+  <P></P></LI></OL></B></U></FONT><FONT size=3>
+<P align=justify></P>
+<P align=justify>Firstly, since empirical models are inaccurate, they cannot be 
+used to compare alternative designs reliably. Unfortunately, it is difficult to 
+improve the accuracy of these models since the reliability of components 
+continues to increase and technology changes rapidly. Secondly, the PoF approach 
+is very complex and models do not currently exist for all classes of components. 
+It is therefore impractical for application to the whole spacecraft. </P>
+<P align=justify></P>
+<P align=justify>From this knowledge, we believe that neither of these methods 
+are suitable for predicting the reliability of modern components and hence the 
+reliability of electronic sub-systems on modern low cost spacecraft. 
+Consequently, reliability prediction is an ineffective method for comparing 
+alternative designs of modern electronic systems. Experienced from the design, 
+manufacture and operation of 11 microsatellites by CSER and SSTL have identified 
+the "top down" approach defined by O’Connor<SUP>21</SUP> as a better method of 
+achieving higher reliability in electronic systems. Using the ‘top down’ 
+approach (from system to component level) together with engineering judgement, 
+critical areas (weaknesses) in a design could be identified and weighting 
+factors assigned to them. These weighting factors can be used as a basis for 
+comparing alternative designs. Example of critical areas include:</P>
+<UL>
+  <P align=justify>
+  <LI>single point failures,
+  <P></P>
+  <P align=justify></P>
+  <LI>areas in which design changes have been implemented,
+  <P></P>
+  <P align=justify></P>
+  <LI>areas where new components or non-space qualified parts have been used.
+  <P></P></LI></UL>
+<P align=justify>To further improve the design, reliability improvement 
+techniques could then be applied to these areas, lessening the probability of 
+the system failing.</P>
+<P align=justify>&nbsp;</P>
+<OL></FONT><B><U><FONT face=Arial size=4>
+  <P align=center>
+  <LI>Reliability Improvement Techniques
+  <P></P></B></U></FONT><FONT size=3>
+  <P align=justify></P>
+  <P align=justify>Reliability improvement techniques include techniques of 
+  fault prevention and fault tolerance (Figure-3)<SUP>22,23</SUP>. Fault 
+  prevention is the traditional approach for increasing the reliability of a 
+  system. In involves ensuring that all possible causes of unreliability have 
+  been removed from the system before it is put to service. This can be achieved 
+  using two basic techniques, fault avoidance and fault removal. </P>
+  <P align=justify></P>
+  <P align=justify>Fault avoidance is concerned with the use of design and 
+  manufacturing methodologies aimed to avoid the introduction of faults into a 
+  system. Fault removal is concerned with checking the completed system design 
+  and removing any faults that are found<SUP>22</SUP>. Examples of tools which 
+  can be used for this purpose include FMECA (Failure Mode Effect and 
+  Criticality Analysis), FTA (Fault Tree Analysis) and SCA (Sneak Circuit 
+  Analysis)<SUP>13</SUP>.</P>
+  <P align=justify></P>
+  <P align=justify>Since unexpected failures may still occur in a system, fault 
+  tolerance (redundancy) techniques can be used to make a design more robust. 
+  That is, being able to operate successfully with the failure of some of its 
+  parts. Two main redundancy techniques were identified: active redundancy and 
+  stand-by redundancy. Both techniques can be further classified into 
+  sub-divisions also shown in Figure-3.</P>
+  <P align=justify>&nbsp;</P></FONT><B><U><FONT face=Arial size=4>
+  <P align=center></P>
+  <LI>Conclusions
+  <P></P></LI></OL></B></U></FONT><FONT size=3>
+<P align=justify></P>
+<P align=justify>This research has shown that none of the methods currently 
+available is suitable for accurately predicting the reliability of 
+state-of-the-art electronic components and hence the reliability of electronic 
+sub-systems on modern small cost-effective spacecraft. Since technology is 
+rapidly changing, modern production techniques have resulted in extremely low 
+statistics of failure in electronic components. As a result, empirical 
+reliability prediction models (e.g. MIL-HDBK-217) which are widely used have 
+become inaccurate. Attempting to improve existing models or develop new ones is 
+practically impossible considering the time and cost constraints associated with 
+low cost missions. The alternative theoretical based physics-of-failure approach 
+tends to be very complex and time consuming when applied to complex systems. It 
+was found, however that higher system reliability can be realised using the "top 
+down" approach to design together with engineering judgement to identify and 
+weigh critical areas. Alternative designs could then be compared on the basis of 
+the number of critical areas and their weighting factors. To further reduce the 
+chances of failure, reliability improvement techniques are implemented in these 
+critical areas. </P></FONT><FONT size=4>
+<P align=justify></P></FONT><FONT size=3>
+<P><IMG height=542 
+src="apres_files/Image26.gif" 
+width=710></P>
+<P align=justify><A name=_Ref350222521></P>
+<P align=center>Figure</A>-3: Fault Prevention and Fault Tolerance 
+Techniques.</P>
+<P align=justify></P><U>
+<P align=center><A name=_Toc362157491>Acknowledgement</P></U>
+<P align=justify>The authors will like to thank the Centre for Satellite 
+Engineering Research and the Department of Mathematics and Computer Sciences of 
+the University of Surrey for making this research work possible. Special thanks 
+also to Neville Bean, Principal Engineer at Surrey Satellite Technology Limited 
+for his technical support. </P>
+<P align=justify></P>
+<P align=justify>&nbsp;</P>
+<P align=justify>&nbsp;</P><U>
+<P align=center>R</A>eferences</P></U></FONT>
+<TABLE cellSpacing=0 cellPadding=9 width=1370 border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top colSpan=3 height=20>
+      <P></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>1</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>J.W. Ward, "Microsatellite for Global Electronic Mail Network", 
+      Electronics and Communication Engineering Journal, December 
+    1991</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>2</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>N. Sweeting, "UoSAT microsatellite missions", Electronics and 
+      Communication Engineering Journal, June 1992.</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>3</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>Department of Defense, "MIL-HDBK-217X Reliability Prediction for 
+      Electronic Equipment".</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>4</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>M.F. Seymour, "MIL-Hdbk-217 Use and Application", RAC (Reliability 
+      Analysis Centre) April 1990.</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>5</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>K.L. Wong, "What is Wrong with the Existing Reliability Prediction 
+      Methods?" Quality and Reliability Engineering International, Vol. 6, 
+      1990.</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>6</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>Pecht, W-C Kang, "A Critique of MIL-Hdbk-217E Reliability Prediction 
+      Methods", IEEE Transactions on Reliability, Vol. 37, No. 5, December 
+      1988.</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>7</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>P.D.T. O'Connor, "Undue Faith in the US MIL-Hdbk-217 for Reliability 
+      Prediction", IEEE Transactions on Reliability, Vol. 37, No.5, December 
+      1988.</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>8</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>M.G. Pecht, F.R. Nash, "Predicting the Reliability of Electronic 
+      Equipment", Proceedings of IEEE, Vol. 82, No. 7, July 
+  1994.</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>9</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>Hecht, E. Fiorentino, "Reliability Assessment of Spacecraft 
+      Electronics", Proceedings Annual Reliability and Maintainability 
+      Symposium, 1987.</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>10</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>C.T. Leonard, "On US MIL-Hdbk-217 and Reliability Prediction", IEEE 
+      Transactions on Reliability, Vol. 37, No.5, December 
+1988.</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>11</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>R. Brennom, "Should US MIL-Hdbk-217 Be Revisited?", IEEE Transactions 
+      on Reliability, Vol. 37, N0. 5, December 1988.</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>12</FONT></P></TD>
+    <TD vAlign=top width="47%" height=20><FONT size=3>
+      <P>L.L. Levy &amp; A.H. Moore, "A Monte Carlo Simulation Technique for 
+      Obtaining System Reliability Confidence Limits from Components Test Data", 
+      IEEE Transactions on Reliability, Vol. R-16, No.2, September 1967. 
+      </P></FONT></TD>
+    <TD vAlign=top width="48%" height=20>
+      <P></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>13</FONT></P></TD>
+    <TD vAlign=top width="47%" height=20><FONT size=3>
+      <P>P.D.T. O'Connor, "Practical Reliability Engineering" 2nd Edition, John 
+      Wiley &amp; Sons, 1995.</P></FONT></TD>
+    <TD vAlign=top width="48%" height=20>
+      <P></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>14</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>Jensen; "Electronic Component Reliability, Fundamental, Modeling, 
+      Evaluation, and Assurance", 2<SUP>nd</SUP> Edition John Wiley &amp; Sons 
+      1985.</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>15</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>Handbook of Reliability Data for Components used in Telecommunications 
+      Systems, British Telecom, Materials and Components Centre, 1987. 
+      </P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>16</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>Handbook of Reliability Data for Electronic Components, France Telecom, 
+      1993.</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>17</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>Standard Reliability Tables for Semiconductor Devices, Nippon Telegraph 
+      and Telephone Public Corporation, 1982.</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>18</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>G.F. Watson, "MIL reliability: a new approach", IEEE Spectrum, August 
+      1992.</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>19</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>M.J. Cushing et al, "Comparison of Electronics-Reliability Assessment 
+      Approaches", IEEE Transactions on Reliability, Vol. 42, No.4, December 
+      1993.</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>20</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>M.F. Seymour, "MIL-HDBK-217-A Favorite Target", Proceedings Annual 
+      Reliability and Maintainability Symposium, 1993.</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>21</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>P.D.T. O'Connor, "Practical Reliability Engineering" 3rd Edition, John 
+      Wiley &amp; Sons, 1995.</P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>22</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20>
+      <OL type=A start=13><FONT size=3>
+        <LI>Raghunanda; "Fault Tolerant of On Board Processors for Communication 
+        Satellites", Phil, Thesis, University of Surrey, 1991. 
+  </LI></OL></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top width="4%" height=20><FONT size=3>
+      <P>23</FONT></P></TD>
+    <TD vAlign=top width="96%" colSpan=2 height=20><FONT size=3>
+      <P>F. Klaschka, "Reliability Improvement by Redundancy in Electronic 
+      Systems", Royal Air Force Establishment, Technical Report 72200, 
+      1973.</FONT></P></TD></TR></TBODY></TABLE><FONT size=3>
+<P align=justify></P></FONT></BODY></HTML>

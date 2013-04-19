@@ -1,0 +1,864 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0067)http://www.ee.surrey.ac.uk/CSER/UOSAT/papers/VA/ESA_CONFERENCE.html -->
+<HTML><HEAD><TITLE>It is presently thought that a SEU in some registers such as the PC,</TITLE>
+<!-- Meta http equivalent was here                                   -->
+<META content="MSHTML 5.50.4134.600" name=GENERATOR></HEAD>
+<BODY><B><FONT size=3>
+<P align=center>PREDICTING THE RATE AND EFFECTS OF SINGLE EVENT UPSETS ON 
+SATELLITE APPLICATION SOFTWARE USING A MICROPROCESSOR SIMULATOR</P>
+<P align=center></P></B>
+<P align=center>Veronica A. Asenek, Dr. Craig I. Underwood, Dr. Michael K. 
+Oldfield</P>
+<P align=center>Centre for Satellite Engineering Research,</P>
+<P align=center>University of Surrey, Guildford, GU2 5XH, UK</P>
+<P align=center>Tel: +44 1483 259278, Fax: +44 1483 259503</P>
+<P align=center>Email: V.Asenek@ee.surrey.ac.uk</P><B>
+<P align=center></P></B><I>
+<P align=center>&nbsp;</P><B>
+<P align=justify>Abstract</B></I>: The current method for predicting the 
+observable single event upset (SEU) induced error rate in microprocessors 
+operating in spacecraft ignore the influence of software, giving a pessimistic 
+view of the observable SEU induced error rate at the system level by the device. 
+To take the influence of software into consideration, the duty cycle for each 
+register as the microprocessor executes software must be determined. Using a 
+microprocessor simulator, a new methodology for determining the duty cycle of 
+each register has been developed and is presented in this paper. Also, Monte 
+Carlo type simulations have been performed to determine the nature of errors 
+observed at system level from SEUs occurring inside a microprocessor. The 
+algorithm is also presented here. The 8051 microprocessor and real satellite 
+application software were used as examples in this study.</P>
+<P align=justify>&nbsp;</P>
+<OL></FONT><B><FONT face=Arial size=4>
+  <P align=center>
+  <LI>Introduction
+  <P></P></B></FONT><FONT size=3>
+  <P align=justify>Commercial of-the-shelf (COTS) microprocessors are readily 
+  available, they are of high packaging density, cheap, capable of supporting 
+  extensive software, and consume relatively low power<SUP>1</SUP>. With the 
+  increased use of software in space and the drive towards smaller, faster, 
+  better and cost-effective satellites, they are attractive for use in computer 
+  based satellite systems. Besides other reliability issues surrounding COTS 
+  technology microprocessors, the effect of space radiation on these devices is 
+  of special concern to satellite system designers. In particular, because COTS 
+  microprocessors are usually not radiation hardened, they are thought to be 
+  highly susceptible to single event upset (SEU).</P>
+  <P align=justify></P>
+  <P align=justify>Predicting the SEU susceptibility of microprocessors has been 
+  a subject of interest for many years. Traditional methods usually ignore the 
+  influence of software, leading to an overestimation of the observable SEU 
+  induced error rate at system level<SUP>1,2,3,4</SUP>. A microprocessor SEU 
+  induced error is said to be observable when it can affect the external state 
+  of a predefined system made up of one or more of these microprocessors. To 
+  consider the influence of software, a new model has been developed which 
+  determines the duty cycle of each register as the microprocessor executes the 
+  software. Although this model has been shown to improve the prediction 
+  accuracy by a factor as much as 100%, it gives us no information about the 
+  nature of errors observed at system level. In order to categorise SEU induced 
+  errors in microprocessors, a Monte Carlo type simulation model was developed 
+  to allow random injection of SEUs into the microprocessor during execution. A 
+  software example was studied and the errors observed were classified into 
+  three main categories.</P></FONT><B><FONT face=Arial size=4>
+  <P align=center></P>
+  <LI>Background on SEU rate prediction
+  <P></P></B></FONT><FONT size=3>
+  <P align=justify>Current methods for predicting observable SEU induced error 
+  rates in microprocessors are similar to those for memory devices. Normally, 
+  the memory device is loaded with a predefined bit pattern, irradiated with a 
+  known beam fluence, and subsequently checked to determine those bits that have 
+  changed state<SUP>5,6</SUP>. The results obtained are expressed in the form of 
+  SEU cross-section versus LET (Linear Energy Transfer) or particle 
+  energy<SUP>7</SUP>, where, the SEU cross-section is the reciprocal of the 
+  fluence (ions/cm<SUP>2</SUP>) needed to cause a SEU. From these results, the 
+  <I>SEU saturation cross section</I> and the <I>LET or energy threshold</I> are 
+  derived and used as inputs into a computer model such as CREME (Cosmic Ray 
+  Effects on Microelectronics) to determine the SEU rate per bit for a 
+  device<SUP>7,8</SUP>. Although research has shown that this procedure can be 
+  accurate to within a factor of ~2-5 for predicting the SEU rates in memory 
+  devices<SUP>9</SUP>, they are known to overestimate the observable SEU induced 
+  error rate in microprocessors by many orders of magnitude.</P>
+  <P align=justify></P>
+  <P align=justify>Although, SEUs are induced by the same mechanism in memory 
+  and microprocessors, the architecture and operation of microprocessors is more 
+  complex. Typically, microprocessors are made up of many functional units 
+  (registers, counters, arithmetic and logic unit (ALU), etc.). The basic cell 
+  design and the modes of operation of these units may not be the same. Also, 
+  during the software execution, it is unlikely that all of these units will be 
+  used at any one time<SUP>2,5</SUP>. As a result, upsets in registers which are 
+  not being used, are overwritten when these registers are loaded, and 
+  therefore, errors are not observed. The rate at which registers are loaded and 
+  read depends upon the application software that the microprocessor is 
+  executing. The cross section associated with the execution of each software is 
+  known as the application cross section. In <I>Elder and Co</I><SUP>3</SUP>, 
+  the application cross-section <IMG height=31 
+  src="SEU_files/Image15.gif" 
+  width=43> is defined as the weighted sum of the individual register 
+  cross-sections (<FONT face=Symbol>s</FONT> <I><SUB>i</I></SUB>), where the 
+  weighting factor (<I>f<SUB>i</I></SUB>) of a register is its associated duty 
+  factor, defined as the period of vulnerability of that register expressed as a 
+  percentage of the total program execution time. That is</P>
+  <P align=center><IMG height=56 
+  src="SEU_files/Image16.gif" 
+  width=110> (1),</P>
+  <P>where <I>n</I> is the total number of registers in the microprocessor 
+  vulnerable to SEU. </P><I>
+  <P align=justify>f<SUB>i </I></SUB>= 1 for all <I>i</I>, represents 100% duty 
+  cycle. This is the application independent (worst-case) situation. This 
+  measure of SEU vulnerability reflects the technology of the device. The 
+  application independent cross-section is adjusted by the registers’ duty 
+  factors to give the application cross-section. However, calculating the duty 
+  factor of registers used during the execution of real spacecraft application 
+  software was previously thought to be impractical due to its 
+  complexity<SUP>3</SUP>.</P>
+  <P align=justify>&nbsp;</P></FONT><B><FONT face=Arial size=4>
+  <P align=center></P>
+  <LI>A New Model For Determining The Duty Cycle (<I>f<SUB>i</I></SUB>)
+  <P></P>
+  <OL></FONT><I><FONT face=Arial>
+    <P align=justify>
+    <LI>Resources
+    <P></P></B></I></FONT><FONT size=3>
+    <P align=justify>Information from three main sources: an 8051 simulator, the 
+    8051 instruction set and the processor’s architecture were used to develop 
+    the model. Using the Kiel Elektronix Dscope-51 simulator<SUP>10</SUP>, the 
+    application software is executed one instruction at a time and the status of 
+    all the registers, and that of the cycle counter (clock), are traced and 
+    stored as individual records in a file. The current instruction being 
+    executed is also included in the file. A model, which has been developed 
+    using knowledge from the 8051 instruction set and its 
+    architecture<SUP>11</SUP>, then scans through the file and computes the duty 
+    cycle for the various registers in turn.</P></FONT><B><I><FONT face=Arial>
+    <P align=justify></P>
+    <LI>The Model
+    <P></P></LI></OL></B></I></FONT><FONT size=3>
+  <P align=justify>Figure-1 is a block diagram representation of the 
+  model<SUP>12</SUP>. If a register is believed to be in continuous usage, it is 
+  automatically assigned a duty cycle of 100%. Status registers and the program 
+  counter (PC) are examples of such a register. To calculate the duty cycle for 
+  the remaining registers, file records are sequentially read and processed in 
+  one of two major loops. Initially, records are processed in the first loop. 
+  The aim of this loop is to establish the first point at which the current 
+  register is used during the execution of the software. The clock cycle at 
+  which this occurs is recorded, and the total period for which the register has 
+  been in use (its <I>accumulative-duty-period</I>) is set to zero at this point 
+  and processing enters the second loop. However, if the end of the file is 
+  reached and no evidence of usage of the register is identified, it is 
+  concluded that, the register has not been used in the execution of the 
+  software, and its duty cycle is therefore 0%. </P>
+  <P align=justify></P>
+  <P align=center><IMG height=1015 
+  src="SEU_files/Image17.gif" 
+  width=551></P>
+  <P align=justify></P>
+  <P align=center>Figure-1: Block Diagram Representation of the Duty Cycle 
+  Prediction Model.</P>
+  <P align=justify>In the second loop, as each record is processed, the 
+  accumulative-duty-period of the register is incremented accordingly. For 
+  control registers (registers that determine the mode of operation of the CPU), 
+  it is assumed that, if an SEU occurs from the moment it is initialised until 
+  the execution of the software is complete, it induces an observable error. 
+  "Increment-1" is derived on the basis of this assumption. Although this 
+  assumption might lead to a slight overestimation of the observable upset rate, 
+  it is necessary to keep the model practical. For general purpose registers, 
+  the increment ("increment-2" or "increment-3") depends on whether the current 
+  instruction<SUP>i</SUP>,<SUP> </SUP>is a "duty cycle modification 
+  instruction". A "duty cycle modification instruction" is an instruction which 
+  is capable of overwriting an upset. At the end of processing the last record, 
+  the accumulative-duty-cycle for the register is divided by the total program 
+  run time to yield the register’s duty cycle.</P>
+  <P align=justify>&nbsp;</P></FONT><B><FONT face=Arial size=4>
+  <P align=center></P>
+  <LI>Application of Model and Results
+  <P></P></B></FONT><FONT size=3>
+  <P align=justify>The model was used to analyse the software that operates the 
+  telecommand system on a number of UoSAT spacecraft<SUP>12</SUP>. The 8051 
+  processor’s function as part of the telecommand subsystem is to decode and 
+  issue commands to other subsystems. As the microprocessor processes and issues 
+  one command, a file was assembled (as described in section 3.1). Using the 
+  model, the duty cycle for registers were determined<SUP>12</SUP>. The results 
+  obtained suggested that, approximately 50% of the SEUs that occur in the 
+  processor will induce errors that are observable at the system level. Although 
+  this model has been shown to improve the prediction accuracy by a factor as 
+  much as 100%, it does not give us information of the nature of errors that are 
+  observed.</P>
+  <P align=justify>&nbsp;</P></FONT><B><I><FONT face=Arial size=4>
+  <P align=center></P>
+  <LI>Microprocessor SEU Induced Errors at System Level
+  <P></P></LI></OL></B></I></FONT><FONT size=3>
+<P align=justify>Currently, SEU induced errors at the device level are usually 
+classified into two main categories: program flow errors (also known as 
+sequencing errors) and data errors<SUP>13,14</SUP>. Data errors result from 
+upsets that simply change data words while sequencing errors disturb the program 
+execution path causing the microprocessor to skip certain sections of the code 
+or execute certain sections more than once. For the 8051 processor, sequential 
+errors are usually associated with upsets of the program counter (PC), certain 
+special function registers (SFRs) (usually control registers), and status 
+registers<SUP>13</SUP>. Data errors are associated with upsets in the data 
+memory, counters, and also certain SFRs<SUP>13</SUP>. The general belief is that 
+sequential errors are more fatal than data errors<SUP>13,14</SUP>. Therefore, 
+the percentage of observable SEU induced fatal errors is estimated from the 
+percentage of SEUs that occur in registers associated with fatal errors and the 
+percentage of data errors is estimated from the fraction of SEUs that occur in 
+registers associated with data errors. Although these predictions could be 
+correct at the device level, the effect observed at the system level can be 
+different. For example, a data word upset could eventually cause a program flow 
+error if the corrupted data is used to compute a code address during execution. 
+Also, program flow errors which are not severe could go unnoticed but later 
+result in a data error being observed at the system level. In effect, there is 
+no direct correspondence between the effect of a SEU observed at system level 
+and the register in which it occurred. Any correspondence strongly depends on 
+the software that the microprocessor is executing. In summary, it is difficult 
+to try and match upsets of microprocessor’s internal bits to the effects 
+observed at the system level without taking the influence of the 
+microprocessor’s software into consideration.</P>
+<P align=justify></P>
+<P align=justify>We therefore believe that, system level observable SEU induced 
+errors can be better classified by studying the effects of SEUs at the system 
+level rather than at the device level. As an example, the UoSAT telecommand 
+software was again studied and the possible effects of SEUs on the telecommand 
+system were classified into three categories defined as follows:</P>
+<UL></FONT><I><FONT size=2>
+  <P align=justify>
+  <LI>Fatal errors:</I> errors that will require a reset of the microprocessor 
+  to resume normal operation;
+  <P></P><I>
+  <P align=justify></P>
+  <LI>Transient errors:</I> errors where the current execution cycle was 
+  incorrect but the processor was able to operate normally within the next cycle 
+  without a reset; and
+  <P></P><I>
+  <P align=justify></P>
+  <LI>Result errors</I>: errors where the program appeared to have been 
+  correctly executed but the result was incorrect. 
+  <P></P></LI></UL></FONT><FONT size=3>
+<P align=justify>Using a simulation model, the percentage of observable SEU 
+induced errors in each of these categories was determined.</P>
+<OL></FONT><B><FONT face=Arial size=4>
+  <P align=center>
+  <LI>The Simulation Model
+  <P></P></B></FONT><FONT size=3>
+  <P align=justify>The basic structure of the model consists of, the 
+  microprocessor simulator executing the software; a background function that 
+  selects a register and injects an upset into it; and a second function that 
+  traces and records the internal state of the processor during execution. The 
+  internal state of the processor represents the state of all user accessible 
+  registers (SFRs and registers (R0-R7) of the current register bank), the PC 
+  and the clock (cycle counter). The time at which an upset is injected, the 
+  register into which it is injected and the particular bit that is changed, are 
+  all randomly selected. The effect of each injected upset is determined either 
+  through the erratic behaviour in the execution sequence of the software or by 
+  a manual comparison of the internal state of the processor at the end of each 
+  execution cycle with the internal state of the processor at the end of an 
+  "upset-free" execution cycle. To keep the SEU rate representative of what is 
+  likely to happen in space, only one SEU was injected into the CPU per 
+  execution cycle.</P>
+  <P align=justify>&nbsp;</P></FONT><B><FONT face=Arial size=4>
+  <P align=center></P>
+  <LI>Results
+  <P></P></B></FONT><FONT size=3>
+  <P align=justify>Table-1 shows the distribution of upsets and the effects 
+  observed among the registers that were simulated. Since SEUs occur randomly 
+  and independently in time, the Poisson distribution was used to determine the 
+  confidence interval (CI) associated with these results. With 271 errors 
+  observed, the CI was determined to be ~20%; with a lower limit of 246 and an 
+  upper limit of 300 errors. 42.8% of the total upsets that were injected, 
+  induced observable errors in the command system. This result lies within the 
+  CI to the result (~50%) predicted in section 4.</P>
+  <P align=justify></P>
+  <P align=justify>The percentage of errors observed in each category to the 
+  total number of errors was calculated as 35.8%, 60.1%, and 4.1% for fatal 
+  errors, transient errors and incorrect results respectively. Assuming, the 
+  observable SEU induced error cross section as ~1.5<FONT face=Symbol>´</FONT> 
+  10<SUP>-6</SUP> per bit per day<SUP>12</SUP>, the fatal, transient and 
+  incorrect result error cross section for this software were estimated as 
+  ~5.4<FONT face=Symbol>´</FONT> 10<SUP>-7</SUP>, ~9.0<FONT face=Symbol>´</FONT> 
+  10<SUP>-7</SUP>, and ~6.2<FONT face=Symbol>´</FONT> 10<SUP>-8</SUP> per bit 
+  per day respectively. As shown in the Table-1, one fatal error was observed 
+  from a SEU in the accumulator which is a data register. Also, approximately 
+  half of the SEUs in the PC and most errors in the status registers (PSW and 
+  SP) did not induce fatal errors but transient errors. This result is 
+  inconsistent with the belief that SEUs in these registers are more likely to 
+  induce fatal errors.</P>
+  <P align=justify>&nbsp;</P></FONT><B><FONT face=Arial size=4>
+  <P align=center></P>
+  <LI>Discussion
+  <P></P></B></FONT><FONT size=2></FONT><FONT size=3>
+  <P align=justify>There are limitations to this model. Firstly, since the Kiel 
+  Electronix simulator was not developed to study the effects of SEUs in a 
+  system, it lacks a number of features that made it impossible to automate the 
+  simulations. The speed of each simulation was limited by manual response to 
+  inputs. Secondly, it was not possible to inject SEUs into internal registers 
+  of the microprocessor that are not accessible to the user. However, this may 
+  only induce a slight inaccuracy in the results since only a few of such 
+  registers are present in the 8051 architecture. To derive maximum benefit from 
+  such a model, it must be automated to allow faster analysis of software and 
+  must permit the injection of SEUs in non-user accessible registers. This 
+  implies that some features of the current simulator must be upgraded and new 
+  ones added or a completely new tool similar to the simulator must be 
+  developed. The duty cycle model also cannot predict the duty cycle of 
+  registers which are not user accessible. Further more, its is not able to 
+  accurately predict the duty cycle of registers whose usage is not entirely 
+  controlled by software in a particular application program. Examples of such 
+  registers were the timer registers (TL0, TH0, and TL1) in the above 
+  application. The effects of SEUs in such registers could however, be simulated 
+  provided good knowledge of the operation of the software is acquired. 
+  Examination of the results suggest that the duty cycle prediction model will 
+  be more useful if the processor being analysed has many more data registers 
+  than control and status registers.</P>
+  <P align=justify></P>
+  <P align=justify>Table-1: Distribution of injected upsets and the effects 
+  observed among registers for 632 trials.</P>
+  <P align=justify></P></FONT>
+  <TABLE borderColor=#000000 cellSpacing=2 cellPadding=9 width=773 border=1>
+    <TBODY>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>Register</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P>Number of SEUs injected</B></FONT></P></TD>
+      <TD vAlign=top width="14%"><B><FONT size=3>
+        <P>Percentage of Fatal Errors</B></FONT></P></TD>
+      <TD vAlign=top width="15%"><B><FONT size=3>
+        <P>Percentage of Transient Errors</B></FONT></P></TD>
+      <TD vAlign=top width="17%"><B><FONT size=3>
+        <P>Percentage of Result Errors</B></FONT></P></TD>
+      <TD vAlign=top width="31%"><B><FONT size=3>
+        <P>Total Number of errors as a percentage of SEUs 
+      Injected</B></FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>ACC</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>28</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>3.6</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>25</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>28.6</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>B</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>22</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>R0</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>18</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>66.7</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>66.7</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>R1</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>24</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>37.5</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>37.5</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>R2</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>17</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>11.8</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>11.8</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>R3</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>25</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>36</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>36</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>R4</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>21</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>66.7</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>66.7</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>R5</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>22</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>77.2</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>77.2</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>R6</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>21</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>66.7</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>66.7</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>R7</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>16</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>PC</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>30</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>46.7</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>43.3</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>90</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>SP</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>18</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>11.1</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>61.1</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>72.2</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>PSW</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>27</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>7.4</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>7.4</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>SCON</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>16</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>100</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>100</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>TCON</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>21</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>4.8</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>42.9</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>47.7</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>PCON</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>25</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>12</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>12</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>TMOD</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>28</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>78.6</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>78.6</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>P0</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>28</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>P1</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>16</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>56.3</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>56.3</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>P2</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>27</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>7.4</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>7.4</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>P3</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>24</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>8.3</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>8.3</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>TL0</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>14</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>64.3</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>64.3</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>TL1</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>25</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>80</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>80</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>TH0</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>15</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>80</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>80</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>TH1</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>23</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>100</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>100</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>IP</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>17</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>IE</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>31</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>41.9</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>9.7</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>51.6</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>DPL</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>17</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>DPH</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=3>
+        <P align=justify>16</FONT></P></TD>
+      <TD vAlign=top width="14%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="15%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="17%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD>
+      <TD vAlign=top width="31%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="12%"><B><FONT size=3>
+        <P align=justify>TOTAL</B></FONT></P></TD>
+      <TD vAlign=top width="12%"><FONT size=2>
+        <P align=justify></FONT></P></TD>
+      <TD vAlign=top width="14%"><B><FONT size=3>
+        <P align=justify>15.3</B></FONT></P></TD>
+      <TD vAlign=top width="15%"><B><FONT size=3>
+        <P align=justify>25.8</B></FONT></P></TD>
+      <TD vAlign=top width="17%"><B><FONT size=3>
+        <P align=justify>1.7</B></FONT></P></TD>
+      <TD vAlign=top width="31%"><B><FONT size=3>
+        <P align=justify>42.8</B></FONT></P></TD></TR></TBODY></TABLE><FONT size=3>
+  <P align=justify>&nbsp;</P></FONT><B><FONT face=Arial size=4>
+  <P align=center></P>
+  <LI>Conclusions
+  <P></P></LI></OL></B></FONT><FONT size=3>
+<P align=justify>The present method for predicting the observable SEU induced 
+error rate in microprocessors systems ignores the influence of the software, 
+giving a pessimistic view of the vulnerability of the system to SEUs occurring 
+in the processor. To consider the influence of software, the duty factor for 
+each register, as the microprocessor executes software, must be determined. In 
+the past, this task has been thought to be impractical for real application 
+software due to its complexity. A new methodology which demonstrates the use of 
+a microprocessor simulator, and a model developed using knowledge of the 
+processor’s architecture and instruction set to achieve this objective, has been 
+presented in this paper. Real application software was analysed to show that, if 
+the influence of software is taken into consideration, the observable error rate 
+can be predicted with greater accuracy. The nature of the SEU induced errors 
+observed for this software were further studied by a simulation model. The 
+errors identified were classified into three main categories; fatal, transient 
+and result errors occurring at a ratio of approximately 60:36:4 respectively. 
+This result is useful in helping the designer judge whether the risk involved 
+with the used of a processor for a particular task is acceptable.</P>
+<P align=justify></P><U>
+<P align=center>Acknowledgement</P></U>
+<P align=justify></P>
+<P align=justify>The authors will like to thank the Centre for Satellite 
+Engineering Research and the Department of Mathematics and Computer Sciences of 
+the University of Surrey for making this research work possible. Special thanks 
+also to Neville Bean, Principal Engineer at Surrey Satellite Technology Limited 
+for his technical support. </P><I>
+<P align=justify></P></I><U>
+<P align=center>References</P>
+<P align=center></P></U></FONT>
+<TABLE cellSpacing=0 cellPadding=4 width=717 border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>1</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Kimbrough et al, "Single Event Effects and Performance 
+      Predictions for Space Applications of RISC Processors", IEEE Transactions 
+      on Nuclear Science, Vol. 41, No.6, Dec.1994, Pages 2706-2714.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>2</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Koga R. et al, "Techniques of Microprocessor Testing and 
+      SEU-Rate Prediction"; IEEE Transactions on Nuclear Science, December 1985 
+      page 4219.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>3</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Elder J.H., "A Method for Characterising a 
+      Microprocessor’s Vulnerability to SEU", IEEE Transactions on Nuclear 
+      Science, Vol. 35, No. 6, dec. 1988.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>4</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Velazco R. et al, "Heavy Ion Test Results for the 68020 
+      Microprocessor and the 68882 Coprocessor", Proceedings from the 
+      2<SUP>nd</SUP> European Conference on Radiation and its Effects on 
+      Components and Systems, RADECS 93.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>5</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Guenzer C.S. et al, "Single Event Upsets in NMOS 
+      Microprocessors"; IEEE Transactions on Nuclear Science; December 1981 page 
+      3955.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>6</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Koga R. et al, "Heavy Ion-Induced Single Event Upsets of 
+      Microcircuits; A Summary of the Aerospace Corporation Test Data", IEEE 
+      Transactions on Nuclear Science, Vol. NS-31, No.6, December 1984. </P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>7</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Peterson E.L. et al, "Rate Prediction for Single Event 
+      Effects - a Critique"; IEEE Transactions on Nuclear Science, December 1992 
+      page 1577.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>8</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Adams, L., "Cosmic Ray Effects on Microelectronics", 
+      Microelectronic Journal, Vol. 16, 1985.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>9</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Underwood C.I., "Single Events Effects in Commercial 
+      Memory Devices in the Space Radiation Environment", PhD Thesis, University 
+      of Surrey, August 1996.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>10</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Kiel Elektronix, C51 Professional Developers Kit, 
+      dScope-51, High-Level-Language Debugger for the Microcontroller Family. 
+      User’s Guide 10.91. </P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>11</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Intel MCS Tools Handbook, 3<SUP>rd</SUP> Edition, 
+      1995.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>12</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Asenek V.A. et al, "Predicting the Influence of Software 
+      on the Reliability of Commercial off-the-shelf (COTS) Technology 
+      Microprocessors in a Space Radiation Environment", 11<SUP>th</SUP> 
+      AIAA/Utah State University Conference on Small Satellites, September 
+      1997.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>13</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Oberg D.L. et al , "Measurement of the single event 
+      effects in the 87C51 microcontroller";1994 Boeing Defence &amp; Space 
+      Group. </P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>14</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Li, K.W. et al, "An HDL Simulation of the Effects of 
+      Single Event Upsets on Microprocessor Program Flow", IEEE Transactions on 
+      Nuclear Science, Vol. NS-31, No.6, December 
+1984.</FONT></P></TD></TR></TBODY></TABLE><FONT size=2>
+<P align=justify></P></FONT></BODY></HTML>

@@ -1,0 +1,1110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Little collection of my lovely songs</TITLE>
+<META content="text/html; charset=windows-1251" http-equiv=Content-Type>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR>
+<link rel="stylesheet" href="../style.css" type="text/css" >
+<style>
+body {margin-left: ; 
+      margin-right: 20
+     }
+</style>
+</HEAD>
+<BODY bgColor=white>
+<P>
+<TABLE class="tablebox"
+width="100%">
+  <TBODY>
+  <TR>
+    <TD>
+      <CENTER>
+	      <H2><A NAME="#GlossTop">Содержание раздела "Определение ориентации и стабилизация КА"</A></H2></CENTER>
+ <HR>    
+ 
+ 
+ <H3>
+	<A HREF="#GlossA">AERODYNAMICS</A><br>
+	<A HREF="#GlossA1">ATTITUDE DETERMINATION</A><br>
+	<A HREF="#GlossB">BOOKS</A><br>
+	<A HREF="#GlossC">COMMON ALGORITHMS</A><br>
+	<A HREF="#GlossC1">COMMON DESIGN</A><br>	
+	<A HREF="#GlossD">DISTURBANCES</A><br> 
+	<A HREF="#GlossF">FLIGHT RESULTS</A><br> 
+	<A HREF="#GlossG">GPS</A><br> 
+	<A HREF="#GlossH1">HARDWARE: weels</A><br> 
+	<A HREF="#GlossH">HARDWARE: sensors</A><br>
+	<A HREF="#GlossM">MODELLING</A><br> 
+	<A HREF="#GlossS">STABILISATION SYSTEMS</A><br> 
+	<A HREF="#GlossL">Литература</A><br> 
+	</H3>
+
+  <HR> 
+ 
+<CENTER><H3><A NAME="GlossA"> AERODYNAMICS </A></H3></CENTER>
+
+<p><a href="Aerodyn/aero.pdf">PASSIVE AERODYNAMIC STABILIZATION OF A LOW EARTH ORBIT SATELLITE<br></a>
+This paper discusses the influence of aerodynamic drag
+torque on the dynamics of a satellite in a very low altitude
+orbit.Design recommendations and tradeoffs are presented for
+the use of aerodynamic drag in attitude control.The results have been applied on a ESA study satellite
+required in an orbit with less than 250 km altitude. Simulations
+and analytical results indicate that the satellite will
+oscillate between two attitude equilibria. Performance of
+a basic attitude control algorithm providing stable satellite
+motion is given.<br>
+158 KB    
+<br> 
+
+<SMALL><A HREF="#GlossTop">к оглавлению</A></SMALL>
+ <HR>    
+<CENTER><H3><A NAME="GlossA1"> ATTITUDE DETERMINATION </A></H3></CENTER>
+<p><a href="AttDetermination/kalman/kalman_intro.pdf">An Introduction to the Kalman Filter
+<br></a>The purpose of this paper is to provide a practical introduction to the discrete Kal-
+man filter.This introduction includes a description and some discussion of the basic
+discrete Kalman filter,a derivation,description and some discussion of the extend-
+ed Kalman filter,and a relatively simple (tangible)example with real numbers &
+results.<br>
+158 KB 
+
+<p><a href="AttDetermination/kalman/isic-00-142.pdf">SMALL SATELLITE ATTITUDE CONTROL
+BASED ON A KALMAN FILTER*<br></a>
+This paper describes the development of an Extended Kalman Filter
+attitude estimator and its implementation in a small satellite control loop. Sensor
+models have first been added to an existing satellite simulation. The attitude and
+angular velocities are estimated from the available sensors and methods of tuning
+the filter based on Genetic Algorithms are discussed. Simulation results are
+presented for the estimator algorithm used with different control algorithms.<br>
+88 KB
+
+<p><a href="AttDetermination/kalman/attitu12.pdf">Attitude Determination and Launch Diagnostics for a Picosat
+via Kalman Filtering of Magnetometer Data<br></a>
+5 KB
+
+<p><a href="AttDetermination/kalman/ex.pdf">An Extended Kalman Filter for Quaternion-Based
+Orientation Estimation Using MARG Sensors<br></a>
+Abstract: This paper presents an extended Kalman
+filter for real-time estimation of rigid body orientation
+using the newly developed MARG (Magnetic, Angular
+Rate, and Gravity) sensors. Each MARG sensor
+contains a three-axis magnetometer, a three-axis
+angular rate sensor, and a three-axis accelerometer. The
+filter represents rotations using quaternions rather than
+Euler angles, which eliminates the long-standing
+problem of singularities associated with attitude
+estimation. A process model for rigid body angular
+motions and angular rate measurements is defined. The
+process model converts angular rates into quaternion
+rates, which are integrated to obtain quaternions. The
+Gauss-Newton iteration algorithm is utilized to find the
+best quaternion that relates the measured accelerations
+and earth magnetic field in the body coordinate frame
+to calculated values in the earth coordinate frame. The
+best quaternion is used as part of the measurements for
+the Kalman filter. As a result of this approach, the
+measurement equations of the Kalman filter become
+linear, and the computational requirements are
+significantly reduced, making it possible to estimate
+orientation in real time.<br>
+104 KB
+
+<p><a href="AttDetermination/kalman/-.doc">Stabilisation and Control of Small Satellites
+Small Satellite Attitude Closed Loop Control using a Kalman Filter Estimator<br></a>
+This report describes the enhancement of satellite sensor simulations within an existing satellite simulator and the development of an attitude estimator algorithm. Sensor models have been constructed for magnetorquers, Sun sensors and Earth horizon sensors. An estimation algorithm using an Extended Kalman Filter to estimate quaternions and angular velocities from the available sensors has been written. Methods of tuning the Kalman filter, including a maunal approach, an automatic method and a genetic algorithm method, have been implemented and tested. The estimator algorithm has been tested with two control algorithms, a predictive controller and an energy controller, and results are compared to bench mark controllers.<br>
+860 KB
+
+<p><a href="AttDetermination/calibration/pgraven.pdf">LABORATORY (AND ON-ORBIT) MAGNETOMETER CALIBRATION WITHOUT COIL FACILITIES OR ORIENTATION INFORMATION<br></a>Magnetometer calibration is normally
+performed using shielded (or otherwise magnetically
+benign) coil facilities to provide a known uniform
+field. And measurements are taken with precise
+knowledge of sensor orientation. These facilities are
+expensive and can be tedious to use. A method for
+calibration based on field magnitude only has been
+developed. Accurate determination of relative
+orientations and relative scale factors between
+sensor axes requires only that the field magnitude
+be approximately constant. No coils or precision
+fixtures are needed. The method is extended to
+handle redundant sensitive axes, and fields of
+variable magnitude. The latter is of considerable
+interest, since it could be used to estimate drifts of
+scale factors or biases for instruments on-orbit.<br>
+79 KB
+
+<p><a href="AttDetermination/calibration/5-3.pdf">In-Orbit Modelling and Calibration of the Sun Sensors On UoSAT-12 and Tsinghua-1 Satellites<br></a>The modelling relations and calibration techniques of the miniature analogue sun sensors,
+developed at Surrey Satellite Technology Limited (SSTL), are discussed in this paper. Two model
+equations, an algebraic model based on a multi-variable polynomial algebraic curve-fitting procedure and a
+physical model based on analytical geometry relations, were developed. Parameter sensitivity analyses were
+conducted for the physical model, and an in-orbit calibration approach is proposed and was implemented
+with the sun sensors on-board UoSAT-12 and Tsinghua-1.<br>
+571 KB
+
+<p><a href="AttDetermination/4166.pdf">ONBOARD ATTITUDE DETERMINATION FOR A SMALL SATELLITE<br></a>
+A system for attitude and rate estimation for a small satellite
+is described. The estimates are used for onboard attitude
+control and the precision requirements are limited.
+An important feature of the effort is, however, the ability
+of the system to handle multiple sensor faults.
+Presented are results from the Danish Шrsted micro satellite.
+Attitude estimation on Шrsted is based on a gyroless
+configuration with a star camera as the primary attitude
+instrument. Sun sensor and magnetometer data
+is processed in a Kalman filter to provide estimates independently
+of the star camera. The combined systems
+make it possible to maintain adequate attitude information
+through all mission phases and in situations with sensor
+malfunction or temporary blackout.<br>
+216 KB
+
+<p><a href="AttDetermination/4432.pdf">Thomas Bak -- Lecture Notes - Estimation and
+Sensor Information Fusion<br></a>
+This note discusses multi-sensor fusion. Through sensor fusion we may combine
+readings from different sensors, remove inconsistencies and combine the informa-tion
+into one coherent structure. This kind of processing is a fundamental feature
+of all animal and human navigation, where multiple information sources such as
+vision, hearing and balance are combined to determine position and plan a path to a
+goal.<br>
+132 KB
+
+<p><a href="AttDetermination/4310.pdf">ATTITUDE RECONSTRUCTION FOR FREJA, A
+MAGNETOMETER BASED APPROACH<br></a>
+Abstract: An attitude estimation algorithm has been developed and tested based
+on magnetometer data from the Freja spacecraft. The attitude has previously been
+determined once or twice per orbit using single point algorithms. Thermally induced
+inertia variations, however, prevent simple interpolation. The approach presented
+here, model thermal eяects and preserve angular momentum, variations in the
+moments of inertia. Perturbations to the Ѕeld measurements are avoided in the
+Ѕlter update. The algorithm allow attitude determination during eclipse, where no
+reliable attitude was previously available, thereby increasing the value of the science
+observations.<br>
+228 KB
+
+<p><a href="AttDetermination/ADCS2.pdf">Stellar inertial Attitude determination For LEO Spacecraft<br></a>
+This paper describes the normal mode attitude determination algorithm for the LEO spacecraft using stellar inertial sensors<br>
+508 KB
+
+<p><a href="AttDetermination/ameoge12.pdf">A MEO-GEO Combined Earth Sensor/Sun Sensor<br></a>
+This paper discusses the design and performance characteristics of a combined earth
+sensor/sun sensor for use in the MEO (13,000 km) to GEO orbital altitude range, including
+super GEO altitudes up to 77,000 km.
+This combined sensor has been developed for use on a current GEO spacecraft series, and has
+been delivered.<br>
+6 KB
+
+<p><a href="AttDetermination/extended_quest.pdf">EXTENDED QUEST ATTITUDE DETERMINATION FILTERING<br></a>
+The QUEST algorithm, which works with vector
+attitude observations, serves as a starting point because it is able to work with a poor (or no) first guess of the attitude. It is
+able to do this because its nonlinear estimation problem can be solved exactly by solving an eigenvalue/eigenvector problem.
+This paper's extended version of QUEST uses square-root information filtering techniques and linearization of the dynamics
+to handle all of the non-QUEST parts of the estimation problem. The remaining QUEST-type part of the problem can be
+solved by a technique that is an extension of the original QUEST algorithm's eigenvalue/eigenvector solution. The paper
+shows that two previously-proposed iterative QUEST techniques are special cases of the present algorithm. It also
+demonstrates the new algorithm's performance on an attitude determination problem that uses star-tracker and rate-gyro
+measurements to estimate the attitude time history and the rate-gyro biases.<br>
+228 KB
+
+<p><a href="AttDetermination/Heeall2.pdf">Tests of Magnetometer/Sun-Sensor Orbit Determination Using Flight Data<br></a>
+A magnetometer-based orbit determination batch filter has been improved and tested with
+real flight data from Dynamics Explorer 2 (DE-2), the Magnetic Field Satellite (MAGSAT), and
+the Шrsted satellite. These tests have been conducted in order to determine the performance of a
+low-cost autonomous orbit determination system. The spacecraft’s orbit, magnetometer biases,
+and (optionally) correction terms to the Earth’s magnetic field are estimated by this filter. Sun-sensor
+data in addition to magnetometer data is used when field model correction terms are
+estimated. The filter improvement takes the form of a new dynamics model. The best
+performance that has been achieved with this filter is a maximum position error of 4.99 km for a
+2-day batch of DE-2 data with 1 st order/degree field model corrections, and 2.16 km for a 24-
+hour batch of MAGSAT data with 2 nd order/degree field model corrections. The maximum
+position error for a 24-hour batch of Шrsted data is 59.50 km without field model corrections, but
+is only 2.47 km with 6 th order/degree field model corrections.<br>
+303 KB
+
+<p><a href="AttDetermination/iclab2000-6.pdf">COMPARISON OF SMALL SATELLITE ATTITUDE DETERMINATION METHODS<br></a>
+In this paper  the results of using a point-by-point Singular Value Deconposotion algorithm are compared to those obtained by an Extended Kalman Filter? when applied  to a simulation of the small satellite PoSAT-1, which includes onboard magnetometers and a Sun sensor. Questions of both theoretical and practical nature are discussed and analysed.
+306 KB
+
+<p><a href="AttDetermination/magnav_wsun1.pdf">Autonomous LEO Orbit Determination From Magnetometer and Sun Sensor Data<br></a>
+Abstract
+A batch filter has been designed to autonomously
+estimate the orbit of a LEO spacecraft using data only
+from a magnetometer and a sun sensor. The goal of
+this study has been to prove the feasibility of a
+proposed low-cost, moderate-accuracy autonomous
+orbit determination system. The system uses a batch
+filter to estimate the Keplerian orbital parameters, a
+drag parameter, magnetometer biases, and corrections
+to the Earth's magnetic field. It does this by
+minimizing the square errors between measured and
+estimated values of two quantities, the Earth's magnetic
+field magnitude and the cosine of the angle between the
+sun vector and the Earth's magnetic field vector, both
+measured at the spacecraft. The proposed system is
+observable, and reasonable accuracy is obtainable.
+Given a magnetometer with a 10 nT 1-s accuracy and a
+sun sensor with a 0.005 o 1-s accuracy, the system can
+achieve 1-s position accuracies on the order of 500 m
+for inclined LEO orbits.<br>
+139 KB
+
+<p><a href="AttDetermination/singsrif.pdf">Square-Root Information Filtering and Fixed-Interval Smoothing with Singularities<br></a>
+The square-root information filter and smoother
+algorithms have been generalized to handle singular state
+transition matrices and perfect measurements. This has
+been done to allow the use of SRIF techniques for problems
+with delays and state constraints. The generalized
+algorithms use complete QR factorization to isolate
+deterministically known parts of the state and nonsingular
+parts of the state-transition and disturbance-influence
+matrices. These factorizations and the corresponding
+changes of coordinates are used to solve the recursive
+least-squares problems that are basic to the SRIF technique.<br>
+51 KB
+<br>
+<SMALL><A HREF="#GlossTop">к оглавлению</A></SMALL>
+<HR>    
+<CENTER><H3><A Name="#GlossB">BOOKS</A><br></H3></CENTER>
+<p><a href="Books/kvatern.pdf">Кинематика и динамика твердого тела(кватернионное изложение )<br></a>
+500 KB
+<br><SMALL><A HREF="#GlossTop">к оглавлению</A></SMALL>
+
+ <HR>    
+<CENTER><H3><A NAME="GlossC"> COMMON ALGORITHMS </A></H3></CENTER>
+<p><a href="CommonAlgorithms/4399.pdf">Spacecraft Attitude Control in Hamiltonian Framework<br></a>
+The objective of this paper is to give a design scheme
+for attitude control algorithms of a generic spacecraft.
+Along with the system model formulated in the Hamilton's canonical form the algorithm uses information
+about a required potential energy and a dissipative
+term. The control action is the sum of the gradient
+of the potential energy and the dissipative force. It
+is shown that this control law makes the system uniformly asymptotically stable to the desired reference
+point. Three problems were addressed in the paper:
+spacecraft stabilization in the inertial frame, libration
+damping with the use of electromagnetic coils and a
+slew maneuver with an additional objective ofavoiding
+undesirable regions e.g. causing blindness of optical
+sensors.<br>
+175 KB
+
+<p><a href="CommonAlgorithms/4406.pdf">Stabilization of Rotational Motion with Application
+to Spacecraft Attitude Control<br></a>
+The objective of this paper is to develop a control scheme for stabilization of a hamiltonian system. The method generalizes the results
+available in the literature on motion control in the Euclidean space to an arbitrary differential manifold equipped with a metric. This
+modification is essencial for global stabilization of a rotary motion.
+Along with a model of the system formulated in the Hamilton's canonical form the algorithm uses information about a required potential
+energy and a dissipation term. The control action is the sum of the gradient of the potential energy and the dissipation force. It is shown that
+this control law makes the system uniformly asymptotically stable to the desired reference point. The concept is very straightforward in the
+Euclidean space, however a global rotation control can not be tackled. An additional modification is made to address a system which flow lies
+on a Riemannian manifold. The Lyapunov stability theory is adapted and reformulated to fit to the new framework of Riemannian manifolds.
+To illustrate the results a spacecraft attitude control problem is considered.<br>
+213 KB
+
+<p><a href="CommonAlgorithms/93cdc-clf.pdf">Remarks on Control Lyapunov Functions for Discontinuous Stabilizing Feedback<br></a>
+Abstract
+We present a formula for a stabilizing feedback law
+under the assumption that a piecewise smooth control-Lyapunov function exists. The resulting feedback is con-
+tinuous at the origin and smooth everywhere except on
+a hypersurface of codimension 1. We provide an explicit and \universal" formula. Finally, we mention a
+general result connecting asymptotic controllability and
+the existence of control-Lyapunov functions in the sense
+of nonsmooth optimization.<br>
+159 KB
+
+<p><a href="CommonAlgorithms/ECC99.pdf">A PREDICTIVE ALGORITHM FOR ATTITUDE
+STABILIZATION AND SPIN CONTROL OF SMALL SATELLITES<br></a>
+This paper presents a new algorithm for attitude stabilization and spin control of small satellites using only electromagnetic actuation. The approach takes advantage of the
+time-varying nature of the problem (the geomagnetic field
+changes through the orbit) by using the most appropriate control effort (according to an energy-based criterion)
+given the geomagnetic field and the satellite angular velocity at each actuation instant. The proposed controller
+is simulated and the results are discussed and compared
+with other approaches presented in the literature.<br>
+255 KB
+
+<p><a href="CommonAlgorithms/EJC_075R_97.pdf">Output feedback control with input saturations: LMI
+design approaches<br></a>
+This paper addresses the control of linear systems with input saturations. We seek a
+controller that guarantees for the closed loop system: (1) stability for a given polytope
+of initial conditions, (2) a prescribed weak L2 gain attenuation between inputs and
+outputs of interest. Two approaches are proposed based on: (1) ensuring that the
+controller never saturates: the obtained controller is Linear Time Invariant (LTI),
+(2) ensuring absolute stability against the saturations: the controller is then Linear
+Time Varying (LTV). Existence conditions for these two control structures can be
+cast as (convex) optimization problems over Linear Matrix Inequalities. At last, using
+numerical experiments, we compare both approaches. In this numerical examples, the
+LTI controller presents some advantages.<br>
+532 KB
+
+<p><a href="CommonAlgorithms/feedback_lin_prnok.pdf">Nonlinear Attitude Control for a Rigid Spacecraft
+by Feedback Linearization<br></a>
+Attitude control law design for spacecraft large angle maneuvers is investigated in this paper. The
+feedback linearization technique is applied to the design of a nonlinear tracking control law. The output
+function to be tracked is the quaternion attitude parameter. The designed control law turns out to be a
+combination of attitude and attitude rate tracking command. The attitude-only output function, therefore, leads
+to a stable closed-loop system following the given reference trajectory. The principal advantage of the
+proposed method is that it is relatively easy to produce reference trajectories and associated controller. The
+controller is also simplified with stable tracking performance.<br>
+287 KB
+
+<p><a href="CommonAlgorithms/ifac94.pdf">NEW CONTROL LAWS FOR THE ATTITUDE STABILIZATION OF RIGID BODIES<br></a>
+This paper introduces a new class of globally asymptotically stabilizing feedback control laws
+for the complete i e dynamics and kinematics attitude motion of a rotating rigid body Control laws are
+given in terms of two new parameterizations of the rotation group derived using stereographic projection
+The stabilizing properties of the proposed controllers are proved using Lyapunov functions whichinvolvea
+quadratic plus a logarithmic term An interesting feature of the proposed Lyapunov functions is that they
+often lead to controllers that are linear with respect to the kinematic parameters<br>
+122 KB
+<p><a href="CommonAlgorithms/LawtonBeard01_prnok.pdf">Model Independent Eigenaxis Maneuvers Using Quaternion Feedback<br></a>
+The main contribution of this paper is the derivation of a model independent feedback control law that causes a rigid body to execute a near eigenaxis maneuver. The degree of aproximation is a function of the control gains and the initial attitude error. Using passivity techniques, the dependence of the control strategy on velocity information is eliminated. The technique used to derive the control strategy is a novel orthogonal decomposition of the unit quaternion into a component along th edirection of the eigenaxis and a component that is orhogonal to that direction.<br>
+278 KB
+
+<p><a href="CommonAlgorithms/perlyap.pdf">Periodic Lyapunov equations: some applications and new algorithms.
+ANDRAS VARGA<br></a>
+The discrete-time periodic Lyapunov equation has several important applications
+in the analysis and design of linear periodic control systems. Specific applications
+considered in the paper are the solution of state- and output-feedback optimal
+periodic control problems, the stabilization by periodic state feedback and the
+square-root balancing of discrete-time periodic systems. Eficient numerically reliable algorithms based on the periodic Schur decomposition are proposed for the
+solution of periodic Lyapunov equations. The proposed algorithms are extensions
+of the direct solution methods for standard discrete-time Lyapunov equations for
+the case of indefinite as well as of nonnegative definite solution.<br>
+285 KB
+<br><SMALL><A HREF="#GlossTop">к оглавлению</A></SMALL>
+<HR>
+<CENTER><H3><A NAME="GlossC1"> COMMON DESIGN </A></H3></CENTER>
+<p><a href="CommonDesign/adcs.pdf">Attitude Determination and Control<br></a>
+Outline:<br>
+• Driving Issues and Requirements<br>
+– Modes of Operation<br>
+– Disturbances<br>
+–Others<br>
+• Passive Options<br>
+– Gravity Gradient, Spin stabilized, permanent magnets, radiometer spin<br>
+• Active Options<br>
+– actuators (wheels, torque coils and rods, thrusters)<br>
+– sensors (magnetometer, gyro, star tracker, horizon and sun sensors)<br>
+• Design Approach<br>
+532 KB
+
+<p><a href="CommonDesign/modular.pdf">Modular Attitude Control System for Microsatellites with Stringent Pointing
+Requirements<br></a>
+Advancing technology has allowed for the development of low cost attitude control
+hardware for microsatellites. However, the attitude control design and software development
+remain a significant cost driver. The Dynacon High Performance Attitude Control system is a
+modular control system that makes use of reusable algorithm modules enabling the attitude
+control system to be applied to several different spacecraft missions with very different
+performance requirements. The High Performance Attitude Control system is described in this
+paper, and simulation results are shown for a variety of spacecraft.<br>
+124 KB
+
+<p><a href="CommonDesign/SSDL9606.pdf">The Design of the OPAL Attitude Control System<br></a>
+1296 KB
+
+<p><a href="CommonDesign/5-1.pdf">In-Orbit Attitude Performance of the 3-Axis Stabilised
+SNAP-1 Nanosatellite<br></a>
+This paper
+will show the attitude performance results during pointing of the CMOS cameras. One of the challenges was how
+to handle a large residual magnetic moment disturbance on the satellite. This disturbance was caused by an
+unforseen permanent magnetisation dipole from the thruster solenoids, which could not be fully cancelled by the
+magnetorquer rods. To enable the onboard attitude and rate Kalman filter to give accurate state estimates, the
+magnetic disturbance was first characterised and then partially compensated for, using the magnetorquer rods.
+The paper will explain how this problem was solved, before the Y-momentum wheel could be utilised to stabilise
+and point the imaging payload. The attitude disturbances during firings of the butane gas thruster will also be
+presented and characterised. The effect of these firings on the orbit will be shown as measured by the GPS
+receiver on SNAP-1. The lessons learned from the AODCS design of a SSTL nanosatellite are summarised.<br>
+310 KB
+
+<p><a href="CommonDesign/acds.pdf">Attitude Determination and Control system for DTUsat1 (Part 1)<br></a>
+Different methods of attitude control and determination are considered and measured against the physical constraints, feasability and performance. Solar sensors and magnetic field sensors are considered the most realistic attitude determination sensors. The requirement to the attitude control can be either single axis or three axes control. If single axis control is required a solution with an actively dumped magnet or magnetotorques are suggested. If three axes control is required a magnetotorque with three or six coils is suggested.<br>
+274 KB
+
+<p><a href="CommonDesign/dtu_torsten.pdf">Attitude Determination and Control system for DTUsat1 (Part 2)<br></a>
+The simulations and control algorithm used during the work on the DTUsat1
+project is presented.The work is partly made in coorporation with the rest
+of the ACDS team and will result in a .ight version of the ACDS system to
+be used on DTUsat1<br>
+610 KB
+
+<p><a href="CommonDesign/ADCS6.pdf"><br>Preliminary design of the attitude conyrol system of a microsatellite for Earth observation</a>
+In this paper - a low-weight, low-power magnetic attitude control system, consisting of 3 magnetic torques, 2 magnetometers and a horizon sensor, is proposed for a microsatellite carrying a remote sensing payload on a Sun-synchronous orbit<br>
+465 KB
+
+<p><a href="CommonDesign/alowcost.pdf"><br>Low-Cost Attitude Determination and Control for Small Satellitesn</a>
+This paper addresses the need to develop
+small satellite technology which will enable
+small satellites to perform large satellite
+missions. The Center for Aerospace
+Technology (CAST) at Weber State
+University (WSU) has an 18 year history
+of small satellite innovation. Previous
+satellites include: NUSAT, WEBERSAT,
+and PHASE 3d. CAST is currently
+fabricating two new small satellites with
+advanced capabilities. CATSAT, a USRA
+program, will determine the origin of
+gamma-ray bursts and is a joint project with
+the University of New Hampshire and the
+University of Leicister in England. (..)<br>
+156 KB
+
+<p><a href="CommonDesign/Chapter2SatelliteDynamics.pdf">AE 423 Space Technology I
+Chapter 2 Satellite Dynamics<br></a>
+In this chapter we review some dynamics relevant to satellite dynamics and we
+establish some of the basic properties of satellite dynamics.<br>
+72 KB
+
+<p><a href="CommonDesign/COSY_98.doc">PROJECT CONSAT: CONTROL OF SMALL SATELLITES<br></a>
+This article describes ConSat, a research project aimed at the study of stabilisation and control of small satellites' attitude.  The work presented here includes a simulator of a micro-satellite's attitude determination and control system (ADCS) and a new attitude stabilisation and spin control algorithm. <br>
+370 KB
+
+<p><a href="CommonDesign/localver.pdf">LOCAL VERTICAL/LOCAL HORIZONTAL
+ATTITUDE CONTROL FOR SPARTAN SPACECRAFT<br></a>
+A Spartan spacecraft attitude control
+system was reconfigured to provide attitude
+pointing with respect to a Local
+Vertical/Local Horizontal reference frame
+even though the baseline system uses only
+an initial start attitude, sun sensors, and star
+tracker/gyros for defining the spacecraft
+attitude. No earth sensors of any kind are
+used. Deployed from the orbiter for two
+days, usually for solar and stellar inertial
+pointing, Spartan missions use pointing
+programs that must be written months prior
+to launch with bit-level changes possible
+only in the on-orbit period prior to
+deployment. With these limitations,
+Spartan missions 206 and 207, flown in
+1996, had requirements to point with
+respect to the orbital velocity vector, the
+direction of which in an inertial frame, varies
+greatly due to launch time, launch date and
+deploy time uncertainties. The description
+concentrates on the LVLH to inertial
+geometry, attitude maneuvering scheme, and
+timing considerations.<br>
+274 KB
+
+<p><a href="CommonDesign/mkrebs.pdf">A NEW ATTITUDE CONTROL MECHANISM FOR LEO SATELLITES
+(Mark R. Krebs
+Orbital Sciences Corporation
+Dulles, Virginia)<br></a>
+This paper describes the hardware and algorithms
+used to achieve the ORBCOMM Constellation
+mission: it specifically provides a reference
+example for effective nadir pointing, yaw steering
+spacecraft design, using substantially magnetic
+controls.<br>
+61 KB
+
+<p><a href="CommonDesign/RT-404-98.pdf">Attitude Control Strategies for Small Satellites
+(Paulo Tabuada, Pedro Alves, Pedro Tavares, Pedro Lima
+Setembro 1998, Instituto de Sistemas e Robotica)<br></a>
+This class of LEO satellites (Low Earth Orbit)
+may be controlled by strict interaction with the geomagnetic field. A magnetic
+moment produced by coils placed on the satellite will produce a resultant torque by
+interaction with the geomagnetic field, which may be used for attitude control
+purposes. Nevertheless, this simple, low power consumption approach poses several
+interesting control difficulties as the geomagnetic field viewed by a satellite, changes
+along its orbit. Besides this time dependency, this problem’s mathematical description
+is highly non-linear, and new control strategies are needed to solve the attitude and
+control demands of such a satellite.
+Several control strategies were implemented and simulated in a realistic
+environment (see appendix A) in order to choose the most adequate to each mission
+phase. Both ideal and restricted actuators were considered viewing a possible
+application of such algorithms to PoSAT-1 1 and other such satellites.
+This work has been carried out at Intelligent Control Lab. of ISR/IST, as a
+final year project for the degree of Aerospace Engineering. This work was also
+integrated in the ConSat 2 project.<br>
+805 KB
+
+<p><a href="CommonDesign/SatCosy001.pdf">Satellite Attitude Control Problem (COSY BOOK-Contribution to
+Chapter 19)<br></a>
+Abstract. The entire concept for the attitude control system is pre-
+sented in this chapter. Three issues are in the focus: fault tolerant
+control, attitude control and the attitude determination.<br>
+291 KB
+
+<p><a href="CommonDesign/school.pdf">ATTITUDE CONTROL AND STABILIZATION SYSTEM
+FOR THE SCHOOL MICROSATELLITE<br></a>
+Simple magneto-gravitational system (MGS) for the attitude control and stabilization of the
+School Scientific-Research Micro-Satellite (SSRMS) [1] is described. Using the MGS for the
+SSRMS is preferable due to several points. First, physical ideas lying in the base of this system
+are very simple to explain for students. Second, active magnetic stabilization systems are very
+effective and suitable for small satellites in comparison to active gas microengines because of
+their ions and gas production around the satellite and as a consequence creation of some
+interference to the scientific measurements. Third, the MGS can operate with use of power
+supply during a short time. Some technological characteristics of the MGS are discussed:
+angular range of the stabilization around the Earth’s-directional axes, precision, electromagnetic
+compatibility to other service and scientific systems of SSRMS, possible operation of such type
+of systems together with TV and optical equipment. Some separate exploration was made for
+the possibility of precise magnetic measurements on the micro-satellite, which is equipped with
+such system. As a result some processing procedures are described.<br>
+155 KB
+
+<p><a href="CommonDesign/smallsat.pdf">Autonomous Attitude Control System for the Orsted Satellite<br></a>
+Attitude control for small satellites differ from traditional attitude control systems
+by having simple hardware and inexpensive actuators imposed by cost constraints. Limited
+ground contact, on the other hand, imposes requirements to autonomy of the attitude control.
+These conflicting requirements are fulfilled through development of novel attitude and control
+algorithms combined with an on-board supervisory control architecture.
+Attitude estimation with an extended Kalman filter using sun sensor and magnetometer data
+is introduced as a backup to a star camera estimate. This enables continued operation in case
+of star camera or sun sensor failures. Three-axis attitude stabilization is provided with use of
+a set of three perpendicular magnetorquers. The attitude control and estimation algorithms
+are integrated into a supervisory control architecture that enables reconfiguration in real time,
+based on mission phase and contingency operation requirements. This provides some level
+of fault tolerance with graceful degradation in case of severe faults.
+Results from simulations are presented to demonstrate projected performance capability.<br>
+487 KB
+
+<p><a href="CommonDesign/sscix3.pdf">Precision Control, Knowledge and Orbit Determination on a Small Spacecraft Bus
+The OrbView-4 Attitude Control System<br></a>
+An overview of the OrbView-4 mission is presented along with a discussion of the requirements imposed on the
+ACS. The system architecture is described in terms of its hardware and software elements. The design of the
+attitude determination, orbit determination and attitude control algorithms are discussed, and the results of a
+system performance analysis are summarized.<br>
+125 KB
+
+<p><a href="CommonDesign/thesis.pdf">Spacecraft Attitude Tracking Control. Matthew R. Long<br></a>
+The problem of reorienting a spacecraft in to acquire a moving target is investigated. The
+spacecraft is modeled as a rigid body with N axisymmetric wheels controlled by axial torques,
+and the kinematics are represented by Modified Rodriques Parameters. The trajectory, denoted the
+reference trajectory, is one generated by a virtual spacecraft that is identical to the actual spacecraft.
+The open-loop reference attitude, angular velocity, and angular acceleration tracking commands
+are constructed so that the solar panel vector is perpendicular to the sun vector during the tracking
+maneuver. We develop a nonlinear feedback tracking control law, derived from Lyapunov stability
+and control theory, to provide the control torques for target tracking. The controller makes the
+body frame asymptotically track the reference motion when there are initial errors in the attitude
+and angular velocity. A spacecraft model, based on the X-ray Timing Explorer spacecraft, is used
+to demonstrate the effectiveness of the Lyapunov controller in tracking a given target.(Thesis submitted to the Faculty of the
+Virginia Polytechnic Institute and State University
+in partial fulfillment of the requirements for the degree of
+Master of Science
+in
+Aerospace Engineering)<br>
+771 KB
+
+<p><a href="CommonDesign/ts-xi-4.pdf">An Attitude Control System for a Low-Cost Earth Observation Satellite
+with Orbit Maintenance Capability (Willem H Steyn, Yoshi Hashida, Surrey Space Centre, United Kingdom)<br></a>
+This paper
+describes the various attitude control modes required to support: 1) the initial attitude acquisition phase, 2) a
+high resolution imager payload during pointing and tracking of targets, 3) the propulsion system during orbit
+manoeuvres. The specific attitude controllers and estimators used during these control modes are explained.
+Various simulation and in-orbit test results are presented to evaluate the performance and design objectives. To
+improve the control and estimation accuracy, on-board calibration and alignment procedures for the sensors
+and actuators are utilised. Some calibration results and the resulting improvement in accuracy from these
+procedures are shown.<br>
+733 KB
+<br><SMALL><A HREF="#GlossTop">к оглавлению</A></SMALL>
+ <HR>    
+<CENTER><H3><A NAME="GlossD"> DISTURBANCES </A></H3></CENTER>
+<p><a href="Disturbances/nonconserve.pdf">THE EFFECT OF THE NON-CONSERVATIVE FORCES ON THE
+ATTITUDE DYNAMIC OF A VARIABLE GEOMETRY SATELLITE<br></a>
+This paper investigates which implication
+structural non-conservative forces may have
+on a variable geometry small satellite attitude
+control subsystem design. Also are presented
+analytic and numerical models in order to take
+in account such effects. Numerical tests using
+a common code were used to analyse the
+satellite during its operational life. A flexural
+satellite model was developed using the idea
+of dividing a connected bodies system,
+writing a set of equations for each subsystem
+and reassembling them in the connection
+points using Kane’s method. A numerical
+model for the linearized satellite dynamics
+around the gravity gradient equilibrium
+position under the effect of the aerodynamic
+and solar torques was used. The numerical
+results confirm the deep influence of the
+structural damping on the satellite attitude
+dynamics. The effect of the measurement
+noise and of the control delay on the actuators
+were also considered. Thermo- elasticity and
+structural damage were modeled using a
+periodic disturbance and a noise generator on
+the state vector and a time varying value of
+the damping coefficient.<br>
+392 KB
+<br><br><SMALL><A HREF="#GlossTop">к оглавлению</A></SMALL>
+ <HR>    
+<CENTER><H3><a name="GlossF">FLIGHT RESULTS</a></H3></CENTER>
+<p><a href="FlightResults/4373.pdf">FLIGHT RESULTS AND LESSONS LEARNED FROM THE ШRSTED ATTITUDE CONTROL SYSTEM<br></a>
+The small satellite Orsted was launched on 23 February
+1999. Besides demonstrating new technical capabilities
+based on new hardware and inexpensive actuators, Orsted
+provides flight experience with on-board autonomy. The
+attitude control and estimation algorithms are integrated
+with a supervisory control architecture that enables reconfiguration
+in real time, based on mission phase and
+contingency requirements. This paper discusses and evaluates
+the Orsted attitude control system operations history.
+408 KB
+<br><br><SMALL><A HREF="#GlossTop">к оглавлению</A></SMALL>
+ <HR>    
+<CENTER><H3><CENTER><H3><A NAME="GlossG"> GPS </A></H3></CENTER></H3></CENTER>
+<p><a href="GPS/4386.pdf">High Precision GPS Attitude Determination using the AAU Testbed<br></a>
+This report report is divided into six chapters. Chapter 1 addresses the attitude problem and
+describe the AAU testbed. Chapter 2 defines the coordinate systems used in this report and
+describes the rotations needed to convert coordinates from one system to another. Chapter 3
+introduces the method of interferometry and describes each of the implemented algorithms in
+detail. The result of accuracy, speed and convergence tests performed using simulated data is
+presented in chapter 4. Finally, the conclusion to this report can be found in chapter 5 along with
+a recommendation for future work. Serving as an appendix to this report, chapter 6 discusses
+the possibility of improving the quality of the results by equipping the existing test platform
+with a high accuracy reference.starts out by describing the attitude determination problem and
+possible ways to address this problem, and the AAU GPS testbed is described.<br>
+256 KB
+
+<p><a href="GPS/rexiigps.pdf">GPS Based Attitude Determination 
+The REX II Flight Experience<br></a>
+A milestone in the annals of satellite guidance,
+navigation and control was achieved as REX II became
+the first spacecraft to employ GPS attitude knowledge for
+closed-loop control. Successfully launched and activated
+on March 8, 1996, this highly capable, low cost, 242 lb
+spacecraft, uses a GPS receiver to provide the attitude
+knowledge required by the control system to maintain a
+three-axis nadir pointed orientation. This paper describes
+the spacecraft, its attitude control subsystem and by
+evaluating its early flight history, captures our on-orbit
+experience using GPS. The resulting combination of GPS
+attitude knowledge coupled with our simple yet elegant
+controller has allowed REX II to exceed mission
+requirements via highly autonomous modes of operations.<br>
+158 KB
+<br><br><SMALL><A HREF="#GlossTop">к оглавлению</A></SMALL>
+ <HR>    
+ 
+<CENTER><H3><CENTER><H3><A NAME="GlossH"> HARDWARE: sensors </A></H3></CENTER></H3></CENTER>
+<p><a href="Hardware/Sensors/ADCS20.pdf">An overview of sensors in spacecraft engineering<br></a>
+236 KB
+
+<p><a href="Hardware/Sensors/draper.pdf">A MICROMECHANICAL GYRO PACKAGE WITH GPS UNDER DEVELOPMENT
+FOR SMALL POINTING SATELLITES(N. Barbour, P. Madden, M. Socha,Charles Stark Draper Laboratory, Cambridge)<br></a>
+SUMMARY
+A 3-axis µgyro package, comprising 3
+orthogonally mounted single-degree-of-freedom silicon
+tuning fork gyroscope flat packs, has been described.
+These flat packs also contain the mixed-signal,
+application-specific integrated circuits (ASICs) for the
+gyro electronics. This package has been integrated with
+a GPS receiver as well as a guidance and navigation
+processor for terrestrial applications.<br>
+254 KB
+
+<p><a href="Hardware/Sensors/jbenton.pdf">PYRAMID COARSE SUN SENSING FOR
+NASA SSTI "CLARK" SAFE-HOLD MODE (Jeff Benton, CTA Space Systems, McLean, Virginia)<br></a>
+This paper describes an innovative
+approach to solving the Sun-pointing problem
+using a pyramid configuration of Coarse Sun
+Sensor (CSS) cells.<br>
+155 KB
+
+<p><a href="Hardware/Sensors/QRS11DS.pdf">The BEI GyroChip™ Model QRS11<br></a>Description, Applications, Features, Operation.<br>
+76 KB
+<br><br><SMALL><A HREF="#GlossTop">к оглавлению</A></SMALL>
+ <HR>    
+<CENTER><H3><CENTER><H3><A NAME="GlossH1"> HARDWARE: wheels </A></H3></CENTER></H3></CENTER>
+<p><a href="Hardware/wheels/Maxon Motor - EC.pdf">EC 32 Flat motor <br></a>(Motor Data, Specifications)<br>
+62 KB
+
+<p><a href="Hardware/wheels/productpdf_6.pdf">Dynacon MicroWheel 200 <br></a>(Features, Characteristics Specifications)<br>
+2 KB
+
+<p><a href="Hardware/wheels/RSI01.pdf">Momentum and Reaction Wheels 0.04 - 0.12 Nms
+with integrated Wheel Drive Electronics <br></a>(Product overveiw,Technical data)<br>
+321 KB
+
+<p><a href="Hardware/wheels/productpdf_6.pdf">Momentum and Reaction Wheels 0.2 - 1.6 Nms
+with integrated Wheel Drive Electronics <br></a>(Product overveiw,Technical data)<br>
+234 KB
+
+<p><a href="Hardware/wheels/ssci5.pdf">Reaction Wheel and Drive Electronics
+For LeoStar Class Space Vehicles<br></a>
+A new small low-cost reaction wheel and drive electronics are developed by Orbital
+Sciences Corporation for use on LeoStar class spacecraft. The LeoStar wheel produces a
+reaction torque of 140 mN-m with momentum storage capacity of 5.4 N-m-s. The wheel is unique
+in that it feature a relatively large, highly controllable reaction torque in a small package with
+low power and minimal induced vibrations. The design is an adaptation of an original NASA
+Goddard Space Flight center wheel using a brushless motor/flywheel combination. Two bearings
+support the shaft. To reduce size and mass, the drive electronics are incorporated directly in the
+wheel housing. The driver is based on a digital signal processor for accurate speed and torque
+control. An architecture was selected to allow for production of a radiation harden driver
+through simple pin for pin substitution of critical components.<br>
+98 KB
+
+<p><a href="Hardware/wheels/ts-xi-1.pdf">High Speed, Low Weight Momentum/reaction Wheels<br></a>
+We will discuss several breakthrough technologies
+which should prove critical to the future
+miniaturization and exploration of space.
+First we will discuss bearing failure modes and how
+current bearing designs place limits on reliability and
+size. We will then discuss retainerless full
+complement bearings and how they offer particular
+advantages to the satellite community.<br>
+99 KB
+
+<p><a href="Hardware/wheels/ts-xi-8.pdf">GyroWheel TM - An Innovative New Actuator/Sensor for 3-axis
+Spacecraft Attitude Control<br></a>
+The Bristol GyroWheel is an innovative attitude control system device that provides both an angular momentum
+bias and control torques about three axes while at the same time measuring the spacecraft angular rates about two
+axes. The principles of operation of this device are explained and the flight model design is described that is
+targeted at small satellite applications which is currently under development. A fully functional prototype of the
+GyroWheel has been developed that has demonstrated the actuator and rate sensing capabilities and some of the
+test results are given.<br>
+492 KB
+
+<p><a href="Hardware/goodrich.pdf">SPACECRAFT ATTITUDE CONTROL EQUIPMENT: TORQWHEELS™ TW Series, TORQRODS™ TR Series<br></a>
+(Description, 2 pages)
+316 KB
+<br><br><SMALL><A HREF="#GlossTop">к оглавлению</A></SMALL>
+ <HR>  
+   
+<CENTER><H3><CENTER><H3><A NAME="GlossM"> MODELLING </A></H3></CENTER></H3></CENTER>
+<p><a href="Modeling/4337.pdf">Lecture Notes on Modeling of a
+Spacecraft<br></a>
+The objective of this lecture notes is to establish mathematical model of
+a spacecraft on a low earth orbit. The material presented in this notes is
+used in the course Modeling of Mechanical Systems at Aalborg University,
+Department of Control Engineering.<br>
+422 KB
+
+<p><a href="Modeling/adacpaper.pdf">Dynamic Modeling of Micro-Satellite Spartnik’s Attitude<br></a>
+Spartnik is a micro-satellite under construction at San Josй State University. In order to
+control the satellite and ensure payloads and antenna are oriented properly a passive attitude
+control system has been developed. Like some other micro-satellites, Spartnik will combine spin
+stabilization with magnetic stabilization. Thus, Spartnik will "spin" due to solar radiation pressure
+and perform a controlled "tumble" due to the permanent magnets aligning with the magnetic field of
+the Earth. Concerns have been raised about the gyroscopic effect due to the spin of the satellite. A
+program has been developed that numerically integrates Euler's form of the equations of motion in
+order to explore the gyroscopic effect and finalize the hardware design of Spartnik. Simulations
+have been performed that reveal the dynamic response of Spartnik under a number of conditions.
+This paper includes a detailed discussion of these results.<br>
+153 KB
+
+<p><a href="Modeling/ConSat.doc">A SIMULATOR OF SATELLITE ATTITUDE DYNAMICS<br></a>
+This article describes a simulator of small satellite attitude environment and dynamics, complete with a set of realistic sensors and the most commonly used actuator in this class of satellites. The simulator described is useful in attitude estimation and control algorithm development. Some results of the simulation of the PoSAT-1 satellite are presented.<br>
+1393 KB
+
+<p><a href="Modeling/MUST.PDF">Modular Attitude Control System for Microsatellites with Stringent Pointing
+Requirements<br></a>Advancing technology has allowed for the development of low cost attitude control
+hardware for microsatellites. However, the attitude control design and software development
+remain a significant cost driver. The Dynacon High Performance Attitude Control system is a
+modular control system that makes use of reusable algorithm modules enabling the attitude
+control system to be applied to several different spacecraft missions with very different
+performance requirements. The High Performance Attitude Control system is described in this
+paper, and simulation results are shown for a variety of spacecraft.<br>
+124 KB
+
+<p><a href="Modeling/racs.gif">RACS.GIF<br></a>
+29 KB
+
+<p><a href="Modeling/simsat_1.doc">Small Satellite Attitude Simulator<br></a>User manual<br>
+430 KB
+
+<p><a href="Modeling/snap1.pdf">In-Orbit Attitude Performance of the 3-Axis Stabilised
+SNAP-1 Nanosatellite<br></a>SNAP-1 is the first 3-axis stabilised nanosatellite in orbit. The satellite is stabilised by a single Y-momentum
+wheel and 3-axis magnetorquer rods, used for nutation damping and wheel momentum management.
+The primary attitude sensor used for attitude and rate estimation, is a miniature 3-axis magnetometer. This paper
+will show the attitude performance results during pointing of the CMOS cameras. One of the challenges was how
+to handle a large residual magnetic moment disturbance on the satellite. This disturbance was caused by an
+unforseen permanent magnetisation dipole from the thruster solenoids, which could not be fully cancelled by the
+magnetorquer rods. To enable the onboard attitude and rate Kalman filter to give accurate state estimates, the
+magnetic disturbance was first characterised and then partially compensated for, using the magnetorquer rods.
+The paper will explain how this problem was solved, before the Y-momentum wheel could be utilised to stabilise
+and point the imaging payload. The attitude disturbances during firings of the butane gas thruster will also be
+presented and characterised. The effect of these firings on the orbit will be shown as measured by the GPS
+receiver on SNAP-1. The lessons learned from the AODCS design of a SSTL nanosatellite are summarised.
+<br>
+310 KB
+
+<p><a href="Modeling/TS-IIA-5.pdf">Attitude Simulation with Control Software in the Loop
+Hans J. Koenigsmann, Gwynne Gurevich<br></a>
+AttSim is a spacecraft attitude simulator that has been specifically developed to design and ver-ify
+attitude control concepts and flight software architectures and algorithms. Its primary goal is to provide
+a generic approach to small satellite attitude control development by allowing scalable performance.
+AttSim specifically allows the user to develop software modules that can be used as flight code, and to ver-ify
+control logic, controller gains, and other mission-critical elements. The code can be developed in a
+flight-like environment, allowing quick conversion to actual flight code for a target processor. In addition,
+AttSim can be used as a systems engineering tool to ensure correct torquer, wheel, and thruster sizing and
+sensor performance. AttSim allows derivation of subsystem requirements to meet attitude accuracy (point-ing
+and stability) goals. Its use during all phases can help reduce development and verification time as well
+as cost and risk.
+<br>
+267 KB
+<br><br><SMALL><A HREF="#GlossTop">к оглавлению</A></SMALL>
+ <HR>    
+<CENTER><H3><CENTER><H3><A NAME="GlossS"> SABILISATION SYSTEMS </A></H3></CENTER></H3></CENTER>
+<p><a href="mss/4168.pdf">Satellite Attitude Control Using
+Only Electromagnetic Actuation<br></a>
+The primary purpose of this work was to develop control laws for three axis stabilization
+of a magnetic actuated satellite. This was achieved by a combination of linear and non-linear
+system theory. In order to reach this goal new theoretical results were produced in
+both fields. The focus of the work was on the class of periodic systems reflecting orbital
+motion of the satellite. In addition to a theoretical treatment, the thesis contains a large
+portion of application considerations. The controllers developed were implemented for
+the Danish Шrsted satellite.<br>
+2380 KB
+
+<p><a href="mss/4249.pdf">SLIDING MODE ATTITUDE CONTROL FOR MAGNETIC
+ACTUATED SATELLITE<br></a>
+This paper deals
+with three-axis stabilization of a low earth orbit satellite. The problem of controlling
+the spacecraft attitude using only magnetic torquing is realized in the form of the
+sliding mode control. A three dimensional sliding manifold is proposed, and it is
+shown that the satellite motion on the sliding manifold is asymptotically stable.<br>
+210 KB
+
+<p><a href="mss/4311.pdf">OPTIMAL MAGNETIC ATTITUDE CONTROL<br></a>
+196 KB
+
+<p><a href="mss/4380.pdf">LINEAR TIME VARYING APPROACH TO SATELLITE ATTITUDE CONTROL USING ONLY
+ELECTROMAGNETIC ACTUATION<br></a>
+paper discusses linear attitude control strategies for a
+low earth orbit satellite actuated by a set of mutually
+perpendicular electromagnetic coils. The principle is to
+use the interaction between the Earth’s magnetic field
+and the magnetic field generated by the coils. A key
+challenge is the fact that the mechanical torque can
+only be produced in a plane perpendicular to the local
+geomagnetic field vector, therefore the satellite is
+not controllable when considered at fixed time. Availability
+of design methods for time varying systems is
+limited, nevertheless, a solution of the Riccati equation
+gives an excellent frame for investigations provided
+in this paper. An observation that geomagnetic
+field changes approximately periodically when a satellite
+is on a near polar orbit is used throughout this paper.
+Three types of attitude controllers are proposed:
+an infinite horizon, a finite horizon, and a constant gain
+controller. Their performance is evaluated and compared
+in the simulation study of the realistic environment.<br>
+765 KB
+
+<p><a href="mss/Euraco.pdf">Attitude Control for Magnetic Actuated Satellite. Rafaі Wiґ sniewski, Mogens Blanke<br></a>
+This paper deals with three-axis stabilization of a gravity gradient low earth orbit satellite. The
+problem of controlling the spacecraft attitude using only magnetic torquing is realized in the form of
+the sliding mode control. Stability analysis reveals that this control law is stable for satellites, which
+moments of inertia are of the same order of magnitude. Furthermore a proportional-derivativefeed-back
+cross product with the local geomagnetic field vector is proposed. It is proven that this control
+law is globally asymptotically stable. Simulations have shown that the control law is a good candidate
+for cheap onboard attitude control.<br>
+455 KB
+
+<p><a href="mss/ma.pdf">Fully magnetic attitude control for spacecraft subject
+to gravity gradient<br></a>
+This paper presents stability and control analysis of a satellite on a near polar orbit subject to the gravity torque. The satellite is
+actuated by a set of mutually perpendicular coils. The concept is that interaction between the Earth's magnetic "eld and a magnetic
+"eld generated by the coils results in a mechanical torque used for attitude corrections. Magnetic actuation due to its simplicity and
+power e$ciency is attractive on small, inexpensive satellites. This principle is however inherently nonlinear, and di$cult to use since
+the control torque can only be generated perpendicular to the geomagnetic "eld vector. This paper shows that three-axis control can
+be achieved with magnetorquers as sole actuators in a low Earth near polar orbit. It considers the problem from a time-varying,
+nonlinear system point of view and suggests controllers for three-axis stabilization. A stability analysis is presented, and detailed
+simulation results show convincing performance over the entire envelope of operation of the Danish "rsted satellite.<br>
+414 KB
+
+<p><a href="mss/mag.pdf">Satellite attitude control using only magnetorques<br></a>
+This study presents a method to control small satellites using only magnetorques. <br>
+316 KB
+
+<p><a href="mss/mag_disser.pdf">A Nonlinear Magnetic Controller for Three-Axis Stability of Nanosatellites. Kristin L. Makovec<br></a>
+In this thesis, the problem of using magnetic control to stabilize a spacecraft on three axes
+is examined. In this chapter, the advantages and disadvantages of magnetic control are
+presented for three-axis stabilized spacecraft. The prior work in magnetic control is discussed
+through a literature review. In addition, the approach taken to obtain magnetic control in
+this thesis is described.(140 стр.)<br>
+2744 KB
+
+<p><a href="mss/magtorquer_alqr.pdf">MAGNETIC TORQUER ATTITUDE CONTROL VIA ASYMPTOTIC PERIODIC LINEAR QUADRATIC
+REGULATION<br></a>
+This paper develops an active 3-axis attitude
+stabilization system for a nadir-pointing spacecraft.<br>
+120 KB
+
+<p><a href="mss/sscix1.pdf">Research on Attitude System of Active Magnetic Control Small Satellite
+Sun Zhaowei Yang Di
+Research Institute of Satellite Engineering and Technology,<br></a>
+In this paper,
+combining with the bound conditions of magnetic torque, two methods are researched. The first is
+energy method. It use Lyapunov energy depletion theory, taking the Lyapunov function as a target
+function, determine the magnetic torque. Secondly the decoupling variable structure control theory
+is used to deal the magnetic torque. The results of computer simulation indicate that these methods
+have advantages of excellent robustness and easily designed and realized.<br>
+436 KB
+
+<p><a href="wss/w1.pdf">THREE-AXIS REACTION WHEEL ATTITUDE CONTROL
+SYSTEM FOR KITSAT-3 MICROSATELLITE<br></a>
+144 KB
+
+<p><a href="wss/4408.pdf">PASSIVITY BASED NONLINEAR ATTITUDE CONTROL OF THE ROMER SATELLITE<br></a>
+This paper suggests nonlinear attitude control of the Danish satellite Rшmer. This satellite will be designed
+to fulfil two scientific objectives: The observation of stellar oscillations and the detection and localisation of
+gamma-ray bursts. The satellite will be equipped with a tetrahedron configuration of Wide Angle Telescopes
+for Cosmic Hard x-rays (WATCH), that serves the dual purpose of X-ray detectors and momentum wheels.
+By employing passivity theory it is shown, that the satellite is a passive system. This paper shows, that
+global asymptotic stability can be obtained with a passive and an input and output strictly passive system in
+a feedback interconnection. It is demonstrated in a simulation study that the resultant controller has a po-tential
+for on-board implementation in the acquisition phase, where global stability of the control law is vital.<br>
+167 KB
+
+<p><a href="wss/aaspaper.pdf">FLEXIBLE SPACECRAFT REORIENTATIONS USING GIMBALED MOMENTUM WHEELS<br></a>
+We study the reorientations of exible spacecraft using momentum exchange devices. A new
+concise form of the equations of motion for a spacecraft with gimbaled momentum wheels
+and exible appendages is presented. The derivation results in a set of vector nonlinear
+first order differential equations with gimbal torques and spin axis torques as the control
+inputs. Feedback control laws which result in smooth reorientations are sought with the
+goal of minimizing structural excitations. We pay special attention to a class of maneuvers
+wherein the magnitude of the momentum in the wheel cluster is held constant, resulting in
+a so-called \stationary platform maneuver." The advantage of this maneuver is that the
+platform angular velocity remains small throughout, thereby reducing the excitation of the
+appendages.<br>
+462 KB
+
+<p><a href="wss/ADCS14.pdf">Control design for generalized normal mode operation of bias momentum satellites<br></a>
+An attitude controller for 3-axis stabilized Earth-oriented bias momentum spacecraft is described, where only 2-axis attitude measurements from the earth sensor are available.<br>
+352 KB
+
+<p><a href="wss/CHAPTER-7.pdf">TiungSAT-1 MOMENTUM WHEEL COMMISSIONING<br></a>
+By definition, a momentum wheel is nominally spinning at a particular rate and
+changes speed, i.e. angular momentum, as a means of providing control over the
+spacecraft attitude (Wertz 1978). However, it firstly needs to be started up from rest and
+also since this particular wheel is an experiment on TiungSAT-1, there may arise a need
+to stop it spinning.
+This simulation-based study investigates the feasibility and performance of a
+proposed strategy for starting up the wheel and stopping it in an emergency. It basically
+involves tricking the wheel controller to start-up or slow down the wheel through
+instructing initial pitch demands. The momentum wheel control system is a proportional
+plus integral controller as can be seen in the SIMULINK system block diagram in Figure 1
+and described in the paper by Norhizam<br>
+248 KB
+
+<p><a href="wss/flywheels_cdc01.pdf">Energy Management and Attitude Control
+Strategies using Flywheels 1<br></a>
+Abstract: This paper is devoted to the use of multiple flywheels that integrate the energy storage and attitude control functions in space vehicles. This concept, which we
+refer to as an Integrated Energy Management and Attitude
+Control (IEMAC) system, reduces the space vehicle bus
+mass, volume, cost, and maintenance requirements while
+maintaining or improving the space vehicle performance.
+To this end, we present two nonlinear IEMAC strategies
+(model-based and adaptive) that simultaneously track a desired attitude trajectory and desired energy/power profile.
+Both strategies ensure asymptotic tracking while the adaptive controller compensates for uncertain spacecraft inertia.<br>
+569 KB
+
+<p><a href="wss/fordhalljgcd.pdf">Singular Direction Avoidance Steering for Control-Moment Gyros<br></a>
+A new form of the equations of motion for a spacecraft with single gimbal control-moment gyros (CMG) is
+developed using a momentum approach. This set of four vector equations describing the rotational motion of the
+systemis of order 2N + 7, where N is the number of CMGs. The control input is an N Ј 1 column vector of torques
+applied to the gimbal axes. A modi” cation to a singularity robust Lyapunov control law is examined and compared
+to that control law. Speci” cally, the attempt to avoid singular gimbal con” gurations is abandoned in favor of simply
+avoiding movement in the singular direction. The singular value decomposition is used to compute a pseudoinverse
+that prevents large gimbal rate commands near or at actual singularities.<br>
+275 KB
+
+<p><a href="wss/gdaj.pdf">Momentum Transfer Dynamics of a Gyrostat With a Discrete Damper 1
+Christopher D. Hall 2,Aerospace and Ocean Engineering,Virginia Polytechnic Institute and State University,Blacksburg, Virginia<br></a>
+The stability of motion of attitude maneuvers of a torque-free rigid gyrostat with a discrete damper
+is investigated. The equations of motion are presented and non-dimensionalized, then rewritten as
+a singularly perturbed, noncanonical, Hamiltonian system. Conditions for equilibrium motions and
+for their stability are developed. Bifurcation diagrams are used to illustrate the stable and unstable
+branches of steady spins, and these bifurcation diagrams are interpreted in the slow state space
+of the rotor momenta and the unperturbed system Hamiltonian. Numerical integration is used to
+compute representative momentum transfer trajectories, which are also interpreted as projections
+onto the slowstate space. We are especially interested in identifying regions of phase space through
+which momentum transfer maneuvers might reasonably be expected to succeed, but which are
+destabilized by the presence of the damping mechanism.<br>
+248 KB
+
+<p><a href="wss/ifac-02_Lanzon-Tsiotras.pdf">ROBUST CONTROL OF ENERG MOMENTUM
+WHEELS SUPPORTED ON ACTIVE MAGNETIC
+BEARINGS USING H -LOOP-SHAPING AND
+ѓК-SYNTHESIS
+Alexander Lanzon .Panagiotis Tsiotras<br></a>
+The main objective of this research s to improve the feasibility of Energy
+Momentum Wheels for satellite systems through the development of robust LTI and
+gain-scheduled controllers for high-speed .ywheel rotors supported on active magnetic
+bearings.A hybrid combination between H Ѓ‡loop-shaping and ѓК-synthesis is used in
+this paper to design controllers.In order to reduce the computational complexity of
+the control designs and the order of the synthesized controllers,a method s devised
+in this paper to reduce the number of states that depend on the rotor speed.The
+rotor speed is treated as uncertainty in an LTI controller design and s used as a
+scheduling variable for a gain-scheduled framework.The success of the methodology
+used is demonstrated through numerical simulation and experimental results.<br>
+565 KB
+
+<p><a href="wss/jgcd2000.pdf">Satellite Attitude Control and
+Power Tracking with Energy/Momentum Wheels<br></a>
+
+412 KB
+
+<p><a href="wss/quebec_sandhall.pdf">RELATIVE EQUILIBRIA OF A GYROSTAT WITH A
+DISCRETE DAMPER. Ralph A. Sandfry<br></a>
+We investigate the possible equilibria for a torque-free gyrostat
+with an attached spring-mass damper. The equations of motion are presented as well as explicit stability conditions for
+simple spins. We numerically determine additional equilibria
+using numerical continuation and rotor momentum as the bifurcation parameter. Multiple equilibria are presented, including stable equilibria corresponding to steady spins in nontrivial
+directions. A pitchfork bifurcation of the nominal-spin state is
+examined analytically using Liapunov-Schmidt reduction, which
+produces conditions on system parameters for avoiding a jump
+phenomenon.<br>
+298 KB
+
+<p><a href="wss/sscix2.pdf">Optimal Combined Reaction-Wheel Momentum
+Management for LEO Earth-Pointing Satellites<br></a>
+The optimal controllers for the management of 3-axis reaction-wheel momentum of
+rigid Earth-pointing satellites are analyzed in detail using magnetorquers and/or thrusters.
+Especially, two novel, optimal combined control schemes are proposed in order to achieve rapid,
+propellant-saving reaction wheel momentum dumping control by employing magnetorquers and
+thrusters. Finally, simulation results are presented to demonstrate the superiority of these
+algorithms. These two combined algorithms could easily be applied in real-time onboard an LEO
+Earth-pointing satellite.<br>
+149 KB
+
+<p><a href="wss/utah98_whitford.doc">The CATSAT Attitude Control System<br></a>
+CATSAT is a small 3-axis stabilised satellite in the STEDI program, to be launched in 1999. This paper describes the development of the attitude control system, with emphasis on the control laws. The 2 primary modes are the safe-hold and science modes. The safe-hold mode uses a momentum wheel, magnetometers and torque coils, with the "B-dot" algorithm. The science mode also uses momentum bias and torque coils, with Sun sensors and horizon sensors, to maintain 3-axis control. The use of reaction wheel control is also being studied. The expected performance is demonstrated by simulations.<br>
+428 KB
+<br><br><SMALL><A HREF="#GlossTop">к оглавлению</A></SMALL>
+<p>
+<CENTER><H3><CENTER><H3><A NAME="GlossL"> Литература </A></H3></CENTER></H3></CENTER>
+<H3>Литература</H3>
+<p>
+Output feedback control with input saturations: LMI.. - Scorletti, Folcher.. (1997)
+<p>
+SLQR/SLQG: An LQR/LQG Theory for Systems with Saturating.. - Gokcek Kabamba And Delay-Dependent Stabilization of Time-Delay Systems With .. - Sophie Tarbouriech Pedro   
+<p>
+Low-and-High Gain Design Technique for Linear Systems Subject.. - Lin, Saberi (1994)
+<p>
+Semi-Global Output Regulation for Linear Systems Subject to.. - Zongli Lin (1995)
+<p>
+The Almost Disturbance Decoupling Problem with Internal.. - Zongli Lin Ali
+<p>
+Analysis of Linear Systems with Saturation using Convex.. - Haitham Hindi Stephen (1998)
+<p>
+Output Regulation for Linear Discrete-Time Systems Subject to.. - Ravi Mantri
+<p>
+Stabilization and Tracking Via Output Feedback for the.. - Zhong-Ping Jiang
+<p>
+Semi-global Exponential Stabilization of Linear Systems subject to `Input Satura.. - Lin, Saberi - 1993
+<p>
+A general result on the stabilization of linear systems using bounded controls - Sussmann, Sontag et al. - 1994
+<p>
+Global stabilization and restricted tracking for multiple integrators with bound..- Teel - 1992
+<p>
+Steyn, W.H., "Comparison of Low-Earth-Orbit Satellite Attitude Controllers Submitted to Controllability Constraints," Journal of Guidance, Control, and Dynamics, Vol. 17, No. 4, 1994, pp. 795-804.
+<p>
+Pittelkau, M.E., "Optimal Periodic Control for Spacecraft Pointing and Attitude Determination," Journal of Guidance, Control, and Dynamics, Vol. 16, No. 6, 1993, pp. 1078-1084.
+<p>
+Carlo Arduini and Paolo Baiocco. Active Magnetic Damping Attitude Control for Gravity Gradient Stabilized Spacecraft. Journal of Guidance Control and Dynamics, 20(1):117--122, January-February 1997.
+<p>
+Wi#niewski, R. and Blanke, M., "Fully Magnetic Attitude Control for Spacecraft Subject to Gravity Gradient," Automatica, Vol. 35, No. 7, 1999, pp. 1201-1214.
+<p>
+Wang, P. and Shtessel, Y.B., "Satellite Attitude Control Using Only Magnetic Torquers," Proceedings of the AIAA Guidance, Navigation, and Control Conf., Aug. 1998, Boston, pp. 14901498
+<p>
+Fox, S.M., Pal, P.K., Psiaki, M.L., and Mook, M.E., "Magnetic Attitude Determination Subsystem Performance on the LACE Spacecraft," Guidance and Control 1991; Proceedings of the Annual Rocky Mountain Guidance and Control Conf., Feb. 1991, Keystone, Colorado, pp. 553-574.
+<p>
+Curti, F. and Diani, F., "Study on Active Magnetic Attitude Control for Italian Spacecraft Bus MITA," Proceedings of the 14th International Conference on Space Flight Dynamics, Brazilian Space Research Center, (Iguasso Falls, Brazil, 1999). pp. unnumbered.
+<p>
+Alfriend, K.T., "Magnetic Attitude Control System for Dual-Spin Satellites," AIAA Journal, Vol. 13, No. 6, 1975, pp. 817-822.
+<p>
+<HR>
+
+<p><a href="../index.html">BACK<br></a>
+<p>
+</P></TD></TR></TBODY></TABLE></P></BODY></HTML>

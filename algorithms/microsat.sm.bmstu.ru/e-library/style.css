@@ -1,0 +1,347 @@
+body {
+	background : none;
+} 
+
+a:link {
+	text-decoration : none;
+	font: bold;
+	font-size : 12 px;
+	
+} 
+
+a:visited {
+	font : bold;
+	text-decoration: none;
+	font-size : 12 px;
+} 
+
+a:hover {
+text-decoration : none;
+font: bold;font-size :12 px;
+} 
+
+a.dash:link {
+	text-decoration : none;
+
+font-style:  normal;
+color: Navy;
+font-size : 12 px;
+
+} 
+
+a.dash:visited {
+	border-bottom : 1px ;
+	font: bold;
+	font-style: normal;
+	color: #0A459D;
+	font-size : 12 px;
+	text-decoration : none;
+} 
+
+a.dash:hover {
+	border-bottom : 1px solid;
+	text-decoration : none;
+
+	color: #6666CC;
+	font-size :12 px;
+} 
+
+h1 , h2 , h3 , h4 , h5 , h6 {
+font-family : "Trebuchet MS", Verdana, "Lucida Sans", Arial, Geneva, Helvetica, Helv, "Myriad Web", Syntax, sans-serif; 
+font-weight : normal; 
+} 
+
+.headbox , .dynabox , a.leftmenu , a.topmenu {
+	font-weight : bold;
+	color: #E6E6FA;
+	font-size : 12 px;
+	font-family : Verdana, "Lucida Sans", Arial, Geneva, Helvetica, Helv, "Myriad Web", Syntax, sans-serif;
+	
+	border : #B0C4DE;
+
+} 
+.head {
+	font-weight : bold;
+	color: #F8F8FF;
+	font-size : 12 px;
+	font-family : Arial, Geneva;
+	border : solid ;
+	border-width : 1px 1px 1px 1px;
+	border : #B0C4DE;
+}
+
+.tablebox 
+  {
+	font-size : 12 px;
+	font-family : Arial;
+	border : #000099;
+	border-bottom : #E6E6FA;
+}
+
+.mainheader 
+  {
+	font-size : 16px;
+	font-family : Arial;
+	border : Gray;
+	border: #E6E6FA;
+	padding: 2px;
+	background : #F8F8FF;
+	font-family :  Arial; 
+font-weight : bold; 
+	color: Navy;
+	border-top-width : 1px;
+	border-right-width : 1px;
+	border-bottom-width : 1px;
+	border-left-width : 1px;
+	border-style : solid;
+	border-color : #0068B4;
+}
+
+a 																	{
+	color : Black; 	text-decoration : none;
+} 
+.topnav a:hover, .dynabox .headbox a:hover, tablebox a:hover							{
+	color : #7280C0;
+	font-size : 12 px;
+}
+
+.pos1, .pos0 , body 														{
+	background-color : transparent;
+	color : #000000;
+} 
+ .mainbox , .dynabox	{
+	border : #B0C4DE;
+	color : #000000;
+	background : transparent;
+	border-right : #B0C4DE;
+} 
+a.leftmenu:link , a.leftmenu:visited {
+	border : #B0C4DE;
+	color : #000000;
+	border-right : #B0C4DE;
+}
+.pos2 , .topnav , a.leftmenu:hover 									{
+	color : #E6E6FA;
+	border : #B0C4DE;
+	font : Arial, Helvetica, sans-serif;
+	color:  #E6E6FA;;
+} 
+
+ul,ol, li {
+	font-size: 12 px;
+	font-family: Helvetica;
+	letter-spacing : 0.7px;
+}
+
+.neg0 																{background-color : #000000; } 
+.neg1 , a.topmenu:hover												{
+	color : #ffffff;
+	border : #B0C4DE;
+	font-size : 12 px;
+	color: #6495ED;
+} 
+.neg2 , .headbox   {
+	
+	color : #ffffff;
+	border : #B0C4DE;
+	font-size : 12 px;
+	font-style:  normal;
+	color:  #C2D5FF;
+} 
+
+a.leftmenu:link {
+	background : url(PIC/Merope-body.jpg);
+	
+	border-style : solid;
+	border-top-width : 1px;
+	border-right-width : 1px;
+	border-bottom-width : 1px;
+	border-left-width : 1px;
+	width : 155px;
+	margin-left: 0px;
+	font-weight : bold;
+	text-align : left;
+	color: #E6E6FA;
+	text-indent : 1px;
+} 
+
+a.leftmenu:hover {
+	background : url(PIC/Merope-body.jpg);
+	
+	border-style : solid;
+	border-top-width : 1px;
+	border-right-width : 1px;
+	border-bottom-width : 1px;
+	border-left-width : 1px;
+	width : 155px;
+	margin-left: 6px;
+	font-weight : bold;
+	text-align : left;
+	text-indent : 1px;
+	color: #DCD2FC;
+} 
+
+a.leftmenu:visited {
+background : url(PIC/Merope-body.jpg);
+display: block;
+
+border-top-width : 1px;
+border-style : solid; 
+border-top-width : 1; 
+border-right-width : 1px; 
+border-bottom-width : 1px; 
+border-left-width : 1px; 
+width : 155px; 
+font-weight : bold; 
+color:  #C0C4FA;;
+text-align :  left;
+text-indent : 1px;
+} 
+
+a.topmenu:link {
+	display : inline;
+	padding-top : 0px;
+	padding-right : 0;
+	padding-bottom : 0;
+	padding-left : 0;
+	border-style : solid;
+	border-top-width : 0;
+	border-right-width : 0;
+	border-bottom-width : 0;
+	border-left-width : 0px;
+	text-align : center;
+	text-decoration : none;
+	font-size : 11px;
+	
+} 
+
+a.topmenu:hover {
+	display : inline;
+	padding-top : 0px;
+	padding-right : 0;
+	padding-bottom : 0px;
+	padding-left : 0;
+	border-style : solid;
+	border-top-width : 0;
+	border-right-width : 0;
+	border-bottom-width : 0;
+	border-left-width : 0px;
+	text-align : center;
+	font-size : 11 px;
+	color: #C7D9F9;
+} 
+
+a.topmenu:visited {
+display : inline; 
+padding-top : 5px; 
+padding-right : 0; 
+padding-bottom : 5px; 
+padding-left : 0; 
+border-style : solid; 
+border-top-width : 0; 
+border-right-width : 0; 
+border-bottom-width : 0; 
+border-left-width : 0px; 
+text-align : center; 
+font-size : 11px;
+
+} 
+
+.headbox {
+	display : block;
+	padding-top : 7px;
+	
+	width : 155px;
+	height: 55 px;
+	text-align : center;
+	height: 35px;
+	background :  url(PIC/scheme.jpg);
+} 
+
+
+.tablebox {
+	display : block;
+	padding-top : 2px;
+	padding-right : 2px;
+	padding-bottom : 2px;
+	padding-left : 2px;
+	border-top-width : 1px;
+	border-right-width : 1px;
+	border-bottom-width : 1px;
+	border-left-width : 1px;
+	border-style : solid;
+	border-color : #0068B4;
+	text-align : left;
+	font-size : 12 px;
+	color: Navy;
+	
+}
+
+
+.topbox  {
+	padding-top : 5px;
+	padding-bottom : 0;
+	background : black ;
+} 
+
+.topnav {
+	border : solid ;
+	border-width : 1px 1px 1px 1px;
+	padding-top : 0px;
+	padding-bottom : 0;
+	font color:slategray;
+	font-weight : bold;
+	background : Black;
+} 
+
+.mainbox {
+	border-width : 3px 3px 3px 3px;
+	padding-top : 5px;
+	padding-left : 5px;
+	padding-right : 5px;
+	padding-bottom : 5px;
+	background : url(pic/earth_.jpg) scroll;
+	font-family : Arial;
+	font: 12px;
+	letter-spacing : 0.7px;
+	border-color : #9F9F9F #5F5F5F #6E6E6E;
+} 
+
+.mainbox p {
+	font: 12px;
+	font-family : Arial;
+	letter-spacing : 0.7px;
+} 
+
+.mainbox p a {
+	font-weight : bold;
+	font-size : 90%;
+    font-family : Arial;
+	letter-spacing : 0.7px;
+	} 
+
+.dynabox {
+border : 1px  ; 
+text-align : center; 
+} 
+
+.dynabox .headbox {
+	border-top-style : solid;
+	border-right-width : 0;
+	border-left-width : 0;
+	padding-top : 3px;
+	padding-left : 0;
+	padding-right : 0;
+	padding-bottom : 3px;
+	border : #707070;
+} 
+
+.dynacontent {
+padding-top : 3px; 
+padding-left : 5px; 
+padding-right : 5px; 
+padding-bottom : 3px; 
+text-align : left; 
+font-size : 70%; 
+font-weight : normal; 
+} 

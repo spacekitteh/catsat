@@ -1,0 +1,425 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0045)http://www.ssc.se/ssd/papers/odgnc/odgnc.html -->
+<HTML><HEAD><TITLE>ODIN ATTITUDE CONTROL SYSTEM - DESIGN, DEVELOPMENT AND TEST</TITLE>
+<!-- Meta http equivalent was here                                   -->
+<META content="MSHTML 5.50.4134.600" name=GENERATOR></HEAD>
+<BODY style="FONT-FAMILY: Arial" text=#000000 vLink=#551a8b aLink=#ff0000 
+link=#0000ee bgColor=#ffffff>
+<P align=left><A href="http://www.ssc.se/ssd/papers/index.html"><IMG height=24 
+src="ODIN ATTITUDE CONTROL SYSTEM - DESIGN, DEVELOPMENT AND TEST_files/back.gif" 
+width=24 align=center border=0><SMALL><B>Back to Technical Papers page 
+</B></SMALL></A></P>
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD><SMALL><IMG height=116 
+      src="ODIN ATTITUDE CONTROL SYSTEM - DESIGN, DEVELOPMENT AND TEST_files/sscgrey1.jpg" 
+      width=96></SMALL></TD>
+    <TD>
+      <H1 align=center><SMALL>ODIN ATTITUDE CONTROL SYSTEM - DESIGN, DEVELOPMENT 
+      AND TEST </SMALL></H1></TD></TR></TBODY></TABLE>
+<P align=center><SMALL><B>Ola Jirlow</B> <BR>Swedish Space Corporation, PO Box 
+4207, S-171 04 Solna, Sweden <BR>Phone: +46-8-627 62 00 Fax: +46-8-98 70 69 
+Email: oj@ssc.se http://www.ssc.se/ </SMALL></P>
+<P align=center><SMALL><B>Alan Ptak</B> <BR>Canadian Space Agency, Space 
+Mechanics, 6767 route de l'Aéroport, Saint-Hubert, Quebec J3Y 8Y9, Canada 
+<BR>Phone: +1-514-926 4668 Fax: +1-514-926 4695 Email: ptak@dsm.space.gc.ca 
+</SMALL></P>
+<P align=center><SMALL><B>Rickard Augustsson <BR></B>Saab Ericsson Space, S-581 
+88 Linköping, Sweden <BR>Phone: +46-13-28 64 35 Fax: +46-13-13 16 28 Email: 
+rickard.augustsson@space.se <BR><BR></SMALL><FONT size=1>Copyright © 1996 
+Swedish Space Corporation</FONT></P>
+<P align=center><FONT 
+size=1>________________________</FONT><SMALL><BR></SMALL></P>
+<H2 align=center><SMALL><B>ABSTRACT</B> </SMALL></H2>
+<P><SMALL>This paper presents the Swedish science satellite project Odin with 
+emphasis on the attitude control system. The attitude control system features 
+high accuracy three-axis stabilised control using star trackers and gyros as 
+primary sensors. The on-board attitude determination and control signal 
+calculation is performed by a dedicated attitude control and determination 
+computer. The attitude control system is tested on many levels, from equipment 
+test to complete system tests, using various simulators and test equipment. 
+</SMALL></P>
+<P><SMALL>The attitude control system is described on a general level. A more 
+detailed presentation of the on-board attitude control and determination 
+computer, its software development and test is given. Finally, the functional 
+and performance tests of the attitude control system are described. </SMALL>
+<OL>
+  <H2 align=center><SMALL>BACKGROUND </SMALL></H2></OL>
+<P><SMALL>Odin is a small, low-cost, satellite with a combined astronomy and 
+atmospheric research (aeronomy) mission. The Odin project is a co-operation 
+between space agencies and scientists in Sweden, Canada, Finland and France. The 
+main objective of the astronomy mission is to study star formation and early 
+solar systems. The main objective of the atmospheric research mission is to 
+study ozone layer depletion mechanisms and extent. The Odin payload is a 1.1 
+metre Gregorian telescope with a sub-millimetre and millimetre radiometer and an 
+optical spectrograph. These wavelengths contain spectral lines of, among others, 
+O<SUB>2</SUB> and H<SUB>2</SUB>O molecules; and are absorbed by the earth 
+atmosphere. This requires the observations to be made from space. </SMALL></P>
+<P><SMALL>Odin is planned to be launched on February 15, 2001,&nbsp; into a 
+circular sun-synchronous orbit at 600 km. The ascending node will be at 18:00 
+local time. Odin weighs approximately 250 kg and has a design-life of 2 years. 
+</SMALL></P>
+<P align=center><SMALL><IMG height=514 
+src="ODIN ATTITUDE CONTROL SYSTEM - DESIGN, DEVELOPMENT AND TEST_files/gncod.gif" 
+width=305><BR clear=both><A name=_Ref373554360></A>Figure 1.<I> The Odin STM at 
+vibration tests (photo by Saab Ericsson Space AB).</I> </SMALL></P>
+<P><SMALL>The telescope is fixed to the spacecraft body. Hence, the telescope is 
+moved and pointed in the desired direction by moving and stabilising the entire 
+spacecraft body. To make this possible the attitude control system (ACS) 
+features 3-axis stabilisation with high accuracy, both during inertial pointing 
+towards celestial targets and during scanning of the earth atmosphere. Since 
+Odin is a small spacecraft with a low-cost profile, complicated mechanisms or a 
+"double" control system cannot be used. Instead, the approach taken is to 
+perform also the earth pointing part of the mission with inertial reference, 
+using star trackers and gyros as main sensors. Actuators are reaction wheels and 
+magnetic coils. </SMALL></P>
+<P><SMALL>The Swedish Space Corporation (SSC) is prime contractor for the 
+spacecraft, under contract to the Swedish National Space Board, and has the 
+overall responsibility for the design, development and test of the Odin ACS. The 
+main sensors, star trackers and gyros are provided by France, together with 
+technical support from CNES, as a contribution to the project. As part of the 
+Canadian contribution to the project, the Canadian Space Agency (CSA) has 
+developed a test facility and performs testing of the ACS on system level. The 
+attitude control and determination computer (ACDC) hardware and software are 
+developed by Saab Ericsson Space AB (SE) under a contract to SSC. </SMALL>
+<OL>
+  <H2 align=center><SMALL>THE ATTITUDE CONTROL SYSTEM </SMALL></H2></OL>
+<P><SMALL>All data-handling on the Odin platform is performed by the Odin System 
+Unit (OSU). The OSU contains several processing units. Among these are the ACDC 
+which carries out the attitude determination and control. The sensors and 
+actuators of the ACS are connected to dedicated interface processors that take 
+care of the communication with the on-board communication network. The ACDC 
+receives sensor data and sends actuator commands through this on-board 
+communication network. Hence, the ACDC has no direct interface to any sensor or 
+actuator and the interface problems are resolved in the specification and 
+implementation of the software in the interface processors. </SMALL></P>
+<P><SMALL>The attitude control system of Odin is based on sensors and actuators 
+with good flight heritage. The two <B>star trackers</B> (from Sodern, France) 
+provide the ACS with high accuracy star direction information. The star trackers 
+are mounted on the telescope structure with angular separation of 40 
+symmetrically around the telescope line of sight. In this way one star tracker 
+will face the sky while the telescope is directed towards the earth limb for 
+aeronomy observations. The three <B>gyro packages</B> (from Sagem, France) 
+provide high accuracy angular rate information. Each gyro package gives two axis 
+information so the three together ensures a six to three redundancy. 
+</SMALL></P>
+<P><SMALL>The four <B>reaction wheels</B> (from Ithaco, USA), with 4 Nms 
+capacity each, are the main actuators for the attitude control. Three of them 
+are mounted orthogonally. The fourth is mounted iso-angular to the three others 
+and serves as backup for any one of these. Three <B>magnetorquers 
+</B>(electromagnetic coils, from SSC and ACR, Sweden) are used to dump momentum 
+from reaction wheels and for the detumble emergency mode. </SMALL></P>
+<P><SMALL>Three <B>coarse sun sensors</B> (from Matra Marconi Space, France) and 
+two <B>fine sun sensors</B> (from ACR, Sweden) provide coverage around the 
+entire spacecraft and give an accurate value of the sun angle within a 76 
+top-angle cone around the spacecraft -z axis, perpendicular to the solar panels. 
+</SMALL></P>
+<P><SMALL>Two <B>3-axis magnetometers</B> (from SSC) provide attitude 
+information of lower accuracy to the ACS. <BR></SMALL></P>
+<P align=center><SMALL><IMG height=211 
+src="ODIN ATTITUDE CONTROL SYSTEM - DESIGN, DEVELOPMENT AND TEST_files/gnccoord.gif" 
+width=302><BR clear=both>Figure 2. <I>The Odin satellite. The telescope points 
+in the +x direction. Nominal sun direction is -z. The star tracker baffle 
+openings are seen on each side of the +x corner.</I> </SMALL></P>
+<OL>
+  <H2 align=center><SMALL>ATTITUDE CONTROL MODES </SMALL></H2></OL>
+<P><SMALL>Several operating modes are defined for the ACS. Roughly, they can be 
+divided in three categories, Safe &amp; Detumble, Standby and Normal modes. 
+</SMALL></P>
+<H3><SMALL>Normal modes</SMALL></H3>
+<P><SMALL>In these modes the required scientific observation programs (astronomy 
+and aeronomy) are performed. All normal modes use the gyros and star trackers as 
+prime sensors. The reaction wheels are the main actuators. The magnetorquers are 
+used before a large slew manoeuvre to reduce gyroscopic coupling between the 
+different control axes. </SMALL></P>
+<P><SMALL>In <I>Astronomy</I> observation modes the telescope is directed 
+towards celestial targets. The observation target is observed for an extended 
+time (<I>staring</I>). The telescope can be directed alternately at the 
+observation target and an adjacent calibration target (<I>staring with position 
+switch)</I>. It is also possible to perform <I>mapping, </I>where a sequence of 
+adjacent points are targeted. </SMALL></P>
+<P><SMALL>In <I>Aeronomy </I>the telescope is pointed at, and follows the earth 
+limb. Either a constant altitude is targeted (<I>pointing</I>) or the limb is 
+scanned in an interval between 7 and 120 km. The scanning can be 
+<I>continuous</I> or <I>stepwise</I>. In aeronomy mode observations are mostly 
+made in the orbit plane, but observations off-orbit-plane (up to 32) are 
+possible. </SMALL></P>
+<H3><SMALL>Safe mode </SMALL></H3>
+<P><SMALL>The safe mode is a sun-pointing mode, which means that the solar 
+array's normal is pointed towards the sun. In safe mode the only sensors used 
+are the coarse and fine sun sensors, and the magnetometers. </SMALL></P>
+<H3><SMALL>Detumble mode </SMALL></H3>
+<P><SMALL>The detumble mode is a rate reduction control mode, i.e. no pointing 
+control is applied. This mode is entered when too high attitude rates are 
+obtained for the satellite. In detumble mode only the magnetometers and 
+magnetorquers are used for the rate damping using a simple B-dot control law. 
+</SMALL></P>
+<H3><SMALL>Standby </SMALL></H3>
+<P><SMALL>In the standby mode full 3-axis control and inertial pointing is 
+maintained. From standby mode the normal modes can be entered. The standby mode 
+is also the back-up mode in case an error should occur in a normal mode. 
+</SMALL></P>
+<H3><SMALL>Momentum management </SMALL></H3>
+<P><SMALL>A momentum management function is used to unload the reaction wheels 
+when their speeds exceed certain limits. The momentum management function is 
+active in all modes except detumble. </SMALL>
+<OL>
+  <H2 align=center><SMALL>ACS PERFORMANCE REQUIREMENTS </SMALL></H2></OL>
+<P><SMALL>The absolute pointing accuracy in <U>astronomy</U> (staring) shall be 
+better than 15 arc-seconds (1) half cone angle pitch and yaw. Of these 15 
+arc-seconds, seven are allocated to the telescope (thermal deformation etc.). 
+This means that the ACS itself has to maintain an absolute pointing accuracy of 
+eight arc-seconds, which shall be obtained after in-orbit calibration. 
+</SMALL></P>
+<P><SMALL>In <U>aeronomy</U> the reconstructed attitude accuracy over the entire 
+orbit shall be better than (pitch, yaw, roll) = (2, 10, 15) arc-minutes (1.3). 
+The real-time tracking accuracy over the entire orbit shall be better than 
+(pitch, yaw, roll) = (6, 50, 15) arc-minutes (1.3). </SMALL></P>
+<H2 align=center><SMALL>THE ACDC </SMALL></H2>
+<P><SMALL>The ACDC hardware is based on a SE developed 32 bit microprocessor 
+(Thor) designed for Ada coded real-time applications. </SMALL></P>
+<P><SMALL>The redundancy level of the ACDC is twofold, i.e. two identical ACDC:s 
+are available on the computer board. They are electrically identical, working on 
+two TM systems and are separately powered from the OSU. The software running in 
+the two computers are also identical but can, before or during the flight, be 
+individually changed. </SMALL></P>
+<P><SMALL>The software is written in Ada, which imposes structure, discipline 
+and a certain style. This facilitates software maintenance and thus late changes 
+in software requirements; also a large part of the detailed documentation is 
+made in the code. Hence, the use of Ada reduces the project time and cost. 
+</SMALL></P>
+<H3><SMALL>THE ACDC APPLICATION </SMALL></H3>
+<P><SMALL>The main functions of the ACDC are: sensor data evaluation, attitude 
+determination, attitude control, momentum management, actuator commanding and 
+evaluation, star tracker control, executing ACDC related telecommands including 
+mode changes, parameter changes and attitude reference calculations. 
+</SMALL></P>
+<H4><SMALL>Attitude determination </SMALL></H4>
+<P><SMALL>To estimate the attitude and body rates of the Odin spacecraft an 
+extended Kalman filter is used. The filter can run in two modes: either with 
+star trackers and gyros (standby and normal modes) or without primary sensors 
+(safe mode). Both modes are based on a Kalman filter with six states estimating 
+the body attitude and gyro or body rates. Different filter parameters are 
+selected depending on mode. </SMALL></P>
+<P><SMALL>A star identification and star tracker control function processes the 
+star tracker sensor data. Depending on observation program the star trackers are 
+commanded by the ACDC to search for, and lock on, stars in the entire field of 
+view (7° x 10°) or in specified windows. After identification from an onboard 
+star catalogue containing 512 stars the star trackers are commanded to track the 
+stars until they leave the field of view. The management of the star catalogue 
+is performed by ACDC commands from the ground segment. The star tracker control 
+function allows for tracking up to six stars simultaneously (three per star 
+tracker). </SMALL></P>
+<H3><SMALL>ACDC HARDWARE AND SOFTWARE STRUCTURE </SMALL></H3>
+<H4><SMALL>Hardware </SMALL></H4>
+<P><SMALL>The two ACDC:s are implemented on a single 130 x 212 mm board. 
+Redundancy switching is controlled from the OSU level, ref./1/. </SMALL></P>
+<P><SMALL>Each ACDC is equipped with a Thor 32 bit microprocessor running at 
+6MHz; 32 kword (32 bit) RAM and 32 kword EEPROM with Error Detection And 
+Correction (EDAC); 2 kword PROM; and a serial bus interface. This configuration 
+gives a performance corresponding to 4 MIPS DAIS. </SMALL></P>
+<P><SMALL>The Thor microprocessor is manufactured in a Radiation Tolerant 0.85 
+mm process and radiation tests show that the device is functional at a total 
+dose of 100 krad (Si). </SMALL></P>
+<H4><SMALL>Software </SMALL></H4>
+<P><SMALL>The total Ada flight software is divided in two separate programs: 
+</SMALL></P>
+<P><SMALL>The <I>Bootstrap</I> program code is stored in PROM. This program 
+contains vital basic functions such as TM network communication interface and 
+memory load/ dump functions. </SMALL></P>
+<P><SMALL>The <I>Normal Operation</I> program code is stored in EEPROM, which is 
+possible to re-program. This program contains the complete flight software. It 
+also contains the vital basic functions of the Bootstrap program in order to 
+minimise the switching between the two programs. </SMALL></P>
+<P><SMALL>After power up of the computer, the Bootstrap program is executing. 
+After a time-out, execution is transferred to the Normal Operation program. The 
+Normal Operation program executes four tasks: the bus network interface, two 
+attitude control tasks (2 and 16 Hz) and a background task. </SMALL></P>
+<H3><SMALL>ACDC SOFTWARE DEVELOPMENT </SMALL></H3>
+<P><SMALL>The software development is influenced by the low cost profile of Odin 
+and the scope of the work that includes requirement analysis, software 
+architecture, design of control loops and attitude determination algorithms, 
+implementation, coding and tests. The basis is to use a small team where each 
+member has responsibility of well distinguished functions. The responsibility 
+includes all development phases. The software development process follows the 
+ESA Software Engineering Standard, except that the detailed design and coding 
+are not separated. </SMALL></P>
+<H4><SMALL>Module Tests </SMALL></H4>
+<P><SMALL>The purpose of module testing is to show that the software modules 
+function according to the requirements as stated in the <I>Software 
+Architectural Design Document </I>(ADD). These requirements are traced to the 
+<I>Software Requirements Document</I> (SRD). </SMALL></P>
+<P><SMALL>The major part of the modules are tested by running the code in the 
+Thor processor on a PC board. The possibility to use a PC for execution of 
+program in the target micro-processor is found to be very cost effective. Some 
+code analysis is also needed in order to cover all requirements of the SRD. 
+</SMALL></P>
+<P><SMALL>Automatic test tools are used as far as possible for testing and 
+evaluation of test results. </SMALL></P>
+<H4><SMALL>Integration Tests </SMALL></H4>
+<P><SMALL>These tests are performed when the modules are integrated in larger 
+and larger blocks until the complete ACDC program is achieved. These tests are 
+performed on the Thor PC board, except for the final integration tests of the 
+complete program in the ACDC flight-model (FM) hardware. </SMALL></P>
+<H4><SMALL>Acceptance tests </SMALL></H4>
+<P><SMALL>After integration the ACDC software is handed over to SSC for 
+acceptance testing. During these tests the software runs on the ACDC FM 
+hardware. The ACDC is connected to a real-time spacecraft simulator developed by 
+SSC for this purpose. </SMALL></P>
+<H2 align=center><SMALL>TEST SIMULATOR </SMALL></H2>
+<P><SMALL>The ACDC test simulator contains a hardware interface to the ACDC and 
+a real-time simulation software that includes simulation of the spacecraft body 
+motion, spacecraft environment, actuators and sensors. </SMALL></P>
+<P><SMALL>The simulator is hosted in a single processor 133MHz Pentium machine 
+with 32MB memory. The interface between the simulator and the ACDC is supplied 
+by a ISA-bus extension card with MC68302 micro processor. This card establishes 
+the on-board TM format and provides a TM interface to the Odin EGSE. 
+</SMALL></P>
+<P><SMALL>The simulator also provides a software interface to the flight 
+software. The ACDC flight software Ada code is then compiled in the PC using a 
+commercial Ada compiler. The compiled flight software can thus be run locally in 
+the simulator host. This enables easy access to the flight software for setting 
+breakpoints etc. </SMALL></P>
+<P><SMALL>The simulator is developed by SSC in C++ using object-oriented 
+techniques. This has been found beneficial since a good correspondence between 
+simulated entities and implementation can be achieved. </SMALL></P>
+<P><SMALL>The dynamic parts of the simulator are implemented using a C-code 
+generator supplied with the Matlab/Simulink tool. Dynamic models of the 
+spacecraft body, the gyros and the reaction wheels are made using Simulink. 
+</SMALL>
+<OL>
+  <H2 align=center><SMALL>ACS FUNCTIONAL TESTS </SMALL></H2></OL>
+<P><SMALL>Functional tests of the attitude control system are performed in a 
+laboratory environment by the Canadian Space Agency in Ottawa, Canada. 
+</SMALL></P>
+<H3><SMALL>TEST OBJECTIVES </SMALL></H3>
+<P><SMALL>The functional tests consist of a series of so-called open-loop and 
+closed-loop tests. Open-loop tests evaluate the performance and operation of the 
+gyro packages and star trackers by themselves. Closed-loop tests evaluate the 
+performance of the ACS system as a whole, combining the sensors, the ACDC and 
+OSU with a real-time simulation of the ACS actuators, spacecraft body dynamics 
+and disturbance torque. </SMALL></P>
+<H3><SMALL>SYSTEM CONFIGURATION </SMALL></H3>
+<P><SMALL>The spacecraft hardware and software used in the tests includes OSU, 
+ACDC, mass memory and interfaces to sensors and actuators, gyro packages and 
+star trackers. </SMALL></P>
+<P><SMALL>The star tracker optical head (OH) is mounted on a 2-axis motion table 
+in front of a simulated starfield. The focal plane of the OH is centred on the 
+axis of rotation of the table. The test fixture, which is continuously purged 
+with dry air, provides a hermetic enclosure for the OH. A high quality optical 
+glass plate affords the star tracker an unobstructed field of view. Gyro 
+packages, gyro electronics units (EUs) and the star tracker EU are installed 
+above the OH fixture. The orientation of the gyros with respect to one another 
+and to the optical head is representative of the installation in the Odin 
+spacecraft; and such that the motion table axes corresponds to the spacecraft 
+pitch and yaw axes (Figure 3 and Figure 4). </SMALL></P>
+<P><SMALL>For the closed-loop tests the real time simulator is connected to the 
+OSU directly through the analogue and digital I/O provided for the real ACS 
+sensors and actuators. A modification to the OSU software provides earth rate 
+compensation for gyro data based on actual gyro orientation data provided by the 
+data acquisition system during each test. The ACDC software is completely flight 
+representative. </SMALL></P>
+<H3><SMALL>OPEN-LOOP TESTS </SMALL></H3>
+<P><SMALL>Open-loop gyro tests examine the warm-up, drift stability, drift 
+coefficients and rate performance characteristics of the gyro packages. Tests 
+are performed with all three gyro packages on the motion table at the same time, 
+and are repeated at 25, 35 and 40 C. The gyro misalignment is measured using the 
+gyro optical alignment cubes. Drift coefficients are determined from 
+multi-position tests. Approximately 60 hours are required to complete the gyro 
+tests. </SMALL></P>
+<P><SMALL>Open-loop star tracker tests evaluate the performance and behaviour of 
+the star trackers in static and dynamic tests. Static tests are used to 
+determine the point-spread function, CCD dark current, optical head alignment 
+and intensity measurement in mapping mode. Dynamic tests evaluate the mapping, 
+tracking and chaining-up star tracker modes at rates to 0.065 per second. 
+</SMALL></P>
+<P><SMALL>Mimic tests are defined for certain normal mode operations to obtain 
+data from the gyros and star trackers under conditions that are representative 
+of actual spacecraft motion. <BR></SMALL></P>
+<P><SMALL><IMG height=211 
+src="ODIN ATTITUDE CONTROL SYSTEM - DESIGN, DEVELOPMENT AND TEST_files/gncmot.gif" 
+width=305></SMALL></P>
+<P><SMALL><A name=_Ref373554343></A><B>Figure 3.</B> <I>The gyros and one star 
+tracker optical head are mounted on the motion table. The front view is seen 
+from the starfield simulator(the angle between the gyro 2 mounting plane and the 
+OH mounting plane is 20) .</I> <BR></SMALL></P>
+<H3><SMALL>CLOSED LOOP TESTS </SMALL></H3>
+<P><SMALL>Closed loop tests verify the behaviour and performance of essential 
+ACS modes and functions with emphasis on the normal astronomy and aeronomy and 
+standby functions. </SMALL></P>
+<P><SMALL>Closed-loop test scenarios are designed to represent real spacecraft 
+operation scenarios for all modes; with an emphasis on the normal modes. The 
+scenarios are designed to minimise the spacecraft motion about its roll axis to 
+minimise the limitations imposed by the 2-axis motion table. The OSU is 
+commanded from the Odin electrical ground support equipment (EGSE) and the 
+command scripts for the tests are prepared with the same tools that will be used 
+in the Odin control centre. The EGSE displays and logs all telemetry data during 
+the tests. </SMALL></P>
+<P><SMALL><IMG height=242 
+src="ODIN ATTITUDE CONTROL SYSTEM - DESIGN, DEVELOPMENT AND TEST_files/gncstar.gif" 
+width=271><BR clear=both><A name=_Ref373554378></A>Figure 4.<I> The test 
+configuration. The distance between the motion table and the starfield simulator 
+is 2.5 m.</I> </SMALL></P>
+<H3><SMALL>SIMULATION </SMALL></H3>
+<P><SMALL>The real time simulator is based on mathematical models of the 
+spacecraft dynamics, disturbance torque and ACS actuators and sensors. Xmath 
+scripts and Systembuild block diagram modelling tools are used to implement the 
+simulator code. The simulator runs on an Integrated Systems RealSim model 3 
+AC-100 computer system using two i860 application processors. </SMALL></P>
+<P><SMALL>The spacecraft dynamics model numerically integrates Euler's equations 
+of motion to compute the dynamic response to disturbance torques and the ACS 
+applied torque. Rigid and flexible body dynamics with calculated moments of 
+inertia are provided. The motion table is controlled such that the ACS sensor 
+hardware tracks the attitude and attitude rates of the simulation. </SMALL></P>
+<P><SMALL>The spacecraft environment model includes the Earth magnetic moment 
+and gravity gradient vectors, aerodynamic drag and solar radiation pressure 
+disturbance torque. Models are provided for ACS hardware including coarse and 
+fine sun sensors, magnetometers, magnetorquers and reaction wheels. </SMALL></P>
+<H3><SMALL>TEST EQUIPMENT </SMALL></H3>
+<P><SMALL>The motion table used is a Contraves model 57CD 2-axis table, which 
+has an accuracy of 2 arc-seconds and wobble of less than 3 arc-seconds. 
+</SMALL></P>
+<P><SMALL>The simulated starfield consists of 8 collimated point sources 
+arranged to provide a 15 by 30 field of view. The starfield simulator, custom 
+built for the Odin tests, uses a 40 watt tungsten halogen lamp to produce star 
+intensities in the range of magnitude 1 to 6. Each point source is calibrated in 
+intensity and colour using a series of optical filters. An optical fibre for 
+each point source connects the filter rack to the star module containing a 
+matched pair of convex and concave mirrors to produce a 50 mm diameter 
+collimated beam. Each point source is precisely aligned to point directly at the 
+focal plane of the optical head resting 2.5 metres away on the motion table. A 
+bright object simulator is also provided to simulate the presence of the moon in 
+or near the star tracker field of view. </SMALL></P>
+<P><SMALL>Gyro and star tracker commands and data are time-tagged and logged by 
+the data acquisition system. Data acquisition and motion table control software 
+is implemented in C and Motif on a Sun Sparc-10 workstation under SunOS. 
+</SMALL>
+<OL>
+  <H2 align=center><SMALL>CONCLUSIONS </SMALL></H2></OL>
+<P><SMALL>Odin features an advanced ACS enabling a dual mission with accurate 
+pointing at the earth atmosphere and at celestial objects using the same sets of 
+sensors and actuators. To design, implement and test this ACS within a small, 
+low-budget, project like Odin is a challenge for all involved. </SMALL></P>
+<P><SMALL>The Odin platform provides the Swedish Space Corporation with a small 
+3-axis stabilised platform concept to offer to its customers. The platform is 
+readily adaptable to other missions requiring high-accuracy three-axis pointing. 
+</SMALL></P>
+<P><SMALL>The use of the Thor processor by Saab Ericsson Space demonstrates the 
+processor and its accompanying Ada compiler as a cost-effective solution for 
+demanding real-time space applications. The development of the Odin application 
+software furthers the SE competence in this field. </SMALL></P>
+<P><SMALL>The ACS functional testing demonstrates and enhances the Canadian 
+Space Agency's capability to test and evaluate advanced attitude control systems 
+and components within a small-satellite budget frame. </SMALL>
+<OL>
+  <H2 align=center><SMALL>REFERENCES </SMALL></H2>
+  <LI><SMALL>A. Carlsson. "Cost effective satellite development with use of an 
+  Ada microprocessor." TRI-Ada'95, Nov 5-10, 1995. </SMALL>
+  <LI><SMALL>F. von Scheele. "The Swedish Odin Satellite to Eye Heaven and 
+  Earth", 47<SUP>th</SUP> Int. Astronautical Congress, IAF, Oct 7-11, 1996. 
+  </SMALL></LI></OL>
+<P><SMALL><A href="http://www.ssc.se/ssd/papers/index.html"><IMG height=24 
+src="ODIN ATTITUDE CONTROL SYSTEM - DESIGN, DEVELOPMENT AND TEST_files/back.gif" 
+width=24 align=center border=0><B>Back to Technical Papers page 
+</B></A></SMALL></P></BODY></HTML>

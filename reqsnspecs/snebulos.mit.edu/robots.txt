@@ -1,0 +1,52 @@
+# /robots.txt file for autopilot program interpretation
+# http://info.webcrawler.com/mak/projects/robots/norobots.html
+#   is the source of the standard
+# 
+# Last update: 7 Feb 06
+# Update 13 Apr 09 to use robot 2.0 directives
+
+User-agent: *
+
+Robot-version:  2.0
+Visit-time:     02:00 - 10:00      # Times are GMT
+Request-rate:   10/1h              # 10 documents/1 hour
+
+Disallow:	/cgi-bin/
+Disallow:	/icons/
+Disallow:	/icons_local/
+Disallow:	/statistics/
+Disallow:	/local/
+Disallow:	/demo/
+
+Disallow:	/transfer/
+Disallow:	/projects/acis-offline
+Disallow:	/projects/spidr/
+Disallow:	/projects/crm/eval/
+
+Disallow:	/projects/crater/upload/
+Disallow;       /projects/crater/monitor/
+Disallow:       /projects/crater/soc_monitor/
+Disallow:       /projects/crater/soc_L2_monitor/
+Disallow:	/projects/mes/upload/
+Disallow:	/projects/picture/upload/
+Disallow:	/projects/mwa/upload/
+Disallow:	/projecs/mwa/docs/design-memo/
+
+Disallow:	/projects/crater/datasheets/
+Disallow:	/projects/mwa/datasheets/
+Disallow:	/projects/crater/test_support.html
+
+Disallow:	/home/egoeke/masters
+Disallow:	/home/egoeke/confin/
+Disallow:	/egoeke/masters
+Disallow:	/egoeke/confin/
+Disallow:	/home/egoeke/westernlectures/
+Disallow:	/egoeke/westernlectures/
+
+Disallow:	/orgs/amc/
+Disallow:	/orgs/steulalia_old/
+Disallow:	/orgs/cta_old/
+
+Disallow:	/restricted_cc/
+Disallow:	/restricted_itar/
+

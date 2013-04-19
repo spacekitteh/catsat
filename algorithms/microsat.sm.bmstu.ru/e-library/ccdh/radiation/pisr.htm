@@ -1,0 +1,732 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0073)http://www.ee.surrey.ac.uk/CSER/UOSAT/papers/VA/Radiation_Paper_Utah.html -->
+<HTML><HEAD><TITLE>Predicting the influence of software on the reliability of commercial off-the-shelf (COTS) technology microprocessors in a SEU environment</TITLE>
+<!-- Meta http equivalent was here                                   -->
+<META content="MSHTML 5.50.4134.600" name=GENERATOR></HEAD>
+<BODY><B><FONT size=4>
+<P align=center>Predicting the Influence of Software on the Reliability of 
+Commercial off-the-shelf (COTS) Technology Microprocessors in a Space Radiation 
+Environment</P></B></FONT><FONT size=3>
+<P align=justify></P>
+<P align=center>Veronica A. Asenek, Dr. Craig I. Underwood, Dr. Mike K. 
+Oldfield</P>
+<P align=center>Centre for Satellite Engineering Research,</P>
+<P align=center>University of Surrey, Guildford, GU2 5XH, UK.</P>
+<P align=center>Tel: +44 1483 259278 Fax: +44 1483 259503</P>
+<P align=center>Email: V.Asenek@ee.surrey.ac.uk</P>
+<P align=center></P>
+<P align=center>Dr. Jeff W. Ward</P>
+<P align=center>Surrey Satellite Technology Ltd,</P>
+<P align=center>University of Surrey, Guildford, GU2 5XH, UK</P>
+<P align=center></P></FONT><B><FONT size=4>
+<P align=justify>Abstract</B></FONT><FONT size=3>: State-of-the-art commercial 
+microprocessors are attractive for use in cost effective space missions because, 
+they are readily available, they are of high packaging density, cheap and 
+capable of supporting extensive software. However, because they are not 
+radiation hardened, they are susceptible to single event upset (SEU) caused by 
+ionising radiation. Being able to predict ,in advance, the observable SEU 
+induced error rate in a microprocessor is therefore essential. Using the 8051 
+processor as an example, a new method has being developed for this purpose and 
+is presented here. </P>
+<P align=justify>&nbsp;</P>
+<OL></FONT><B><U><FONT face=Arial size=4>
+  <P align=center>
+  <LI>Introduction
+  <P></P></B></U></FONT><FONT size=3>
+  <P align=justify>An extensive literature review has shown that the observable 
+  SEU induced error rate in a microprocessor strongly depends on the software it 
+  is executing<SUP>1,2,3,4</SUP>. With the increasingly important role played by 
+  software on board modern satellites, the reliability of the software and the 
+  platforms on which it operates is of paramount importance. Although formal 
+  review methods and tools are available for testing the integrity of software 
+  <SUP>5</SUP>, the effects of space radiation on the microprocessors, and 
+  consequently the execution of the software, are not well 
+  understood<SUP>1</SUP>. </P>
+  <P align=justify></P>
+  <P align=justify>Indeed there has been great conservatism in the adoption of 
+  COTS microprocessors for space because of inadequate information concerning 
+  radiation effects. The University of Surrey through its research company 
+  Surrey Satellite Technology Limited (SSTL), has built and launched 11 
+  microsatellites since 1981 all of which rely almost entirely on COTS 
+  technology. For example, seven of these microsatellites each have four 87C51 
+  microcontrollers in its telecommand system for decoding commands. With the 
+  first of these </P>
+  <P align=justify></P>
+  <P align=justify>&nbsp;</P>
+  <P align=justify>&nbsp;</P>
+  <P align=justify>&nbsp;</P>
+  <P align=justify>satellites launched in January 1990 (UoSAT 3) and the most 
+  recent (CERISE) launched in July 1995, no problems have been found that can be 
+  attributed to SEUs in these microcontrollers. The impression from these 
+  observations is that the 87C51 microcontroller is a reliable device for use in 
+  space. However, space organisations have avoided using this microcontroller in 
+  a similar space environment after ground based testing and current methods of 
+  predicting single event upsets (SEUs) suggested that it was not fit for space 
+  use<SUP>6</SUP>. This paper will attempt to explain this apparent discrepancy. 
+  Presented here is a flexible methodology for quantifying the rate of 
+  observable errors induced by SEUs associated with a microprocessor executing a 
+  given software. </P></FONT><B><U><FONT face=Arial size=4>
+  <P align=center></P>
+  <LI>Background
+  <P></P></B></U></FONT><FONT size=3>
+  <P align=justify>Traditional methods for predicting the observable SEU induced 
+  error rate in microprocessors are similar to those for memory devices. The 
+  first step is usually to determine a suitable model that describes the 
+  interaction of the test device with the radiation environment. Although a 
+  theoretical approach could be used to derive such a model, a simpler approach 
+  is to irradiate the device with ions at suitable energies and determine 
+  parameters of interest. Normally, the memory cells or registers are loaded 
+  with a predefined pattern of bits, irradiated, and subsequently checked to 
+  determine those bits that have changed state<SUP>7,8</SUP>. This mode of 
+  testing is described as the static mode. The device can also be irradiated in 
+  a dynamic mode, whereby, an identical non-irradiated device is assigned a 
+  similar task as the irradiated device and the outputs of both devices are 
+  continuously compared to determine the number of observable SEU induced 
+  errors. </P>
+  <P align=justify></P>
+  <P align=justify>In a typical UoSAT orbit (700<FONT face=Symbol>´</FONT> 700 
+  km, 98.25 degrees), SEUs are induced mainly by heavy ions (galactic and solar 
+  cosmic rays) and trapped protons sampled within the South Atlantic Anomaly 
+  (SAA). Therefore, ground testing of a device expected to operate in this orbit 
+  are best performed with both protons and heavy ions<SUP>9</SUP>.</P>
+  <P align=justify></P>
+  <P align=justify>Heavy ions induce SEUs by direct ionisation. Typically, heavy 
+  ion test results are expressed as SEU cross-section versus LET (Linear Energy 
+  Transfer) as represented in Figure-1. The SEU cross section <I>(<FONT 
+  face=Symbol>s</FONT> )</I> is the reciprocal of the fluence 
+  (ions/cm<SUP>2</SUP>) needed to cause a SEU in the sensitive volume of a 
+  device. The LET of an ion is the amount of energy deposited per unit path 
+  length as the ion traverses the device. The magnitude of the cross section at 
+  a given LET, is a measure of the device’s SEU sensitivity to ions of that LET. 
+  </P>
+  <P align=justify></P>
+  <P align=justify><IMG height=319 
+  src="pisr_files/Image18.gif" 
+  width=444></FONT><FONT size=2>Figure-1: Measured SEU cross-section versus LET 
+  curve.</P></FONT><FONT size=3>
+  <P align=justify>Unlike heavy ions, protons do not usually have sufficient 
+  LETs to cause SEUs by direct ionisation. However, the interaction of protons 
+  with silicon nuclei generate secondary particles with sufficient LETs to cause 
+  upsets in devices. In this case, the SEU cross section is measured as a 
+  function of proton energy<SUP>9</SUP>.</P>
+  <P align=justify></P>
+  <P align=justify>From radiation test results, the SEU <I>saturation cross 
+  section (Q<SUB>sat</SUB>),</I> and the <I>LET threshold or energy 
+  threshold</I> for protons can be determined. The saturation cross section is 
+  that cross section at which all sensitive nodes of the device have been upset. 
+  The "<I>LET or energy threshold</I>" of a device gives an indication of the 
+  amount of charge that must be deposited to upset a sensitive node of the 
+  device. It is usually taken as the LET at some fraction of the saturation 
+  cross section<SUP>9</SUP> . </P>
+  <P align=justify></P>
+  <P align=justify>Using these parameters, the SEU rate per bit per unit time 
+  for the device can be determine, provided a description of the radiation 
+  environment experienced by the spacecraft electronics is available. The 
+  radiation environment inside a spacecraft, is a function of the spacecraft 
+  orbit, spacecraft shielding and solar activity. With these parameters as 
+  inputs, a computer model such as CREME (Cosmic Ray Effects on 
+  Microelectronics)<SUP>10</SUP>, can be used to compute the <I>LET spectrum</I> 
+  (ion flux versus LET) inside the spacecraft<SUP>11</SUP> and hence the heavy 
+  ion<SUP>9</SUP> induced SEU rate. Similarly, the proton energy spectrum inside 
+  the spacecraft can be estimated and the SEU rate from protons, computed. If 
+  ground based proton testing is not conducted, the heavy ion data could be used 
+  to approximate the proton induced upset curve<SUP>12</SUP>. The total SEU rate 
+  per bit per unit time for the device in the defined orbit is the sum of the 
+  SEU rate from heavy ions and protons<SUP>13</SUP>. </P>
+  <P align=justify></P>
+  <P align=justify>Although the procedures used for making SEU rate predictions 
+  from heavy ion and proton ground test results have been criticised for making 
+  unrealistic assumptions and simplifications of what actually happens in 
+  practice, they are presently accepted for predicting the rate of SEUs in 
+  memory devices<SUP>12,14,15,16</SUP>. A decade of research at the University 
+  of Surrey into determining the accuracy of these models through real in-orbit 
+  demonstration, has shown that these techniques are reasonably accurate within 
+  a factor of ~2-5 for predicting the SEU rates in COTS memory 
+  devices<SUP>9</SUP>. However, several authors have remarked that these 
+  procedures could overestimate the observable SEU induced error rate in 
+  microprocessors by many orders of magnitude<SUP>1,2,3</SUP>. A microprocessor 
+  SEU error is said to be observable when it can affect the external state of a 
+  predefined system made up of one or more of these microprocessors. </P>
+  <P align=justify>&nbsp;</P></FONT><B><U><FONT face=Arial size=4>
+  <P align=center></P>
+  <LI>Discussion
+  <P></P></B></U></FONT><FONT size=3>
+  <P align=justify>Although the basic mechanism by which SEUs occur in 
+  microprocessor registers, is similar to that in memory circuits, the 
+  architecture and operation of microprocessors is more complex. Typically, 
+  microprocessors are made up of many functional units (registers, counters, 
+  arithmetic and logic unit (ALU), etc.). The basic cell design and the modes of 
+  operation of these units may not be the same. During the execution of a 
+  particular program, it is unlikely that all of these units will be used at any 
+  one time<SUP>2,7</SUP>. As a result, upsets in registers which are not being 
+  used, can be overwritten when these registers are re-loaded and are therefore 
+  not observed to affect the external state of the microprocessor’s system. The 
+  rate at which registers are loaded and read depends upon the application 
+  software that the microprocessor is executing. For this reason, results from 
+  microprocessors’ SEU tests can also be reported as "application cross-section" 
+  versus LET as well as "register-bit cross-section" versus LET.</P>
+  <P align=justify></P>
+  <P align=justify>The register-bit cross-section, can be determined using the 
+  method outlined in the previous section<SUP>2,3</SUP>. It is independent of 
+  the application software, and therefore a convenient measure of the SEU 
+  sensitivity of a device. However, when microprocessors are used for executing 
+  real satellite application programs, the register-bit cross-section usually 
+  overestimates the observable upset error rate by many orders of 
+  magnitude<SUP>2</SUP>. This gives a false impression of the susceptibility of 
+  the microprocessor’s system to errors induced by SEUs. </P>
+  <P align=justify></P>
+  <P align=justify>The application cross-section is more useful for predicting 
+  the error rate behaviour of a microprocessor in actual operation. It is a 
+  measure of the observable SEU cross-section of a device when it is executing 
+  particular application software. Hence, it varies with the software that the 
+  processor is executing. Two papers have reported on experiments that were 
+  performed to investigate this concept<SUP>3,4</SUP>. </P>
+  <P align=justify></P>
+  <P align=justify>To overcome the current conservatism that exists in the 
+  adoption of COTS microprocessors for space applications, a flexible method of 
+  determining the observable SEU induced error cross-section for different 
+  application programs must be developed. In Elder and Co<SUP>3</SUP>, the 
+  application cross-section <IMG height=31 
+  src="pisr_files/Image19.gif" 
+  width=43> is defined as the weighted sum of the individual register 
+  cross-sections (<FONT face=Symbol>s</FONT> <I><SUB>i</I></SUB>), where the 
+  weighting factor (<I>f<SUB>i</I></SUB>) of a register is its associated duty 
+  factor, defined as the period of vulnerability of that register expressed as a 
+  percentage of the total program execution time. That is</P>
+  <P align=center><IMG height=56 
+  src="pisr_files/Image20.gif" 
+  width=110> (1),</P>
+  <P align=justify>where <I>n</I> is the total number of registers in the 
+  microprocessor vulnerable to SEU. </P>
+  <P align=justify></P>
+  <P align=justify>The condition <I>f<SUB>i </I></SUB>= 1 for all <I>i</I>, 
+  represents 100% duty cycle. This is the application independent situation. 
+  This measure of SEU vulnerability reflects the technology of the device. The 
+  application independent cross-section is then adjusted by the application 
+  software through the registers’ duty factors to give the application 
+  cross-section. However, calculating the duty factor of registers used during 
+  the execution of real spacecraft application software was previously thought 
+  to be impractical<SUP>3</SUP>.</P>
+  <P align=justify>&nbsp;</P></FONT><B><U><FONT face=Arial size=4>
+  <P align=center></P>
+  <LI>A new methodology for computing the duty cycle <I>f<SUB>i 
+  <P></P></B></I></U></SUB></FONT><FONT size=3>
+  <P align=justify>Using the 8051 microprocessor as an example, this new 
+  methodology attempts to make equation 1 more practical. The aim of the model 
+  is to calculate <I>f<SUB>i</I></SUB> for each register of the 8051 
+  microprocessor as it executes real application software. </P>
+  <OL></FONT><B><I><FONT face=Arial>
+    <P align=justify>
+    <LI>Resources
+    <P></P></B></I></FONT><FONT size=3>
+    <P align=justify>Information from three main sources; an 8051 simulator, the 
+    8051 instruction set and the processor’s architecture were used. Firstly, 
+    the information that is processed by the model is obtained. Using the Kiel 
+    Elektronix Dscope-51 simulator<SUP>17</SUP>, the application software in 
+    Intel HEX format is executed in single-step mode i.e. one instruction at a 
+    time. As each instruction is executed, the status of all the registers and 
+    that of the cycle counter (clock) are traced and stored as individual 
+    records in a file. The current instruction being executed is also included 
+    in the file. </P>
+    <P align=justify></P>
+    <P align=justify>The 8051 instruction set (which comprises 111 instructions) 
+    was studied to identify instructions that are capable or overwriting SEUs. 
+    These instructions were identified to include: data transfer instructions 
+    which write new values into registers, logical operations which clear the 
+    accumulator, and Boolean variable manipulations. This group of instructions 
+    were described as "<I>duty cycle modification instructions</I>".</P>
+    <P align=justify></P>
+    <P align=justify>The third source of information was the CPU (Central 
+    Processing Unit) architecture itself. The 8051 CPU consists of twenty one 
+    special function registers (SFRs), an arithmetic and logic unit (ALU), a 
+    program counter (PC) and other circuitry interconnected 
+    together<SUP>18</SUP>. In addition to the SFRs, the lower 32 bytes of the 
+    internal RAM of all 8051 derivatives consist of four register banks. Each 
+    register bank consists of eight (R0-R7) one byte registers. The CPU can 
+    select and use one of its bank’s registers. Based on their functions, all 
+    registers accessible to the CPU were grouped into three categories. 
+    Registers which are thought to be in continuous use (PC, PSW and SP), 
+    control registers ( TL0, TL1, TH0, TH1, IP, IE, TMOD, TCON, SCON, and PCON) 
+    and general purpose registers (ACC, B, DPL, DPH, SBUF, P0-P3 and R0-R7). 
+    Control registers in general, determine the CPU’s mode of operation. For 
+    example, they determine the baud rate, the status of interrupts, 
+    etc.</P></FONT><B><I><FONT face=Arial>
+    <P align=justify></P>
+    <LI>The Model
+    <P></P></LI></OL></B></I></FONT><FONT size=3>
+  <P align=justify>Figure-2 is a block diagram representation of the model. The 
+  registers duty cycles are processed in sequence. Registers believed to be in 
+  continuous usage are automatically assigned a duty cycle of 100%, for all 
+  software programs. Although this might be an over estimation of the duty cycle 
+  of the SP and PSW, this assignment is reasonable because it is difficult to 
+  know when these registers are being used, because they are mostly controlled 
+  by hardware. To calculate the duty cycle for the remaining registers, records 
+  from the file are sequentially read and processed in one of two major loops. 
+  Initially, records are processed in the first loop, in which the aim is to 
+  establish if the current register<SUP>1</SUP> was used during execution of the 
+  software and hence the clock cycle at which this first occurred. As soon as 
+  evidence of usage of the register is identified, the total period for which 
+  the register has been in use (its <I>accumulative-duty-period</I>) is 
+  initialised to zero, and processing enters the second loop. However, if the 
+  end of the file is reached and no evidence of usage of the register is 
+  identified, it is concluded that, the register has not being used in the 
+  execution of the software, and its duty cycle is therefore 0%. </P>
+  <P align=justify></P>
+  <P align=justify>In the second loop, as each record is processed, the 
+  accumulative-duty-period of the register is incremented accordingly. For a 
+  control register, it is assumed that, if an SEU occurs from the moment it is 
+  initialised until the execution of the software is complete, it induces an 
+  observable error. "Increment-1" is derived on the basis of this assumption. 
+  Although it might also lead to a slight overestimation of the upset rate, it 
+  is necessary to keep the model practical.</P>
+  <P align=center><IMG height=992 
+  src="pisr_files/Image21.gif" 
+  width=593></P>
+  <P align=justify></P>
+  <P align=justify>Figure-2: A Block Diagram Representation of the Duty Cycle 
+  Prediction Model.</P>
+  <P align=justify>For the general purpose registers, the increment 
+  ("increment-2" or "increment-3") depends on whether the current 
+  instruction<SUP>1, </SUP>is a "duty cycle modification instruction". At the 
+  end of processing the last record, the accumulative-duty-cycle for the 
+  register is divided by the total run time to yield the register’s duty cycle. 
+  </P>
+  <P align=justify>&nbsp;</P></FONT><B><U><FONT face=Arial size=4>
+  <P align=center></P>
+  <LI>RESULTS
+  <P></P></B></U></FONT><FONT size=3>
+  <P align=justify>The model was used to analyse the software that operates the 
+  telecommand system on a number of UoSAT spacecraft. The processor’s function 
+  as part of the telecommand subsystem is to decode and issue commands to other 
+  subsystems. The telecommand frame is seven bytes long and decoding commences 
+  by checking asynchronous serial data for a valid telecommand frame. If the 
+  frame is valid, the appropriate subsystem to which the command is to be sent 
+  is identified and the command is issued. As the microprocessor processes and 
+  issues a command, a file was assembled (as described in section 5.1). The 
+  model then processes the file to compute the duty cycle for each register. The 
+  results obtained are listed in Table-1.</P>
+  <P align=justify></P>
+  <P align=justify>Equation 1 was used to calculate the application SEU cross 
+  section associated with the execution of this software. Since the SFRs of the 
+  8051 processor are, in fact, eight bit locations within its internal RAM, it 
+  was assumed that, the sensitive bit cross-section for each register is 
+  identical to the sensitive bit cross section of the RAM. Using results from 
+  ground based radiation testing on a commercial 87C51 microcontroller, the 
+  worst case upset rate was predicted as 3.0 <FONT face=Symbol>´</FONT> 
+  10<SUP>-6</SUP> bit<SUP>-1</SUP> day<SUP>-1</SUP> for the Space Station 
+  Freedom (SSF) orbit (250 nautical miles, 51.6 degrees, 350 km altitude), with 
+  assumed spacecraft shielding thickness of 23 mm and 34 mm of aluminium for the 
+  heavy ion and proton respectively<SUP>6</SUP>. Although the radiation 
+  environment of the SSF orbit is slightly more benign than that of a typical 
+  UoSAT orbit, shielding on a UoSAT spacecraft is typically in the range of 11 
+  mm of aluminium. Hence, the upset rate for this device on a typical UoSAT 
+  spacecraft can be estimated as the above predicted value (3.0 <FONT 
+  face=Symbol>´</FONT> 10<SUP>-6</SUP> bit<SUP>-1</SUP> day<SUP>-1</SUP>).</P>
+  <P align=justify></P>
+  <P align=justify>Table-1: Registers and their respective duty cycles for the 
+  8051 processor when executing the UoSAT Telecmmand software.</P></FONT>
+  <TABLE borderColor=#808080 cellSpacing=2 cellPadding=9 width=375 border=1>
+    <TBODY>
+    <TR>
+      <TD vAlign=top width="24%" bgColor=#ffffff><B><I><FONT size=3>
+        <P align=justify>Register</B></I></FONT></P></TD>
+      <TD vAlign=top width="28%"><B><I><FONT size=3>
+        <P align=justify>Duty Cycle </P>
+        <P align=justify>(%)</B></I></FONT></P></TD>
+      <TD vAlign=top width="22%" bgColor=#ffffff><B><I><FONT size=3>
+        <P align=justify>Register</B></I></FONT></P></TD>
+      <TD vAlign=top width="25%"><B><I><FONT size=3>
+        <P align=justify>Duty Cycle (%)</B></I></FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="24%" bgColor=#ffffff><B><FONT size=3>
+        <P align=justify>A</B></FONT></P></TD>
+      <TD vAlign=top width="28%"><FONT size=3>
+        <P align=justify>57</FONT></P></TD>
+      <TD vAlign=top width="22%" bgColor=#ffffff><FONT size=3>
+        <P align=justify>SCON</FONT></P></TD>
+      <TD vAlign=top width="25%"><FONT size=3>
+        <P align=justify>98</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="24%" bgColor=#ffffff><B><FONT size=3>
+        <P align=justify>B</B></FONT></P></TD>
+      <TD vAlign=top width="28%"><FONT size=3>
+        <P align=justify>3</FONT></P></TD>
+      <TD vAlign=top width="22%" bgColor=#ffffff><FONT size=3>
+        <P align=justify>TCON</FONT></P></TD>
+      <TD vAlign=top width="25%"><FONT size=3>
+        <P align=justify>99</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="24%" bgColor=#ffffff><B><FONT size=3>
+        <P align=justify>R0</B></FONT></P></TD>
+      <TD vAlign=top width="28%"><FONT size=3>
+        <P align=justify>79</FONT></P></TD>
+      <TD vAlign=top width="22%" bgColor=#ffffff><FONT size=3>
+        <P align=justify>PCON</FONT></P></TD>
+      <TD vAlign=top width="25%"><FONT size=3>
+        <P align=justify>98</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="24%" bgColor=#ffffff><B><FONT size=3>
+        <P align=justify>R1</B></FONT></P></TD>
+      <TD vAlign=top width="28%"><FONT size=3>
+        <P align=justify>67</FONT></P></TD>
+      <TD vAlign=top width="22%" bgColor=#ffffff><FONT size=3>
+        <P align=justify>TMOD</FONT></P></TD>
+      <TD vAlign=top width="25%"><FONT size=3>
+        <P align=justify>98</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="24%" bgColor=#ffffff><B><FONT size=3>
+        <P align=justify>R2</B></FONT></P></TD>
+      <TD vAlign=top width="28%"><FONT size=3>
+        <P align=justify>33</FONT></P></TD>
+      <TD vAlign=top width="22%" bgColor=#ffffff><FONT size=3>
+        <P align=justify>IE</FONT></P></TD>
+      <TD vAlign=top width="25%"><FONT size=3>
+        <P align=justify>100</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="24%" bgColor=#ffffff><B><FONT size=3>
+        <P align=justify>R3</B></FONT></P></TD>
+      <TD vAlign=top width="28%"><FONT size=3>
+        <P align=justify>18</FONT></P></TD>
+      <TD vAlign=top width="22%" bgColor=#ffffff><FONT size=3>
+        <P align=justify>IP</FONT></P></TD>
+      <TD vAlign=top width="25%"><FONT size=3>
+        <P align=justify>100</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="24%" bgColor=#ffffff><B><FONT size=3>
+        <P align=justify>R4</B></FONT></P></TD>
+      <TD vAlign=top width="28%"><FONT size=3>
+        <P align=justify>63</FONT></P></TD>
+      <TD vAlign=top width="22%" bgColor=#ffffff><FONT size=3>
+        <P align=justify>TL0</FONT></P></TD>
+      <TD vAlign=top width="25%"><FONT size=3>
+        <P align=justify>1</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="24%" bgColor=#ffffff><B><FONT size=3>
+        <P align=justify>R5</B></FONT></P></TD>
+      <TD vAlign=top width="28%"><FONT size=3>
+        <P align=justify>73</FONT></P></TD>
+      <TD vAlign=top width="22%" bgColor=#ffffff><FONT size=3>
+        <P align=justify>TL1</FONT></P></TD>
+      <TD vAlign=top width="25%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="24%" bgColor=#ffffff><B><FONT size=3>
+        <P align=justify>R6</B></FONT></P></TD>
+      <TD vAlign=top width="28%"><FONT size=3>
+        <P align=justify>72</FONT></P></TD>
+      <TD vAlign=top width="22%" bgColor=#ffffff><FONT size=3>
+        <P align=justify>TH0</FONT></P></TD>
+      <TD vAlign=top width="25%"><FONT size=3>
+        <P align=justify>1</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="24%" bgColor=#ffffff><B><FONT size=3>
+        <P align=justify>R7</B></FONT></P></TD>
+      <TD vAlign=top width="28%"><FONT size=3>
+        <P align=justify>14</FONT></P></TD>
+      <TD vAlign=top width="22%" bgColor=#ffffff><FONT size=3>
+        <P align=justify>TH1</FONT></P></TD>
+      <TD vAlign=top width="25%"><FONT size=3>
+        <P align=justify>98</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="24%" bgColor=#ffffff><B><FONT size=3>
+        <P align=justify>PSW</B></FONT></P></TD>
+      <TD vAlign=top width="28%"><FONT size=3>
+        <P align=justify>100</FONT></P></TD>
+      <TD vAlign=top width="22%" bgColor=#ffffff><FONT size=3>
+        <P align=justify>SBUF</FONT></P></TD>
+      <TD vAlign=top width="25%"><FONT size=3>
+        <P align=justify>100</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="24%" bgColor=#ffffff><B><FONT size=3>
+        <P align=justify>PC</B></FONT></P></TD>
+      <TD vAlign=top width="28%"><FONT size=3>
+        <P align=justify>100</FONT></P></TD>
+      <TD vAlign=top width="22%" bgColor=#ffffff><FONT size=3>
+        <P align=justify>P0</FONT></P></TD>
+      <TD vAlign=top width="25%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="24%" bgColor=#ffffff><B><FONT size=3>
+        <P align=justify>SP</B></FONT></P></TD>
+      <TD vAlign=top width="28%"><FONT size=3>
+        <P align=justify>100</FONT></P></TD>
+      <TD vAlign=top width="22%" bgColor=#ffffff><FONT size=3>
+        <P align=justify>P1</FONT></P></TD>
+      <TD vAlign=top width="25%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="24%" bgColor=#ffffff><B><FONT size=3>
+        <P align=justify>DPL</B></FONT></P></TD>
+      <TD vAlign=top width="28%"><FONT size=3>
+        <P align=justify>3</FONT></P></TD>
+      <TD vAlign=top width="22%" bgColor=#ffffff><FONT size=3>
+        <P align=justify>P2</FONT></P></TD>
+      <TD vAlign=top width="25%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD></TR>
+    <TR>
+      <TD vAlign=top width="24%" bgColor=#ffffff><B><FONT size=3>
+        <P align=justify>DPH</B></FONT></P></TD>
+      <TD vAlign=top width="28%"><FONT size=3>
+        <P align=justify>3</FONT></P></TD>
+      <TD vAlign=top width="22%" bgColor=#ffffff><FONT size=3>
+        <P align=justify>P3</FONT></P></TD>
+      <TD vAlign=top width="25%"><FONT size=3>
+        <P align=justify>0</FONT></P></TD></TR></TBODY></TABLE><FONT size=3>
+  <P align=justify></P>
+  <P align=justify>Assuming that the duty cycle for each register is 100%, the 
+  observable SEU induced error cross section for the 8051 processor with 30 
+  eight bit registers was calculated to be ~7.2<FONT face=Symbol>´</FONT> 
+  10<SUP>-4</SUP> (upset induced observable errors/CPU-day). This implies that, 
+  within a year, we expect to observe ~0.26 errors in the telecommand system 
+  induced by SEUs per microprocessor. When the duty cycle for each register was 
+  considered, this number was considerably reduced to ~0.13 (upset induced 
+  observable errors /CPU-year). </P>
+  <P align=justify></P>
+  <P align=justify>In real operation, the observable SEU induced error rate 
+  should be much lower. The above result assumes that the processor is 
+  continuously decoding commands, which is not true. A typical UoSAT telecommand 
+  system, has four decoders, three of which are mainly for redundant purposes 
+  and therefore rarely used. Therefore, they are reset by hardware regularly. By 
+  resetting the device, all SEUs are overwritten. The busiest of the four 
+  decoders, processes a maximum of 6 commands every ten minutes. After 
+  processing a command, the processor goes into idle mode until another valid 
+  command frame is received. It takes at most 9.4 ms at a frequency 3.46 MHz, to 
+  transmit and process a command frame. This is equivalent to 56.4 ms in every 
+  ten minutes. When this fraction is considered, the duty cycle of some of the 
+  registers (A, B, R1, R2, R3, R4, DPL, DPH, TL0 and TH0) can be very small 
+  (~9.4<FONT face=Symbol>´</FONT> 10<SUP>-5</SUP>%), since these registers are 
+  re-loaded at the beginning of processing a new command frame. However, if an 
+  upset occurs in a control registers while the processor is idle, the adverse 
+  effect on the processor will be observed as soon as the processor wakes up. 
+  Following the assumption of the previous section, the duty cycle for these 
+  registers as execution time increases can be approximated as 100%. When these 
+  values are considered, the estimated observable SEU error cross section was 
+  predicted as 0.11 (observable SEU induced errors/CPU-year-processor). </P>
+  <P align=justify>&nbsp;</P>
+  <OL></FONT><B><I><FONT face=Arial>
+    <P align=justify>
+    <LI>Discussion
+    <P></P></LI></OL></B></I></FONT><FONT size=3>
+  <P align=justify>The model is not without limitations. The duty cycle for 
+  non-user accessible registers cannot be calculated using this model, since it 
+  is difficult to determine from the software when data is written into or read 
+  from these registers. Fortunately, the 8051 processor does not have many 
+  registers of this type. Also, the duty cycle of the serial buffer register 
+  (SBUF), cannot be calculated. Although this register is user accessible, it is 
+  actually a channel to two non-user accessible registers (the transmit and 
+  receive buffer) which are separate eight bit locations of the processor. In 
+  practice, the duration that SBUF holds useful data is very short. However, if 
+  an upset occurs in the receive buffer, it will be transferred via the SBUF to 
+  other registers. To improve the accuracy of the results, it is suggested that 
+  the duty cycle of the serial buffer be taken as 100% for any program that uses 
+  the receive buffer regularly. In general, the influence of hardware on the 
+  duty cycle of registers (both user and non-user accessible) is not be 
+  considered by this model.</P>
+  <P align=justify></P></FONT><B><U><FONT face=Arial size=4>
+  <P align=center></P>
+  <LI>Summary and conclusion
+  <P></P></LI></OL></B></U></FONT><FONT size=3>
+<P align=justify>The drive towards smaller, faster, better and cost-effective 
+satellites implies there is more pressure on engineers to employ COTS 
+microprocessor in space applications. The present method for predicting the 
+observable SEUs induced error rate in microprocessors ignores the influence of 
+the software, giving a pessimistic view of the vulnerability of the device. To 
+consider the influence of software, the duty factor for each register as it 
+executes the software must be determined. In the past, this task has been 
+thought to be impractical for real application software due to its complexity. 
+With a number of assumptions, this paper has summarised a new methodology which 
+demonstrates the use of a microprocessor simulator, and a model developed using 
+knowledge of the processor’s architecture and instruction set to achieve this 
+objective. By analysing a typical flight software code, it was shown that the 
+influence of software if taken into consideration could increase the prediction 
+accuracy by a factor as much as 100%. With reference to the above limitations, 
+more work is expected at CSER to improve the accuracy of this model.</P>
+<P align=justify></P><U>
+<P align=center>Acknowledgement</P></U>
+<P align=justify></P>
+<P align=justify>The authors will like to thank the Centre for Satellite 
+Engineering Research and the Department of Mathematics and Computer Sciences of 
+the University of Surrey for making this research work possible. Special thanks 
+also to Neville Bean, Principal Engineer at Surrey Satellite Technology Limited 
+for his technical support. </P>
+<P align=justify></P><U>
+<P align=center>References</P></U>
+<P align=center></P></FONT>
+<TABLE cellSpacing=0 cellPadding=4 width=717 border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>1</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Kimbrough et al, "Single Event Effects and </P>
+      <P align=justify>Performance Predictions for Space Applications </P>
+      <P align=justify>of RISC Processors", IEEE Transactions on </P>
+      <P align=justify>Nuclear Science, Vol. 41, No.6, Dec.1994, </P>
+      <P align=justify>Pages 2706-2714.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>2</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Koga R. et al, "Techniques of Microprocessor </P>
+      <P align=justify>Testing and SEU-Rate Prediction"; IEEE </P>
+      <P align=justify>Transactions on Nuclear Science, </P>
+      <P align=justify>December 1985 page 4219.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>3</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Elder J.H., "A Method for </P>
+      <P align=justify>Characterising a Microprocessor’s </P>
+      <P align=justify>Vulnerability to SEU", IEEE Trans. </P>
+      <P align=justify>on Nuclear Science, Vol. 35, No. 6, dec. 1988.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>4</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Velazco R. et al, "Heavy Ion Test </P>
+      <P align=justify>Results for the 68020 Microprocessor </P>
+      <P align=justify>and the 68882 Coprocessor", </P>
+      <P align=justify>Proceedings from the 2<SUP>nd</SUP> European </P>
+      <P align=justify>Conference on Radiation and its </P>
+      <P align=justify>Effects on Components and Systems, </P>
+      <P align=justify>RADECS 93.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>5</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>P.D.T. O’Connor, "Practical Reliability </P>
+      <P align=justify>Engineering", 2<SUP>nd</SUP> Edition, John </P>
+      <P align=justify>Wiley &amp; Sons, 1985.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>6</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Oberg D.L. et al , "Measurement of the </P>
+      <P align=justify>single event effects in the 87C51 </P>
+      <P align=justify>microcontroller";1994 Boeing Defence &amp; </P>
+      <P align=justify>Space Group. </P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>7</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Guenzer C.S. et al, "Single Event </P>
+      <P align=justify>Upsets in NMOS Microprocessors"; </P>
+      <P align=justify>IEEE Transactions on Nuclear </P>
+      <P align=justify>Science; December 1981 page 3955.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>8</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Koga R. et al, "Heavy Ion-Induced Single </P>
+      <P align=justify>Event Upsets of Microcircuits; A Summary </P>
+      <P align=justify>of the Aerospace Corporation Test Data", </P>
+      <P align=justify>IEEE Transactions on Nuclear Science, </P>
+      <P align=justify>Vol. NS-31, No.6, December 1984. </P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>9</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Underwood C.I., "Single Events Effects in </P>
+      <P align=justify>Commercial Memory Devices in the Space </P>
+      <P align=justify>Radiation Environment", PhD Thesis, </P>
+      <P align=justify>University of Surrey, August 1996.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>10</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Adams, L., "Cosmic Ray Effects on </P>
+      <P align=justify>Microelectronics", Microelectronic </P>
+      <P align=justify>Journal, Vol. 16, 1985.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>11</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Akers L.D., "Microprocessor </P>
+      <P align=justify>Technology and Single Event Upset </P>
+      <P align=justify>Susceptibility", Proceeding from the </P>
+      <P align=justify>AIAA/Utah State University </P>
+      <P align=justify>Conference 1995.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>12</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Peterson E.L. et al, "Rate Prediction </P>
+      <P align=justify>for Single Event Effects - a Critique"; </P>
+      <P align=justify>IEEE Transactions on Nuclear Science, </P>
+      <P align=justify>December 1992 page 1577.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>13</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Sexton F.W., " Measurement of </P>
+      <P align=justify>Single Event Phenomena in Devices </P>
+      <P align=justify>and ICs", IEEE NSREC Short </P>
+      <P align=justify>Course Notes, 1995.</FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>14</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Langworthy J.B., "The Effects of Funneling </P>
+      <P align=justify>on Space Upset Rate", IEEE Transactions on </P>
+      <P align=justify>Nuclear Science, Vol. 40, No.1, Feb. 1993.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>15</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Letaw J. R., "Guidelines for Predicting Single </P>
+      <P align=justify>Event Upsets in Neutron Environments", </P>
+      <P align=justify>IEEE Transactions on Nuclear Science, </P>
+      <P align=justify>Vol. 38, No. 6, Dec 1991.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>16</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Reed R.A., "Implications of the </P>
+      <P align=justify>Angle of Incidence in SEU Testing of </P>
+      <P align=justify>Modern Circuits", IEEE Transactions on </P>
+      <P align=justify>Nuclear Science, Vol. 41, No. 6, Dec. 1994.</P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>17</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Kiel Elektronix, C51 Professional Developers </P>
+      <P align=justify>Kit, dScope-51, High-Level-Language Debugger </P>
+      <P align=justify>for the Microcontroller Family. User’s </P>
+      <P align=justify>Guide 10.91. </P>
+      <P align=justify></FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=top width="11%"><FONT size=3>
+      <P align=justify>18</FONT></P></TD>
+    <TD vAlign=top width="89%"><FONT size=3>
+      <P align=justify>Intel MCS Tools Handbook, 3<SUP>rd</SUP> </P>
+      <P align=justify>Edition, 1995.</FONT></P></TD></TR></TBODY></TABLE><FONT 
+size=3>
+<P align=justify></P><U>
+<P align=center>Biography</P></U>
+<P align=justify>Veronica Asenek is currently a PhD research student at CSER. 
+She joined CSER in 1994 after graduating with a B.SC. Honours Degree in 
+Electrical Engineering and Mathematics from the University of Keele, UK. </P>
+<P align=justify></P>
+<P align=justify>Dr Michael Oldfield completed a Ph.D at University College 
+London In Astronomical Photon Counting Systems. He joined UoSAT in Aug 1994 
+where he worked on a 2-year EPSRC funded research project entitled "An 
+Investigation Into Multiple-Bit Upset And Single Event Latch-up". He is 
+currently working on another EPSRC funded project entitled "The Effects Of Space 
+Radiation On Artificial Neural Networks" due for completion in Aug 1998. </P>
+<P align=justify></P>
+<P align=justify>&nbsp;</P></FONT></BODY></HTML>

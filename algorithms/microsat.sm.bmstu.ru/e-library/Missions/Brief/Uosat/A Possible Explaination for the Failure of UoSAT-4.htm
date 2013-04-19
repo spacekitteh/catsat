@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)http://www.ee.surrey.ac.uk/CSER/UOSAT/papers/amsat96/kcc/kcc.html -->
+<HTML><HEAD><TITLE>A Possible Explaination for the Failure of UoSAT-4</TITLE>
+<!-- Meta http equivalent was here                                   -->
+<META content="MSHTML 5.50.4134.600" name=GENERATOR></HEAD>
+<BODY>
+<P>
+<CENTER><B><FONT size=5>A Possible Explanation for the Brief Life-Span of 
+UoSAT-4<BR></FONT></B></CENTER>
+<P>
+<CENTER>Keith Clark (G6RTJ). Surrey Satellite Technology, CSER, University of 
+Surrey. England.</CENTER>
+<P>
+<CENTER>&amp;</CENTER>
+<P>
+<CENTER>Chaovalit Thamviriyakul. Mahanakorn University of Technology, Bangkok. 
+Thailand.<BR></CENTER>
+<P><B><FONT size=5>What Went Wrong?<BR></FONT></B>
+<P>This question is still asked regarding the fate of UoSAT-4. Things have moved 
+along since the fateful day when communications were lost with one of our twin 
+microsats, so why should we look back so far? Well, although we can never 
+conclusively prove what happened, there are valuable lessons to be learnt. After 
+the demise of the satellite the entire system was checked for "single point 
+failures", (sections of the system who's failure would prematurely end the 
+mission), constructional weaknesses and component reliability issues. The 
+results of this review proved invaluable to ensuring success of future 
+satellites.<BR>
+<P>In this paper I would like to present two possible RF failure modes, describe 
+how they could have occurred and how the same effect was prevented from 
+occurring on future missions.<BR>
+<P><B><FONT size=5>Setting the Scene<BR></FONT></B>
+<P>After the success of the two research missions, UoSAT 1 &amp; 2, launched on 
+American Thor-Delta rockets a follow on mission, UoSAT-C, was due to be launched 
+in 1988. However, due to changes in the launch manifest UoSAT-C was delayed. As 
+a consequence of this the payloads were split between two new satellites, 
+UoSAT-D &amp; E. In fact the planned development and construction time for the 
+pair of satellite was in the order of six months. <BR>
+<P>The primary mission objectives [<I>4</I>] were to provide:-<BR>
+<OL>
+  <LI>amateur radio communications using store and forward techniques 
+  <LI>in orbit demonstration's of new technologies. 
+  <LI>studies of the low earth orbit radiation environment 
+  <LI>images of the Earth using a low cost CCD camera </LI></OL>
+<P>
+<P>The satellites were launched on January 23rd 1990 into an 800 km sun 
+synchronous orbit aboard an Ariane-40 rocket [<I>3</I>]. The satellites were the 
+first to be flown using the "ASAP" or <B>A</B>riane <B>S</B>tructure for 
+<B>A</B>uxiliary <B>P</B>ayloads, an honour it shared with four AMSAT-NA 
+microsatellites. Each satellite carried 2m receivers and 70 cm transmitters. 
+Both satellites were successful injected into orbit and communications 
+established. However, approximately 30 hours after launch all communication were 
+lost with UoSAT-4. Despite extensive examination of all telemetry no indications 
+of a fault condition were seen.<BR>
+<P>An effort was made by Stanford Research Institute (SRI) to detect the 
+receiver local oscillator (LO) signals using a 35 meter dish antenna [<I>1</I>] 
+&amp; [<I>2</I>]. After considerable work Stanford <I><B>did</B></I> detect the 
+receiver signals on several occasions despite reception occurring for only a 
+matter of seconds. Significant post processing of the signals (taking several 
+hours) was required to confirm reception. The results of their tracking efforts 
+are shown in<I> figure 1</I>.<BR><BR>
+<P><IMG 
+src="A Possible Explaination for the Failure of UoSAT-4_files/img00001.gif"><BR><BR>
+<P><B>The Quest Begins<BR></B>
+<P>So what did the reception of the receivers LO signals tell us? Well, for a 
+start we knew that the power system was still active, it therefore seemed 
+unlikely that the satellite had been damaged by space debris as some people had 
+suggested. In addition, it appeared that the receivers were still functional.<B> 
+</B>If we make the assumption that the TT&amp;C system was still controlling the 
+spacecraft we must then consider the transmitters.<BR>
+<P>A long review of possible failure scenarios provide two possible RF 
+mechanisms, these were:-<BR>
+<OL>
+  <LI>Failure of the antenna system. 
+  <LI>Failure of the transmitter output filter. </LI></OL>
+<P>
+<P>It should be emphasised that these are only possible failure scenarios, it 
+does not exclude the possibility of other mechanisms.<BR><BR>
+<P><B><FONT size=5>The Antenna System<BR></FONT></B>
+<P><IMG 
+src="A Possible Explaination for the Failure of UoSAT-4_files/img00002.gif"> 
+<BR>
+<P>The RF system on UoSAT-4 consisted of three VHF receivers and two UHF 
+transmitters. During normal operation all receivers were active and one downlink 
+could be selected via a telecommand operated relay. Up and down link data rates 
+were 1200 AFSK and 9600 FSK, though only 1200 AFSK was used during the 
+commissioning phase. The transmitter output power was set to 1.5 watts during 
+acquisition could have be switched up to 5 Watts.<BR>
+<P>The antenna system consisted of a single VHF blade mounted on the earth 
+facing facet surrounded by four UHF monopoles phased so as to provide a single 
+"fat monopole" radiation pattern. The configuration can be seen in <I>figure 
+2.<BR></I>
+<P>Each UHF monopole presented an impedance of approximately 28 which had to be 
+matched to the 50 transmitter output impedance. His was carried out by using a 
+number of three quarter wavelength sections of 75 semi-rigid cable (see 
+<I>figure 3</I>)<BR>
+<P><IMG 
+src="A Possible Explaination for the Failure of UoSAT-4_files/img00003.gif"><BR><BR><BR><BR><BR><BR><BR><BR><BR>
+<P><IMG 
+src="A Possible Explaination for the Failure of UoSAT-4_files/img00004.gif"> 
+<P>The physical structure of the antenna block was realised by attaching the 
+inner of the cable via a strain relief loop to a pair of solder tags that were 
+in turn screwed to the nickel plated steel blades. These in turn were supported 
+by a PTFE block. The blades had to be removed and refitted several times during 
+testing leaving the inner unsupported. The coaxial inner had a diameter of only 
+0.3 mm and in fact one length of coaxial line had failed and been replaced prior 
+to fitting the satellite to the rocket.<BR>
+<P>Whilst this method successfully transformed all of the individual antenna 
+impedance's to 50 , consider what happens when any one of the antennas becomes 
+open circuit. The open circuit would be transformed to a short circuit at the 
+transmitter output and the antenna system would be disabled. The effect of this 
+would be to present the transmitter output with a sever mismatch. This had been 
+known to produce transmitter oscillations at the test stage. Thus, the total 
+effect of this fault would have been to prevent transmission of the signal and 
+in addition throw the output signal off frequency. Therefore, even if efforts 
+had been made to detect very low, leakage level signals on the published output 
+frequencies the chances are that they would fail as transmission would have been 
+at a spurious frequency.<BR>
+<P><IMG 
+src="A Possible Explaination for the Failure of UoSAT-4_files/Img00005.gif"> 
+<P>
+<P>So what were the lessons learnt from this? In later satellites the antenna 
+transformation was achieved in two stages as shown in <I>figure 5</I>. In this 
+case the loss of any single blade no longer caused the loss of the entire 
+system. An analysis of the circuit showed that the return loss of the antenna 
+system would typically fall from approximately 15 dB to 9 dB. The method of 
+attaching the coaxial inner to the blades was also revised. In the new system 
+the inner is connected to a plate which is then permanently 
+<P>fitted behind a support block. In this case there is only ever one connection 
+made and the inner is never left unsupported.<BR>
+<P><B><FONT size=5>The Transmit Filter<BR></FONT></B>
+<P>Early versions of the UoSAT range of satellites were not fitted with transmit 
+filters. However, it had been observed that it was possible for the transmitter 
+to cause de-sensitisation of the receiver. For this mission the object of the 
+filter was two fold:- <BR>
+<OL>
+  <LI>to ensure that VHF noise produced by the UHF transmitter was reduced as 
+  much as possible. 
+  <LI>to reduce any interference from the transmitter with the DORIS receiver 
+  system fitted to SPOT-2, the main payload of the Ariane mission. DORIS 
+  (<B>D</B>etermination <B>O</B>rbite <B>R</B>adiopositionnement <B>I</B>ntegres 
+  <B>S</B>atellite) was a CNES developed one way tracking system for the 
+  measurement of precision orbits. The system was based on the reception of two 
+  beacon frequencies of approximately 2 GHz and 401 MHz. With this system orbit 
+  determination to within 20 cm were supposed to be possible. </LI></OL>
+<P><IMG 
+src="A Possible Explaination for the Failure of UoSAT-4_files/Img00006.gif"><BR>
+<P>At this stage it was not possible to establish analytically exactly how much 
+UHF rejection was required by the receiver so an engineering figure of 70 dB's 
+was arrived at. The filter had to be developed within three days so an 
+adaptation of a radio amateur helical filter was used. This comprised of two 
+cavities each containing a small helical transmission line (see <I>figures 6 
+&amp; 7</I>). Coupling between the two halves occurred via probe wires and 
+tuning by adjustment screws. The inner coils were made resistant to vibration 
+damage by adding a very small amount of low loss potting compound. <BR>
+<P><IMG 
+src="A Possible Explaination for the Failure of UoSAT-4_files/Img00007.gif"> 
+<P>The frequency response of the helical filter was excellent it had an 
+insertion loss of only 0.25 dB and no problems were found during terrestrial 
+tests. However, in the flight model of the satellite it was not possible to test 
+the complete transmitter system in the thermal vacuum chamber. Instead, for 
+practical reasons, the output had to be taken directly from the transmitter 
+output but before the filter and antennas. The result of this was that the 
+characteristic of the filter under partial and full vacuum conditions was not 
+tested under operational power conditions. It was always known that the filter 
+would experience high voltages due to the Q of the circuit, certainly voltages 
+in excess of one kilovolt could be experienced under high power conditions. 
+Recent tests at SSTL have shown that during the early part of the mission when 
+the air within the filter was escaping it was possible for corona discharge to 
+occur. This discharge was due to the existence of high voltages in low pressure 
+gases. The effect of this was to form a "flame" inside the filter that gradually 
+stripped the metal from the coil and probe wires and deposited them on the 
+filter wall. This effect was accompanied by an increase in return loss and 
+eventually total failure of the filter. This effect has been duplicated in the 
+laboratory.<BR>
+<P>A poor match presented to the output of the amplifier chain would have had 
+the same effect as a missing antenna blade, as described earlier, and one would 
+expect the transmitter to have become unstable and the output frequency to have 
+changed.<BR>
+<P>The likelihood of corona discharge can be reduced by :-<BR>
+<OL>
+  <LI>Allowing the air to escape faster 
+  <LI>Ensuring all surfaces are as smooth as possible. 
+  <LI>Removing the probe wire and replacing them with a coupling aperture. 
+  <LI>Replacing the tuning screws with variable high voltage vacuum capacitors. 
+  <LI>Refrain from applying power to the transmitters for as long as possible so 
+  as to allow longer for the air to escape. </LI></OL>
+<P>
+<P>Later models of the satellites had all of these recommendations implemented. 
+Future satellites will have the helical filters replaced with an alternative 
+arrangement. This has been made possible by further testing which has shown that 
+the VHF rejection set for UoSAT-4 was in fact higher than necessary. Typically 
+only 50 dB's of rejection are actually required rather than the 70 dB's 
+previously set. An additional modification will be the inclusion of one filter 
+per transmitter chain, once again reducing the number of single point failures 
+in the system.<BR>
+<P><B><FONT size=5>Lessons Learnt<BR></FONT></B>
+<P>Though painful at the time of its loss UoSAT-4 provided valuable lessons in 
+satellite design. Fault tolerance is being designed into both electronic and 
+mechanical systems. All systems are now examined for single point failures and 
+system design changed ,if possible, to avoid them.<BR>
+<P>It is also worth remembering that UoSAT-3 has now been in orbit for 6 years 
+and has carried out over thirty three thousand orbits! <BR>
+<P><B><FONT size=5>Acknowledgements</FONT></B> 
+<P>
+<P>We would like to extend our thanks to everyone past and present who has 
+helped with this research and in particular to Alex da Silva Curiel and the RF 
+Team.<BR>
+<P><B><FONT size=5>References<BR></FONT></B>
+<P>[1] Ivan R. Linscott <I>et al, </I>"UoSAT Remote Diagnostics Signal 
+Processing", The Proceedings of the AMSAT-UK Colloquium '90.<BR>
+<P>[2] "Microsat information ,Latest", AMSAT-UK, OSCAR News, Number 82.<BR>
+<P>[3] "UoSAT 3 &amp; 4 Information", AMSAT-UK, OSCAR News, Number 83.<BR>
+<P>[4] M.N.Sweeting &amp; J.W.Ward, "The UoSAT-D &amp; UoSAT-E Technology 
+Demonstration Spacecraft", IAF-88-045 </P></BODY></HTML>

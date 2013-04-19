@@ -1,0 +1,125 @@
+<HTML>
+<HEAD>
+<!-- Meta http equivalent was here                                     -->
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>WIDE ANGLE DIGITAL SLIT SUN SENSOR </TITLE>
+</HEAD>
+<BODY>
+<DIR>
+<DIR>
+
+<B><P ALIGN="CENTER">WIDE ANGLE DIGITAL SLIT SUN SENSOR </P>
+<P ALIGN="CENTER">USING CCD LINEAR ARRAY</P>
+</B><FONT SIZE=2>
+<P>&nbsp;</P>
+</FONT><B><P ALIGN="CENTER">Jaroslav CHUM, Jaroslav VOJTA</P>
+</B><FONT SIZE=4><P ALIGN="CENTER"></P>
+<P ALIGN="CENTER">&nbsp;</P>
+</FONT><I><P ALIGN="CENTER">Institute of Atmospheric Physics, Academy of Sciences of the Czech Republic</P>
+<FONT FACE="Times New Roman"><P ALIGN="CENTER">Boèní II/1401, 14131 Praha 4, C</FONT>zech Republic</P>
+<P ALIGN="CENTER">Email: jch@ufa.cas.cz</P>
+</I><B><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&#9;ABSTRACT – </B><I>A motivation to the development of the wide angle Digital Slit Sun Sensor, its main features and technical description are described in this article. The figures of the sensor, troubleshooting encountered during its development, and measured characteristics are presented as well. The difficulties in designing of very wide angle Sun sensor are discussed. It is shown, that if one is interested primary in the accuracy, it is better to construct the sensor with the field of view less then 90 <FONT FACE="Symbol">° (±</FONT> 45<FONT FACE="Symbol">° )</FONT> .</P>
+</I><B><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">&nbsp;</P></DIR>
+
+<P ALIGN="JUSTIFY">1 - INTRODUCTION</P>
+<P ALIGN="JUSTIFY"></P></DIR>
+
+</B><P ALIGN="JUSTIFY">Our team manufactured simple analogue cosine law Sun sensors and made a good experience with them onboard of Magion 4 and 5 satellites. However the new demands for the more accurate, wide angle sensor for the satellite on Low Earth Orbit let us feel their following drawbacks: The reflected light from the Earth disturbs the measurement. The degradation of the photosensitive elements caused by radiation drives down the accuracy of the sensor drastically and the re-calibration during the flight is problematic. So there was a search for a relatively cheap, simple, more accurate Sun sensor, insensitive to the reflected light from the Earth and to the change of sensitivity of photosensitive elements. Such a solution is a digital slit sun sensor. The common digital Sun sensors use photocell assemblies below a reticle slits pattern arranged usually in the Gray code. However those sensors about we have found information are robust, quite expensive and hence inappropriate to use on micro-satellites. That is the reason we decided to develop small, low mass sensor that would meet the above mentioned demands.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+<B><P ALIGN="JUSTIFY">2 - MAIN FEATURES </P>
+<P ALIGN="JUSTIFY"></P><DIR>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+</B><P ALIGN="JUSTIFY">- number of pixels:&#9;2048&#9;</P>
+<P ALIGN="JUSTIFY">- wide angle: &#9;FOV = 120 <FONT FACE="Symbol">° (±</FONT> 60<FONT FACE="Symbol">° )</P>
+</FONT><P ALIGN="JUSTIFY">- low mass:&#9;0,11 kg</P>
+<P ALIGN="JUSTIFY">- small size:&#9;65 x 55 x 25 mm</P>
+<P ALIGN="JUSTIFY">- typical accuracy:&#9;0.2<FONT FACE="Symbol">°  </P>
+<P ALIGN="JUSTIFY">&#9;</FONT>0.1<FONT FACE="Symbol">°</FONT> for the FOV =  90 <FONT FACE="Symbol">° (±</FONT> 45<FONT FACE="Symbol">° ), </FONT>see discussion<FONT FACE="Symbol">&#9;&#9;&#9;</P>
+<P ALIGN="JUSTIFY"></P></DIR>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+
+</FONT><P ALIGN="JUSTIFY">- reflected light from the Earth does not affect the accuracy</P>
+<P ALIGN="JUSTIFY">- the gradual degradation of the sensitivity of the CCD does not influent the accuracy. </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">- serial communication to CPU</P>
+<B><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">3 - TECHNICAL DESCRIPTION</P>
+</B><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">The principle of the wide angle Digital Slit Sun Sensor DSSS is obvious from its <A HREF="ccdcidloweb.html"> functional scheme, which is presented in Figure 1. </A> </P>
+<P ALIGN="JUSTIFY">A thin opaque layer with a narrow slit made in a process of lithography, is placed above the CCD linear image sensor. The normal of the CCD is parallel to the normal of the opaque layer, the slit being perpendicular to the CCD line. The angle between the normal of the CCD and the incident Sun beams determines which pixels of the CCD array are illuminated. We choose the width of the slit so that several pixels are illuminated simultaneously, to avoid the possibility that the defect of one pixel makes the measurement of a given angle impossible. </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">The opaque layer has to be coated by anti-glare coat. This is very important, because the light reflected from the CCD could reflect back to the CCD from that layer. So all the inner surfaces of the whole capsule are painted by non-glare paint. </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">To protect the CCD sensor against direct Sunbeams and radiation and to fit the appropriate exposure of the CCD a special attenuation-filter is used as a front window.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">To be able to determine the Sun vector, two identical mutually perpendicular sensors are placed in one capsule. <A HREF="Dsss_mweb.html"> The mechanical arrangement and dimensions of the sensors can be found in Figure 2. A photograph of the real sensor is in Figure 3.</A></P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">The output signal from the CCD is digitised, read out serially by the microprocessor of the CPU that delivers also the proper timing and power supply for sensor. All the communication between the sensor and the CPU runs serially. The microprocessor, processes further the digitised signal from the CCD and calculates the angle - Sun vector. <A HREF="DSSS_BL_EL.html"> The block scheme of the sensor electronics is presented in the figure 4. A photograph of the electronics is in Figure 5.</A></P>
+<FONT SIZE=2>
+<P>&nbsp;</P>
+</FONT><B><P>4 - MEASURED CHARACTERISTICS</P>
+
+</B><P ALIGN="JUSTIFY"><A HREF="CCDsignalweb.html"> Figure 6 is presents a typical characteristic for the given angle</A>. The more light incidents on the pixel, the lower value in the graph. We can see, that there is an ”abyss” on the characteristics in the point where the light incident through the slit on the CCD. An algorithm implemented in the microprocessor finds the centre of that abyss at the pixel <I>p<SUB>i</I></SUB> , which is supposed to be the distance <I>l</I>, from which the angle is calculated in the equation 1.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">The angle between the normal vector of CCD and the Sun, in the presented cross-section, is given by the equation</P><DIR>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P ALIGN="JUSTIFY">tg <FONT FACE="Symbol">a&#9; </FONT>= &#9;l / d&#9;&#9;&#9;&#9;&#9;&#9;&#9;(1)</P>
+<P ALIGN="JUSTIFY">l     &#9; = &#9;k<FONT FACE="Symbol"> ·</FONT> ( p<SUB>i</SUB> – p<SUB>c</SUB>)</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<P ALIGN="JUSTIFY">where: &#9;p<SUB>c</SUB> …&#9;pixel illuminated at <FONT FACE="Symbol">a </FONT>= 0</P>
+<P ALIGN="JUSTIFY">&#9;&#9;pi …&#9;pixel at the centre of the illuminated area (of the abyss)</P><DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P ALIGN="JUSTIFY">&#9;k  …&#9;constant respecting the pixel spacing</P>
+<P ALIGN="JUSTIFY">&#9;for the definition of other symbols see figure 1</P>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<P>The value of  <I>p<SUB>c</I></SUB> and constant <I>k</I>&nbsp;is evaluated in the process of  sensor calibration. We use a sun-tracking telescope equipped  with a device that makes possible the deflection of the sun-wards direction at the accuracy 0.01<FONT FACE="Symbol">°</FONT> . </P>
+
+<P><A HREF="DSSSerror.html">Figure 7 presents a measured error for different  set angles. </A></P>
+<B>
+<P>&nbsp;</P>
+<P>5 – DISCUSSION</P>
+
+</B><P ALIGN="JUSTIFY">For the fixed number of pixels and slit width, the field of view drives the accuracy, mainly when the field of view is larger then 90 <FONT FACE="Symbol">° (±</FONT> 45<FONT FACE="Symbol">° ). </FONT><SUP> </SUP>The reason for that is that the tangent function (see equation 1) is very steep for the angles greater then 45<FONT FACE="Symbol">°</FONT>. Many of pixels are required in order to  see the Sun at angles greater then <FONT FACE="Symbol">±</FONT> 45<FONT FACE="Symbol">°</FONT>, while the resolution near zero decreases. So it is not advantageous to construct the sensors with the field of view much more greater then 90 <FONT FACE="Symbol">° (±</FONT> 45<FONT FACE="Symbol">° )</FONT>. We were interested in wide angle sensor and so were not limited by the reduced accuracy so we decided for the compromise – to build the sensor with the field of view  120 <FONT FACE="Symbol">° (±</FONT> 60<FONT FACE="Symbol">° )</FONT>.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Another difficulty occurs when constructing the wide-angle sensor. That is the light, which is reflected between the CCD and mainly the opaque layer. For the larger angles the distance <I>d</I> between the CDD and the opaque layer becomes very small and the power density of reflected light increases and can put an additional error to the measurement. This happens mainly at the angles, when the reflected light falls in the edge of the abyss of the signal from CCD - see <A HREF="CCDsignalweb.html">figure 6</A>. The edge of the abyss is a little bit widened and shifted to the side in such a case, so the centre of the abyss, which is by software algorithm evaluated as the point where sun beams incident. The dark and good anti-glare coat on the opaque layer and inner sides of the sensor capsule become very important and critical. </P>
+<B>
+<P>&nbsp;</P>
+<P>6 - CONCLUSION</P>
+</B>
+<P ALIGN="JUSTIFY">The field of view greater then 90 <FONT FACE="Symbol">° (±</FONT> 45<FONT FACE="Symbol">° )</FONT>&#9;reduces due to the tangent function the resolution (accuracy) of the sensor drastically. So the demands on very good antiglare and dark coating of the sensor inner parts arise. The authors consider that the maximum reasonable field of view is about 120 <FONT FACE="Symbol">° (±</FONT> 60<FONT FACE="Symbol">° )</FONT>.</P>
+
+<P>The tests and calibration performed with an engineering model approved the function of the sensor. Further improvement of the dark antiglare coating is expected, other tests will be done.</P>
+
+<P>&nbsp;</P></BODY>
+</HTML>

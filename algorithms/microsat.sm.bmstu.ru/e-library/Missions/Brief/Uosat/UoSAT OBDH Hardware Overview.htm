@@ -1,0 +1,432 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)http://www.ee.surrey.ac.uk/CSER/UOSAT/papers/amsat96/cdj/cdj.html -->
+<HTML><HEAD><TITLE>UoSAT OBDH Hardware Overview</TITLE>
+<!-- Meta http equivalent was here                                   -->
+<META content="MSHTML 5.50.4134.600" name=GENERATOR></HEAD>
+<BODY>
+<H1>
+<CENTER>UoSAT spacecraft Operation</CENTER></H1>
+<P>
+<CENTER><B>Chris Jackson ZL2TPO/G7UPN</B></CENTER>
+<H2>Introduction</H2>
+<P>Over the past 15 years UoSAT and SSTL have developed, built and launched a 
+number of low cost 50kg microsatellites. A number of these spacecraft are 
+available for amateur radio operators to use, although many amateur stations do 
+not know the inner workings of these spacecraft. This paper provides an overview 
+of the microsatellite platform operation - both hardware and software, and 
+concludes with an summary into the routine operations performed on the 
+spacecraft from the UoSAT/SSTL command station. 
+<H2>The UoSAT Microsatellite platform</H2>
+<P>The UoSAT microsatellite platform is designed to provide a modular bus that 
+could accommodate various missions with minimal changes to the platform. 
+<H3>Structure</H3>
+<P>All UoSAT spacecraft since UoSAT-3 have been based around a modular stacking 
+arrangement where the electronic module boxes comprise the basic satellite 
+structure. The 'stack' is held together with spiral pins, and the solar panels 
+are fixed to the outside of the spacecraft. One end of the spacecraft carries 
+the 6 meter gravity gradient boom, while the other comprises the Earth 
+observation platform. 
+<P>The microsatellite platform features 
+<UL>
+  <LI>80C186 / 386EX On board computers 
+  <LI>Upward of 16MB on board data storage 
+  <LI>Multitasking operating system 
+  <LI>VHF/UHF Telemetry and Telecommand system 
+  <LI>Linearly polarised antennas 
+  <LI>4 high efficiency GaAs solar arrays 
+  <LI>7Ah, 10 cell, 14 Volt Nicad battery 
+  <LI>Deployable Gravity Gradient Boom 
+  <LI>ADCS with &lt;5 degrees peak off-pointing </LI></UL>
+<H2>Electronic Sub-Systems</H2>
+<P>To perform the primary housekeeping functions the satellite must incorporate 
+the following primary elements, 
+<UL>
+  <LI>Power System 
+  <LI>RF System 
+  <LI>Attitude Determination and Control System (ADCS) 
+  <LI>Telemetry and Telecommand (TTC) 
+  <LI>On board data handling (OBDH) </LI></UL>
+<P>
+<P><IMG src="UoSAT OBDH Hardware Overview_files/IMG00001.gif"><BR><BR>
+<P><IMG src="UoSAT OBDH Hardware Overview_files/IMG00002.gif"> 
+<P>
+<CENTER>Figure 1: Exploded view and flight configuration of UoSAT 
+platform</CENTER>
+<H3>Power System</H3>
+<P>The power system comprises 4 solar panels supplying power to a 14V NiCad 
+battery pack. The Battery Charge Regulator (BCR) and Power Conditioning Module 
+(PCM) are dual redundant systems designed to eliminate single point failures. 
+<H3>RF System</H3>
+<P>The RF system comprises three VHF receivers and two UHF transmitters. The 
+three receivers are connected to a single antenna with RX0 primarily used for 
+command and is not connected via the low noise amplifier to reduce the 
+possibility of failure and overloading. The transmitters include an array of 
+modulators and the output multiplexers allow switching of many different audio 
+sources onto the downlink, including different modems and audio loopback from 
+the receivers. 
+<H3>Attitude Determination and Control System</H3>
+<P>The ADCS system includes dual magnetometers, sun sensors and earth horizon 
+sensors, and a magnetorquer system for attitude control. The ADCS control task 
+runs on the On Board Computer reading information from the various sensors and 
+firing the magnetorquers as required to ensure the spacecraft remains earth 
+pointing. The system is capable of maintaining off pointing to well within 5 
+degrees. 
+<P>The microsatellite spacecraft employ passive thermal control. This is 
+achieved by the ADCS task spinning the spacecraft at approximately 0.6 degrees 
+per second, or 10 minutes per revolution. This spinning maintains all sides of 
+the spacecraft at approximately the same temperature, and failure of this would 
+quickly result in a large temperature differential across the spacecraft of over 
+100 degrees Celsius. 
+<H3>
+<CENTER><IMG 
+src="UoSAT OBDH Hardware Overview_files/IMG00003.gif"><BR></CENTER></H3>
+<P>
+<CENTER>Figure 2: Spacecraft block diagram</CENTER>
+<H3>Telemetry and Telecommand System</H3>
+<P>The TTC system comprises a dedicated command decoder module and telemetry 
+module. These systems are normally controlled via the on-board computers, 
+however if the OBC is not operational for any reason it is possible to directly 
+command the spacecraft and receive telemetry. 
+<P>The command module comprises four redundant decoders, one of which is 
+permanently connected to RX0 while the others scan a number of different inputs 
+thus providing redundant control paths. 
+<P>The telemetry system includes two redundant custom VLSI chips specifically 
+designed to miniaturise the telemetry channel selection and formatting 
+functions. If the OBC is not operational, these chips are capable of providing a 
+formatted telemetry transmission direct to the downlink. 
+<H3>On Board Data Handling System</H3>
+<P>The primary on-board computer to date has been the OBC186 which includes 
+between 512K and 768K of Error Detection and Correction (EDAC) protected program 
+memory, and is connected to a 16MB RAMDisk for data storage. The OBC is able to 
+command the rest of the spacecraft and has a direct link to both the telemetry 
+and command modules. 
+<H2>OBC Software</H2>
+<P>The OBC has a small bootloader program loaded in EPROM which allows the 
+computer software to be loaded following a reset. The bootloader is a very small 
+and simple program which is necessary to ensure that there are no bugs in this 
+code which will prevent the OBC being loaded. The bootloader provides no 
+function other than to facilitate reloading of the flight code into RAM. 
+<P>The OBC186 computer runs a multitasking operating system called SCOS 
+(<B>S</B>pace<B>C</B>raft <B>O</B>perating <B>S</B>ystem). SCOS provides many of 
+the basic functions required for the computer to operate such as memory 
+allocation and task switching, as well as interprocess communication streams to 
+allow tasks to communicate with one another. The SCOS Kernel is loaded by the 
+bootloader and once the Kernel is running, the rest of the flight code can be 
+loaded. 
+<P>The functions performed by the OBC is carried out by a number of individual 
+tasks. Generally, tasks can be terminated and reloaded without having to 
+completely reload the OBC which allows most software upgrades to be performed 
+without any interruption to spacecraft users. 
+<P>In general there are seven tasks that perform the basic functions required 
+for the spacecraft to operate as a store and forward communications system. 
+These tasks comprise the following -: 
+<P><B>QAX25</B> QAX25 provides the low level AX25 packet radio protocol 
+functions for the uplink and downlink. 
+<P><B>Loader</B> The loader is responsible for interacting with the operating 
+system to allow control stations to load new software into the computers memory. 
+
+<P><B>TLM </B>The telemetry server provides an interface for other tasks 
+operating on the OBC to communicate with the telemetry system on board the 
+spacecraft. 
+<P><B>Mfile</B> The file system provides a standard FAT type file system for 
+accessing the RAMDisk with a single directory and a maximum of 800 files. Mfile 
+can be restarted following a reload without loss of files on the spacecraft. 
+<P><B>HIT </B>The Housekeeping Integration Task performs many of the basic 
+housekeeping functions required for the spacecraft to operate safely. It gathers 
+telemetry from the telemetry server and transmits it on the downlink or stores 
+it as a Whole Orbit Data (WOD) survey. HIT provides the command link with the 
+control station and is also capable of automatically running scheduled 
+spacecraft events. 
+<P><B>FTL0</B> FTL0 is the primary task responsible for servicing user requests. 
+It performs the broadcast downlink service as well as connected mode uploading. 
+Up to 20 stations at once can have requests queued for downloading while 2 
+simultaneous uploads are taking place. FTL0 also performs the automatic deletion 
+of old files in the RAMDisk to ensure that there is always at least 1MB of free 
+memory and 50 free directory entries. 
+<P><B>ADCS</B> The ADCS task controls the spin and attitude of the spacecraft. 
+It calculates the spacecraft position using the keplerian elements uploaded from 
+the command station each week, and uses the magnetometers to measure the Earth's 
+magnetic field, and compares this against a model of the Earth's magnetic field 
+to calculate the spacecraft pointing angle. This data is used to calculate 
+magnetorquer firing times, and it is capable of maintaining the spacecraft 
+attitude to within 5 degrees of nadir pointing. 
+<P>In addition, spacecraft payloads will have a support task running on the OBC 
+to allow the payload to interact with the rest of the spacecraft. For example, 
+the imaging payload support task is TST (Transputer Support Task). It is 
+responsible for facilitating the transfer of CCD image data to the RAMDisk and 
+commands from the OBC to the transputer system which carries out the imaging. 
+<P>The on board software is designed to respond to any anomalies by transmitting 
+a message on the downlink that the groundstation software can automatically 
+detect. In the case of a severe error that the OBC can not rectify, the software 
+can cause a 'screech' which safes the spacecraft and places the OBC software 
+back into the bootloader. Under these circumstances, the command station can 
+perform a memory dump of the program memory and analyse this to ascertain the 
+cause of the problem. 
+<H2>Store and Forward System</H2>
+<P>The arrangement of the flight software results in the ability to pass files 
+or 'messages' through the spacecraft using the OBC RAMDisk for message storage. 
+This is the store and forward communications system and most users only consider 
+it as a way to send other users email type messages. However, the store and 
+forward system is an integral part of the UoSAT spacecraft as it not only allows 
+messages to be passed from one groundstation to another, but is also the basis 
+for all operational data transfer to and from the spacecraft. When commanding 
+the spacecraft, configuration information is loaded into the store and forward 
+system, and a secure command program is used to tell the spacecraft which file 
+contains the information. Likewise, spacecraft housekeeping information is 
+placed into the store and forward system and downloaded in the same way as user 
+messages. 
+<H1>Surrey Mission Operations Centre</H1>
+<P>Spacecraft operations is traditionally a very expensive business because it 
+normally involves continuos monitoring of spacecraft by operations staff. 
+However, in the low cost satellite industry, this is not practical as the 
+overhead can quickly become an appreciable percentage of total mission costs. 
+<P>At UoSAT, the autonomous operation of the spacecraft is complemented by 
+automatic operations and monitoring at the Surrey Mission Operations Centre 
+(SMOC). The SMOC is only manned during normal working hours five days per week. 
+At other times the groundstation and spacecraft telemetry are monitored 
+automatically, and if there are any anomalies, the operations team is notified 
+automatically by a pager system. The nature of the problem is displayed on an 
+alpha-numeric display and the operator can make a decision as to what action to 
+take. This reduces the operations overhead while still providing continuos 
+monitoring of operational systems. 
+<H2>Commissioning Operations</H2>
+<P>When the spacecraft is launched, only the receivers, power system and command 
+system are active. During the first transits over the command station, the 
+spacecraft is powered up and telemetry is received and analysed to ensure the 
+spacecraft is healthy. Once this is complete, the OBC flight software is loaded 
+and control of the spacecraft is given to the housekeeping software. 
+<P>When the spacecraft is released from the launcher it's attitude is a random 
+tumbling. During the first few days following launch the ADCS system slows the 
+satellite and removes the Z axis tumbling. The gravity gradient boom can then be 
+deployed and the ADCS algorithm ensures that the satellite attitude is 
+'captured' earth pointing and locked. The algorithm can then automatically 
+switch to delibration mode and the spacecraft is spun up to the nominal spin 
+rate of one revolution every ten minutes. 
+<H2>Routine Command Operations</H2>
+<P>In low earth orbit (LEO), spacecraft are not in permanent view of a command 
+station and therefore must be able to operate for extended periods of time 
+without command station interaction. The UoSAT spacecraft operate autonomously 
+in orbit and only require routine commanding to update configuration files. 
+<P>The only routine operations requirement is for the ADCS system to be updated 
+once per week with new keplerian data, and for the spacecraft schedule file to 
+be loaded each month. These files are automatically prepared by the 
+groundstation software and uploaded to the spacecraft. The operations staff need 
+to use the secure command program to notify the spacecraft of the new 
+configuration file. 
+<P>The spacecraft time needs to be kept very accurate for the ADCS, and some 
+payloads to perform correctly. The spacecraft is moving at approximately 7 &frac12; KM 
+per second so if the time is not correct, the spacecraft position will be 
+calculated incorrectly. The command station performs clock synchronisation with 
+the satellite using a ground based GPS time standard and is capable of setting 
+the time to within 10 ms. This ensures that the spacecraft clock is kept 
+accurate to well within one second. 
+<H1>Housekeeping Data</H1>
+<P>The spacecraft transmits real time telemetry frames every five seconds. This 
+telemetry is primarily useful for command purposes such that when a command is 
+transmitted to the spacecraft, an immediate result can be observed. 
+<P>Since this telemetry is only available while the spacecraft is in view of the 
+groundstation, another means of collecting housekeeping data is required. This 
+requirement is realised in the form of Whole Orbit Data surveys (WOD) and task 
+log files where the data is stored on board the spacecraft in the file system 
+and made available for download at the end of the day. These files are placed 
+into the store and forward system and may be downloaded in exactly the same way 
+as user traffic. 
+<P>Of the primary tasks running on the spacecraft, the following log files are 
+created: 
+<P><TT><FONT face="Courier New">ALyymmdd</FONT></TT> Activity logs. These are 
+generated by FTL0 and log such information as upload sessions and automatic file 
+deletion. 
+<P><TT><FONT face="Courier New">BLyymmdd</FONT></TT> Broadcast logs. These are 
+also generated by FTL0 and log broadcast information such as number of bytes 
+transmitted and number of stations heard. 
+<P><TT><FONT face="Courier New">CLyymmdd</FONT></TT> Callsign logs. This logs 
+the callsigns heard by the spacecraft each day. 
+<P><TT><FONT face="Courier New">ELyymmdd</FONT></TT> Error logs. This is a log 
+of the radiation induced errors detected and corrected in the OBC memory. 
+<P><TT><FONT face="Courier New">WDmmddnn</FONT></TT> Whole orbit data logs. This 
+is stored telemetry sampled throughout the whole orbit. 
+<H1>Post Processing of housekeeping data</H1>
+<P>The Surrey Mission Operations Centre operated by SSTL currently monitors the 
+9 operational UoSAT class microsatellites and is the primary control station for 
+6 of these satellites. The control station automatically downloads all 
+housekeeping files generated on the spacecraft as well as archiving real time 
+telemetry. Once the files are downloaded, they are post processed and archived 
+onto optical disk for long term storage. As it isn't easily possible to make all 
+this data available full time, post processing is required to reduce the data to 
+a manageable size. 
+<P>A suite of programs have been developed at SSTL to allow this data set to be 
+reduced to a level where it can be stored online and this allows us to view 
+trend analyses data to observe the operation of spacecraft systems since launch. 
+These programs take the minimum, maximum, average and standard deviation of the 
+raw telemetry or WOD surveys, and provide statistical information on other log 
+files received from the spacecraft. All data is stored using a common file 
+format which ensures extraction and graphing of the data is simple. 
+<H2>Example: S80/T OBC Current</H2>
+<P>The S80/T spacecraft was launched in 1992 into a 1300km altitude, 66 degree 
+inclination orbit. This orbit provides a very harsh radiation environment that 
+is approximately six times greater than that for the 800km polar orbit. Over the 
+past twelve months it has become apparent that some spacecraft systems are 
+starting to show signs of total dose radiation effects. 
+<P>The following graph shows the Primary OBC186 current for the past eighteen 
+months. From this graph it can be seen that the current is rising rapidly 
+following a logarithmic curve. Ultimately this will render the OBC inoperable 
+probably due to a failure of the power switch when the current drain reaches 400 
+to 500 mA. 
+<P><IMG src="UoSAT OBDH Hardware Overview_files/IMG00004.gif"> 
+<H1>Appendix A: Task functions and status messages</H1>
+<H2>FTL0 Task</H2>
+<H3>Function</H3>
+<P>FTL0 is the primary task involved with uplink and downlink of users 
+information. It supports connected mode uplink as well as the broadcast downlink 
+protocol. 
+<H3>Status Messages</H3>
+<P>Message: Open 12a: 
+<P>Purpose: The spacecraft will accept uplink requests. The 12 numbers 
+correspond to spacecraft the receiver being used by any users, and this is 
+generally arranged such that the 1 corresponds to the lowest frequency receiver 
+and the 2 to the higher frequency receiver. If there is a user connected to the 
+spacecraft then the number corresponding to the receiver being used will be 
+replaced by a space, and the callsign of the station will be appended to the 
+message.<BR>
+<P>Message: FULL 12a: 
+<P>Purpose: Same as Open message except the maximum number of users has been 
+reached and the spacecraft will not accept further requests. <BR>
+<P>Message: SHUT 12a: 
+<P>Purpose: The control station has closed the spacecraft for general use. Only 
+command stations can connect to the spacecraft when it is shut.<BR>
+<P>Message: PB: 
+<P>Purpose: The PB message provides a list of stations that are in the broadcast 
+queue to download information from the spacecraft. There is a maximum number of 
+stations permitted to enter the broadcast queue (generally this is 20 stations). 
+Each station will spend a maximum of 5 seconds at the head of the queue. If, 
+after the 5 seconds is up, the spacecraft hasn't transmitted all the information 
+requested by that station, then the station will return to the end of the queue, 
+otherwise it will be removed from the queue.<BR>
+<P>Message: B: 
+<P>Purpose: This is an incrementing count of the number of bytes of data that 
+the spacecraft has transmitted. This is sent by the spacecraft approximately 
+every 5 seconds and is used by groundstation software to give an indication of 
+groundstation receive efficiency. <BR>
+<H2>ADCS Task</H2>
+<H3>Function</H3>
+<P>The Attitude Determination and Control System (ADCS) is responsible for 
+maintaining the spacecraft attitude to ensure that the antennas point toward 
+earth and that the spin rate of the spacecraft is maintained. 
+<H3>Status Messages</H3>
+<P>Message: ADCS T:823845222 LAT:41.734 LON:27.71 
+<P>Purpose: Provides an indication of the ADCS calculation of spacecraft 
+sub-satellite position. The T: number is the OBC time printed in Unix time 
+format.<BR>
+<P>Message: SPIN:10.1 I:1 K:5 X:5000 Z:4748 E:2.13 G:2.56 
+<P>Purpose: Provides status information from the ADCS system. Individual values 
+are -: 
+<P><B>SPIN</B> value gives the +Z spin value of the satellite measured in 
+minutes. 
+<P><B>I</B> values indicate which model the ADCS task is using to base its 
+calculations upon (in this case the IGRF model). 
+<P><B>K</B> values indicate active Keplerian element and attitude filter support 
+for the ADCS task. 
+<P><B>X</B> and <B>Z</B> values indicate the remaining number of firings 
+programmed in the X and Z magnetourquers respectively. If these numbers reach 0 
+no further firings can occur. 
+<P><B>E</B> values shown indicate the current estimated off-pointing of the 
+spacecraft. 
+<P><B>G</B> values shown are estimated worst case off-pointing during the 
+reporting period as analysed by the ADCS routine during the past 24 hours.<BR>
+<H2>OAK Task</H2>
+<H3>Function</H3>
+<P>The OAK task is an improved ADCS task. 
+<H3>Status Messages</H3>
+<P>Message: OAKC T:827756601 E:1 M:0 C:1 R:658 P:-12 Y:3022 YR:603 TX:0 TY:0 
+TZ:0 
+<P>Purpose: Provides status information from the OAK ADCS system. Individual 
+values are -: 
+<P><B>T</B> OBC time in Unix format. 
+<P><B>E</B> Enable flag 
+<P><B>M</B> Incrementing counter. When this goes to 0 the magnetourquers will 
+fire - this takes 10 minutes. 
+<P><B>C</B> Control flag 
+<P><B>R</B> Current attitude ROLL value. Divide by 500 to give value in degrees. 
+
+<P><B>P</B> Current attitude PITCH value. Divide by 500 to give value in 
+degrees. 
+<P><B>Y</B> Current attitude YAW value. Divide by 10 to give value in degrees. 
+<P><B>YR</B> Current attitude YAW RATE value. Divide by 1000 to give value in 
+degrees. 
+<P><B>TX</B>, <B>TY</B>, <B>TZ</B> Length of time of the last X, Y and Z 
+magnetourquer firing respectively (In seconds).<BR>
+<H2>HIT Task</H2>
+<P>HIT is the Housekeeping Integration Task. It performs many of the 
+housekeeping functions on board the spacecraft such as gathering telemetry, 
+performing WOD surveys and carrying out autonomous scheduled commands. It also 
+provides a command link with the groundstation. 
+<H3>Status Messages</H3>
+<P>Message: Sked 1.3 file:530df next:Tue Mar 26 00:02:00 1996 
+<P>Purpose: Provides schedule file status information. This shows the schedule 
+file that is currently active as well as the time of the next scheduled 
+event.<BR>
+<P>Message: Mon Mar 25 12:26:33 1996 Up: 14/3:8 EDAC= 44 F:85424 L:82256 d:0 
+[0]. 
+<P>Purpose: Provides general HIT status information and spacecraft OBC time. 
+Individual values are -: 
+<P><B>Up</B>: The amount of time since the last software reload in 
+Days/Hours:Minutes 
+<P><B>EDAC</B> The number of hardware errors detected and corrected since the 
+last reload 
+<P><B>F</B>: The amount of free program memory available to load SCOS tasks 
+<P><B>L</B>: The largest free block of program memory 
+<P><B>d</B>: Digipeating flag 
+<P><B>[0]</B> Command status. If a command station is accessing the spacecraft 
+then this indicates the state of the command system. The command station 
+callsign will also appear on the end of the status message.<BR>
+<H2>TST Task</H2>
+<H3>Function</H3>
+<P>TST is the Transputer Support Task. Generally the transputer is used for 
+experiments such as imaging and Global Position System (GPS) and TST provides 
+the link between the Transputer and the OBC. 
+<H3>Status Messages</H3>
+<P>Message: TST: LF=TS960325,C IF=P1SD015B,C TN=7d45 DASH=UP FR=63 HC=5 EC=7 
+MR=20,13 
+<P><B>LF </B>indicates the file name of most recent TST log file. There is a 
+marker [C] to indicate whether the log file is currently open or closed - it 
+should typically be closed. 
+<P><B>IF</B> shows the file name of the most recent (or currently transferring) 
+image file from the transputer. The two letter code identifies a wide angle 
+image (IW), a narrow angle image (IN), a star sensor image (SA, SB, SC or SD), 
+and the four number code reflect the image number selected when the image was 
+captured. UoSAT-5 images all have the 'IM' tag. There is a marker [C] to 
+indicate whether this image file is currently open or closed - unless an image 
+transfer is in progress, it should typically be closed. 
+<P><B>TN</B> gives the operator the number allocated by the ramdisk file system 
+for most recent thumb file. This allows the operator to grab the thumb file 
+without having to wait for the directory to be up to date. 
+<P><B>DASH </B>indicates whether the DASH connection from the OBC to the 
+transputer is established (up) or not (down). 
+<P><B>FR</B> A message from the transputer scheduler contains one or more DASH 
+frames. This entry shows the number of frames received in the most recent 
+(possibly currently ongoing) message. A message is considered ongoing until it 
+receives the next new message. 
+<P><B>HC </B>Shows the most recent HIT command to the TST task. 
+<P><B>EC </B>Shows the most recent TDPE scheduler command issued by TST. These 
+commands in are: 
+<P>capture [EIS] image : 0 
+<P>transmit [EIS] image : 4 
+<P>set [scheduler] clock : 5 
+<P>get [EIS] image status : 6 
+<P>get scheduler status : 7 
+<P>capture and transmit [EIS] image : 8 
+<P>get non-EDAC [memory] status : 9 
+<P>wash EDAC memory : 10 
+<P>test non-EDAC memory : 11 
+<P>adjust [T1] processor speed : 13 
+<P>get EDAC memory status : 17 
+<P>capture SIS image : 18 
+<P>transmit SIS image : 19 
+<P>SIS [image] capture and transmit : 20 
+<P>get SIS status : 21 
+<P><B>MR </B>Similarly, this indicates the most recent message type received 
+from the scheduler. The message type number matches the command (see above) that 
+instigated the data transfer. Not all commands (e.g. set clock, adjust processor 
+speed, capture image, etc.) result in a message returning from the transputer. 
+The second parameter is incremented with each new message, which can assist in 
+message tracing and debugging.<BR></P></BODY></HTML>
